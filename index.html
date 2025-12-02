@@ -1,12 +1,967 @@
-<!doctype html>
-<html lang="ru">
-	<head>
-		<meta charset="UTF-8" />
-		<title>Premium Garden · Интенсивный сад</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	</head>
-	<body class="bg-slate-950">
-		<div id="root"></div>
-		<script type="module" src="/src/main.jsx"></script>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gardens of Caucasus | Investment Memorandum 2025</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary: #10B981;       /* Emerald Green */
+            --primary-glow: rgba(16, 185, 129, 0.4);
+            --accent: #F59E0B;        /* Gold/Amber for Premium */
+            --bg-dark: #0F172A;       /* Slate 900 */
+            --bg-card: #1E293B;       /* Slate 800 */
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border: rgba(255,255,255,0.08);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            background-color: #020617; /* Almost Black */
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- UTILS --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 100px;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+            background: rgba(16, 185, 129, 0.1); color: var(--primary);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .section-header { margin-bottom: 3rem; text-align: center; }
+        .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .section-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* --- CARD CLASS --- */
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem; /* Desktop Padding */
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        @keyframes pulse {
+            0% { opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { opacity: 1; box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+            100% { opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .live-dot {
+            width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display: inline-block;
+            animation: pulse 2s infinite; margin-right: 6px;
+        }
+
+        /* --- BACKGROUND FX --- */
+        .bg-mesh {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08), transparent 25%);
+        }
+
+        /* --- NAV --- */
+        nav {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); padding: 1rem 0;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; cursor: pointer; white-space: nowrap; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: white; }
+
+        /* Lang Switcher */
+        .lang-switch {
+            margin-left: 2rem;
+            display: flex;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2px;
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            background: none; border: none; color: var(--text-muted);
+            padding: 6px 14px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
+            border-radius: 16px; transition: 0.3s;
+        }
+        .lang-btn.active { background: var(--primary); color: #020617; }
+
+        /* --- HERO --- */
+        .hero { padding: 140px 0 100px; text-align: center; position: relative; }
+        .hero h1 { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.04em; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem; }
+        
+        .hero-metrics {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+            max-width: 1000px; margin: 0 auto;
+        }
+        .metric-card {
+            background: rgba(30, 41, 59, 0.4); border: 1px solid var(--border);
+            padding: 1.5rem; border-radius: 16px; backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+        .metric-val { font-size: 2rem; font-weight: 700; color: white; }
+        .metric-lbl { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 5px; }
+
+        /* --- BENTO GRID --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .bento-item {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 24px; padding: 2rem; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .bento-item.span-2 { grid-column: span 2; }
+        .bento-item h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .bento-item p { color: var(--text-muted); font-size: 0.95rem; }
+        .bento-icon { 
+            width: 48px; height: 48px; border-radius: 12px; 
+            background: rgba(255,255,255,0.05); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline { position: relative; margin: 4rem 0; padding-left: 2rem; border-left: 2px solid var(--border); }
+        .timeline-item { margin-bottom: 3rem; position: relative; padding-left: 2rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2.6rem; top: 0.5rem;
+            width: 1rem; height: 1rem; background: var(--bg-dark);
+            border: 2px solid var(--primary); border-radius: 50%; z-index: 2;
+        }
+        .timeline-year { font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
+        .timeline-title { font-size: 1.25rem; font-weight: 700; color: white; }
+
+        /* --- MAP & LOC --- */
+        .map-wrapper {
+            height: 450px; width: 100%; border-radius: 24px; overflow: hidden;
+            border: 1px solid var(--border); position: relative;
+        }
+        .map-overlay {
+            position: absolute; bottom: 20px; left: 20px; right: 20px;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px);
+            padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+        .weather-col { border-right: 1px solid rgba(255,255,255,0.1); padding-right: 10px; }
+        .weather-col:last-child { border-right: none; }
+
+        /* --- FINANCIALS --- */
+        .fin-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; }
+        .fin-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        .fin-table td { padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: bottom; }
+        .fin-table td:nth-child(1) { width: 65%; text-align: left; }
+        .fin-table td:nth-child(2) { width: 35%; text-align: right; color: white; font-family: monospace; font-size: 1.1rem; }
+        .fin-table tr:last-child td { border: none; font-weight: 700; color: var(--primary); font-size: 1.2rem; padding-top: 20px; }
+        
+        .scenario-tabs { display: flex; gap: 10px; margin-bottom: 1rem; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 12px; width: fit-content; overflow-x: auto; }
+        .tab-btn {
+            background: none; border: none; color: var(--text-muted);
+            padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.3s; white-space: nowrap;
+        }
+        .tab-btn.active { background: var(--primary); color: #020617; }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--border); padding: 80px 0; margin-top: 80px; text-align: center; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--primary); color: #020617;
+            padding: 16px 40px; border-radius: 100px;
+            font-weight: 700; text-decoration: none; transition: 0.3s;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        /* --- MOBILE ADAPTATION --- */
+        @media(max-width: 900px) {
+            .hero h1 { font-size: 2.5rem; padding: 0 10px; }
+            .hero-metrics { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
+            .bento-grid, .fin-grid { grid-template-columns: 1fr; }
+            .bento-item.span-2 { grid-column: span 1; }
+            .nav-links { display: none; }
+            .lang-switch { margin-left: auto; margin-right: 0; }
+            .container.nav-inner { padding: 0 20px; }
+            
+            /* Reduced Padding for Mobile Cards */
+            .content-card { padding: 1.25rem !important; }
+            .bento-item { padding: 1.5rem; }
+
+            /* Map Mobile */
+            .map-wrapper { height: 350px; display: flex; flex-direction: column; }
+            iframe { height: 200px !important; flex-shrink: 0; }
+            .map-overlay {
+                position: relative; top: 0; left: 0; right: 0; bottom: 0;
+                background: #1E293B;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1rem;
+                border-radius: 0 0 24px 24px;
+                border-top: none;
+                margin-top: -5px;
+            }
+            .weather-col { border-right: none; text-align: left; padding: 0; }
+            
+            /* Table Mobile Fixes */
+            .fin-table td { font-size: 0.85rem; padding: 8px 0; }
+            .fin-table td:nth-child(2) { font-size: 1rem; }
+            .fin-table tr:last-child td { font-size: 1.1rem; }
+            
+            .hero { padding: 100px 0 60px; }
+            .container { padding: 0 16px; }
+            .cta-btn { width: 100%; justify-content: center; padding: 16px 20px; }
+        }
+
+        @media(max-width: 400px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-metrics { grid-template-columns: 1fr; }
+            .map-overlay { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+
+<nav>
+    <div class="container nav-inner">
+        <div class="logo">
+            <i data-lucide="sprout" color="#10B981"></i>
+            <span>GARDENS OF <span style="color:var(--primary)">CAUCASUS</span></span>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <div class="nav-links">
+                <a href="#strategy" data-i18n="navStrategy">Strategy</a>
+                <a href="#location" data-i18n="navLocation">Location</a>
+                <a href="#production" data-i18n="navProduction">Production</a>
+                <a href="#finance" data-i18n="navFinance">Finance</a>
+                <a href="#contact" style="color: var(--primary); font-weight:700;" data-i18n="navContact">Contact</a>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                <button class="lang-btn" onclick="switchLanguage('ru')">RU</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="hero reveal active">
+    <div class="container">
+        <div class="badge">Early Exit Strategy • 2025-2030</div>
+        <h1 data-i18n="heroTitle">Next-Gen Intensive<br><span class="text-gradient">Orchard</span></h1>
+        <p data-i18n="heroSub">Ismayilli, Azerbaijan. 10 Hectares of Premium Stone Fruit.<br>Strategic market entry during the "deficit window".</p>
+        
+        <div class="hero-metrics">
+            <div class="metric-card">
+                <div class="metric-val">~80%</div>
+                <div class="metric-lbl">EBITDA Margin</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-val" data-i18n="metPBP">4.5 years</div>
+                <div class="metric-lbl" data-i18n="lblPBP">Payback Period</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-val">100%</div>
+                <div class="metric-lbl">Export Grade A</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-val">Early Exit</div>
+                <div class="metric-lbl" data-i18n="lblLiquidity">Asset Liquidity</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="strategy" style="padding: 80px 0;">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="stratTitle">Fundamental Advantage</h2>
+            <p class="section-desc" data-i18n="stratDesc">Why Ismayilli (650m ASL)? It's not just land, it's a climate hedge for your investment.</p>
+        </div>
+
+        <div class="bento-grid reveal">
+            <div class="bento-item span-2">
+                <div class="bento-icon"><i data-lucide="snowflake"></i></div>
+                <h3 data-i18n="chillTitle">900+ Chill Hours</h3>
+                <p data-i18n="chillDesc">Unlike lowland zones (Kurdamir, Sabirabad), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation. Without this, the orchard risks becoming just "firewood".</p>
+            </div>
+            <div class="bento-item">
+                <div class="bento-icon"><i data-lucide="sun"></i></div>
+                <h3 data-i18n="uvTitle">UV Impact & Coloration</h3>
+                <p data-i18n="uvDesc">Elevation provides 15% more UV radiation. Cherries achieve a premium "Dark" color, and Giant Red Apricots become deep red. The visual appeal sells the product.</p>
+            </div>
+            <div class="bento-item">
+                <div class="bento-icon"><i data-lucide="droplets"></i></div>
+                <h3 data-i18n="soilTitle">Calcium Structure</h3>
+                <p data-i18n="soilDesc">Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai without quality loss.</p>
+            </div>
+            <div class="bento-item span-2" style="background: linear-gradient(135deg, rgba(16,185,129,0.1), transparent); border-color: rgba(16,185,129,0.3);">
+                <div class="bento-icon"><i data-lucide="trending-up"></i></div>
+                <h3 data-i18n="earlyTitle">Early Window Strategy</h3>
+                <p data-i18n="earlyDesc">We enter the market 14 days earlier than the northern giants (Guba/Khachmaz). At this moment, prices are at their peak, and the market is empty. We skim the cream before the mass harvest collapses prices.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="location" style="padding: 80px 0;">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="locTitle">Location & Climate</h2>
+            <p class="section-desc" data-i18n="locDesc">Coordinates: 40.604977, 48.152331. Real-time condition monitoring.</p>
+        </div>
+        
+        <div class="map-wrapper reveal">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3023.644786475658!2d48.152331!3d40.604977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDM2JzE3LjkiTiA0OMKwMDknMDguNCJF!5e1!3m2!1sen!2saz!4v1700000000000!5m2!1sen!2saz" 
+                width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(85%);" allowfullscreen="" loading="lazy">
+            </iframe>
+            
+            <div class="map-overlay">
+                <div class="weather-col">
+                    <div style="display:flex; align-items: center; gap: 8px; margin-bottom: 5px;">
+                        <span class="live-dot"></span>
+                        <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">ISMAYILLI LIVE</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap: 10px;">
+                        <div id="live-icon" style="font-size: 2rem;">☀️</div>
+                        <div id="live-temp" style="font-size:2rem; font-weight:800; line-height: 1;">--°C</div>
+                    </div>
+                    <div id="live-date" style="font-size:0.7rem; color:var(--text-muted); margin-top: 8px; font-weight: 500;">Loading data...</div>
+                </div>
+
+                <div class="weather-col" style="display:flex; flex-direction: column; justify-content: center;">
+                    <div style="font-size:0.85rem; margin-bottom: 4px; color:var(--text-muted);"><span data-i18n="wHum">Humidity</span>: <span id="live-hum" style="color:white; font-weight:700;">--%</span></div>
+                    <div style="font-size:0.85rem; margin-bottom: 4px; color:var(--text-muted);"><span data-i18n="wWind">Wind</span>: <span id="live-wind" style="color:white; font-weight:700;">-- m/s</span></div>
+                    <div style="font-size:0.85rem; color:var(--text-muted);"><span data-i18n="wPress">Pressure</span>: <span id="live-press" style="color:white; font-weight:700;">-- mm</span></div>
+                </div>
+
+                <div class="weather-col">
+                    <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom: 5px;" data-i18n="wSoil">Soil Type</div>
+                    <div style="font-size:1.4rem; font-weight:700;" data-i18n="wCarb">Carbonate</div>
+                    <div style="font-size:0.75rem; color:var(--primary);">High pH</div>
+                </div>
+
+                <div class="weather-col">
+                    <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom: 5px;" data-i18n="wAlt">Elevation</div>
+                    <div style="font-size:1.4rem; font-weight:700;">650 m</div>
+                    <div style="font-size:0.75rem; color:var(--primary);">ASL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="production" style="padding: 80px 0;">
+    <div class="container">
+        <div class="fin-grid reveal">
+            <div>
+                <h2 class="section-title" data-i18n="prodTitle">Orchard Structure (10 Ha)</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="prodDesc">
+                    Project economics 2023-2025. Balancing early high-margin fruits with gross volume.
+                </p>
+                
+                <div style="margin-bottom: 2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
+                        <div>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#F97316;">🍒 <span data-i18n="fruitCherry">Cherry (Premium)</span></span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Early Lory, Giant Red</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-weight:700; color:white;">5.00 – 11.00 ₼</div>
+                            <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div>
+                        </div>
+                    </div>
+                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
+                        <div style="width:20%; height:100%; background:#F97316;"></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descCherry">
+                        The earliest and most expensive berry. Ultra-early market entry ensures maximum margin.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
+                        <div>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#EC4899;">🍑 <span data-i18n="fruitNect">Nectarine (Volume Leader)</span></span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">4 ha • Extreme 28, Oreal</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-weight:700; color:white;">1.80 – 2.20 ₼</div>
+                            <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div>
+                        </div>
+                    </div>
+                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
+                        <div style="width:40%; height:100%; background:#EC4899;"></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descNect">
+                        Our "heavyweight". Provides the main tonnage and Cash Flow for CIS markets.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
+                        <div>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#FACC15;">🥯 <span data-i18n="fruitPeach">Flat Peach (Fig)</span></span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Zodiac, Babylone</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-weight:700; color:white;">2.00 – 2.20 ₼</div>
+                            <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div>
+                        </div>
+                    </div>
+                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
+                        <div style="width:20%; height:100%; background:#FACC15;"></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descPeach">
+                        Retail chain favorite. Flat varieties are easy to pack and enjoy high consumer demand.
+                    </p>
+                </div>
+
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
+                        <div>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#FB923C;">🔸 <span data-i18n="fruitApricot">Apricot</span></span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Traditional Demand</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-weight:700; color:white;">2.20 – 4.00 ₼</div>
+                            <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div>
+                        </div>
+                    </div>
+                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
+                        <div style="width:20%; height:100%; background:#FB923C;"></div>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descApricot">
+                        High price at season start and stable demand in the local market.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <h3 style="margin-bottom:1.5rem;" data-i18n="roadTitle">Project Roadmap</h3>
+                <div class="timeline" style="margin: 0; padding-left: 1.5rem;">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Q1-Q2 2025</div>
+                        <div class="timeline-title" data-i18n="t1Title">CAPEX Phase</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t1Desc">Land preparation, well drilling, fencing, seedling procurement.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Q4 2025</div>
+                        <div class="timeline-title" data-i18n="t2Title">Planting</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t2Desc">Planting 6600 trees (10 Ha).</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2027-2028 (Year 3-4)</div>
+                        <div class="timeline-title" data-i18n="t3Title">First Commercial Harvest</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t3Desc">ROI begins (Nectarine/Apricot).</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2030 (Year 5-6)</div>
+                        <div class="timeline-title" data-i18n="t4Title">Full Capacity & Exit</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t4Desc">Max revenue. Option to sell the orchard as a turnkey business.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="finance" style="padding: 80px 0; background: #0f172a;">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="finTitle">Financial Model</h2>
+            <p class="section-desc" data-i18n="finDesc">Transparent numbers. Realistic planning. Conservative approach.</p>
+        </div>
+
+        <div class="fin-grid reveal">
+            <div class="content-card">
+                <h3 style="margin-bottom: 1.5rem;" data-i18n="investTitle">Investment Structure</h3>
+                <table class="fin-table">
+                    <tr><td data-i18n="rowWater">Water Supply</td><td>90 000 ₼</td></tr>
+                    <tr><td data-i18n="rowMach">Machinery (Tractor +)</td><td>85 000 ₼</td></tr>
+                    <tr><td data-i18n="rowIrr">Irrigation (Drip)</td><td>60 000 ₼</td></tr>
+                    <tr><td data-i18n="rowTrees">Seedlings (6600 units)*</td><td>57 090 ₼</td></tr>
+                    <tr><td data-i18n="rowInfra">Infrastructure</td><td>70 000 ₼</td></tr>
+                    <tr><td data-i18n="rowEarth">Earthworks</td><td>18 500 ₼</td></tr>
+                    <tr><td data-i18n="rowCapex">TOTAL CAPEX</td><td>380 590 ₼</td></tr>
+                </table>
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--border);">
+                    <div style="display:flex; justify-content:space-between; margin-bottom: 5px; color: var(--text-muted);">
+                        <span data-i18n="rowOpex">OPEX (Until Payback)</span>
+                        <span>138 300 ₼</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size: 1.25rem; font-weight: 800; color: white; margin-top: 10px;">
+                        <span>TOTAL ASK:</span>
+                        <span style="color: var(--primary);">518 890 ₼</span>
+                    </div>
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:10px;" data-i18n="finNote">*Seedling calculation based on base price 8.65 AZN. Premium licenses may require additional budget.</div>
+                </div>
+            </div>
+
+            <div class="content-card" style="display:flex; flex-direction:column;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
+                    <h3 data-i18n="revChartTitle" style="font-size: 1.25rem;">Revenue Forecast (AZN)</h3>
+                    <div class="scenario-tabs">
+                        <button class="tab-btn" onclick="setScenario('pessimistic')" id="btn-pess" data-i18n="scenPess">Pessimist</button>
+                        <button class="tab-btn active" onclick="setScenario('realistic')" id="btn-real" data-i18n="scenReal">Realist</button>
+                        <button class="tab-btn" onclick="setScenario('optimistic')" id="btn-opt" data-i18n="scenOpt">Optimist</button>
+                    </div>
+                </div>
+                <div style="flex-grow:1; position:relative; min-height: 300px;">
+                    <canvas id="revChart"></canvas>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(2, 6, 23, 0.5); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <i data-lucide="bar-chart-3" style="width: 16px; height: 16px;"></i>
+                        <span data-i18n="baseCalc">Calculation Base (Market 2023-2025)</span>
+                    </div>
+                
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                        
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 8px; height: 8px; background: #F97316; border-radius: 50%; display: inline-block;"></span>
+                            <span style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="baseCherry">Cherry:</span>
+                            <span style="color: white; font-weight: 700;">~11.00 ₼</span>
+                        </div>
+                
+                        <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.1);"></div>
+                
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 8px; height: 8px; background: #FACC15; border-radius: 50%; display: inline-block;"></span>
+                            <span style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="basePeach">Peach Group:</span>
+                            <span style="color: white; font-weight: 700;">~2.20 ₼</span>
+                        </div>
+                
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="padding: 80px 0;">
+    <div class="container reveal">
+        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(59,130,246,0.1)); border: 1px solid rgba(16,185,129,0.3); padding: 3rem; border-radius: 24px; text-align: center;">
+            <i data-lucide="shield-check" size="48" style="color:var(--primary); margin-bottom: 1rem;"></i>
+            <h2 style="margin-bottom: 1rem;" data-i18n="secureTitle">Government-Backed Investment</h2>
+            <p style="max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted);" data-i18n="secureDesc">
+                The project is subsidized by the state. Agro-insurance covers 96% of risks (hail, fire, wind), with the government paying 50% of the insurance premium cost.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer id="contact">
+    <div class="container">
+        <h2 data-i18n="footTitle">Ready to start the "Gardens of Caucasus" story?</h2>
+        <p style="color: var(--text-muted); margin: 1rem 0 2rem;" data-i18n="footSub">Land ready. Plan approved. Team assembled.</p>
+        
+        <div style="margin-bottom: 2rem;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: white;">Guliyev Rashad Rovshan</div>
+            <div style="color: var(--primary);" data-i18n="initiatorRole">Project Initiator</div>
+        </div>
+
+        <a href="https://wa.me/994702166666" class="cta-btn">
+            <i data-lucide="message-circle"></i>
+            <span data-i18n="btnWhatsapp">Discuss Investment on WhatsApp</span>
+        </a>
+        
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #475569;">
+            © 2025 Gardens of Caucasus. Confidential. All rights reserved.<br>
+            Designed for High-Value Agriculture.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 0. TRANSLATIONS DB
+    const translations = {
+        en: {
+            navStrategy: "Strategy",
+            navLocation: "Location",
+            navProduction: "Production",
+            navFinance: "Finance",
+            navContact: "Contact",
+            
+            heroTitle: 'Next-Gen Intensive<br><span class="text-gradient">Orchard</span>',
+            heroSub: "Ismayilli, Azerbaijan. 10 Hectares of Premium Stone Fruit.<br>Strategic market entry during the 'deficit window'.",
+            metPBP: "4.5 years",
+            lblPBP: "Payback Period (PBP)",
+            lblLiquidity: "Asset Liquidity",
+            
+            stratTitle: "Fundamental Advantage",
+            stratDesc: "Why Ismayilli (650m ASL)? It's not just land, it's a climate hedge for your investment.",
+            chillTitle: "900+ Chill Hours",
+            chillDesc: "Unlike lowland zones (Kurdamir, Sabirabad), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation. Without this, the orchard risks becoming just 'firewood'.",
+            uvTitle: "UV Impact & Coloration",
+            uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red. The visual appeal sells the product.",
+            soilTitle: "Calcium Structure",
+            soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai without quality loss.",
+            earlyTitle: "Early Window Strategy",
+            earlyDesc: "We enter the market 14 days earlier than the northern giants (Guba/Khachmaz). At this moment, prices are at their peak, and the market is empty. We skim the cream before the mass harvest collapses prices.",
+            
+            locTitle: "Location & Climate",
+            locDesc: "Coordinates: 40.604977, 48.152331. Real-time condition monitoring.",
+            wHum: "Humidity",
+            wWind: "Wind",
+            wPress: "Pressure",
+            wSoil: "Soil Type",
+            wCarb: "Carbonate",
+            wAlt: "Elevation",
+            
+            prodTitle: "Orchard Structure (10 Ha)",
+            prodDesc: "Project economics 2023-2025. Balancing early high-margin fruits with gross volume.",
+            fruitCherry: "Cherry (Premium)",
+            yield20: "up to 20 t/ha",
+            descCherry: "The earliest and most expensive berry. Ultra-early market entry ensures maximum margin.",
+            fruitNect: "Nectarine (Volume Leader)",
+            yield40: "up to 40 t/ha",
+            descNect: "Our 'heavyweight'. Provides the main tonnage and Cash Flow for CIS markets.",
+            fruitPeach: "Flat Peach (Fig)",
+            descPeach: "Retail chain favorite. Flat varieties are easy to pack and enjoy high consumer demand.",
+            fruitApricot: "Apricot",
+            descApricot: "High price at season start and stable demand in the local market.",
+            
+            roadTitle: "Project Roadmap",
+            t1Title: "CAPEX Phase",
+            t1Desc: "Land preparation, well drilling, fencing, seedling procurement.",
+            t2Title: "Planting",
+            t2Desc: "Planting 6600 trees (10 Ha).",
+            t3Title: "First Commercial Harvest",
+            t3Desc: "ROI begins (Nectarine/Apricot).",
+            t4Title: "Full Capacity & Exit",
+            t4Desc: "Max revenue. Option to sell the orchard as a turnkey business.",
+            
+            finTitle: "Financial Model",
+            finDesc: "Transparent numbers. Realistic planning. Conservative approach.",
+            investTitle: "Investment Structure",
+            rowWater: "Water Supply",
+            rowMach: "Machinery (Tractor +)",
+            rowIrr: "Irrigation (Drip)",
+            rowTrees: "Seedlings (6600 units)*",
+            rowInfra: "Infrastructure",
+            rowEarth: "Earthworks",
+            rowCapex: "TOTAL CAPEX",
+            rowOpex: "OPEX (Until Payback)",
+            finNote: "*Seedling calculation based on base price 8.65 AZN. Premium licenses may require additional budget.",
+            
+            revChartTitle: "Revenue Forecast (AZN)",
+            scenPess: "Pessimist",
+            scenReal: "Realist",
+            scenOpt: "Optimist",
+            baseCalc: "Calculation Base (Market 2023-2025)",
+            baseCherry: "Cherry:",
+            basePeach: "Peach Group:",
+            
+            secureTitle: "Government-Backed Investment",
+            secureDesc: "The project is subsidized by the state. Agro-insurance covers 96% of risks (hail, fire, wind), with the government paying 50% of the insurance premium cost.",
+            
+            footTitle: "Ready to start the \"Gardens of Caucasus\" story?",
+            footSub: "Land ready. Plan approved. Team assembled.",
+            initiatorRole: "Project Initiator",
+            btnWhatsapp: "Discuss Investment on WhatsApp"
+        },
+        ru: {
+            navStrategy: "Стратегия",
+            navLocation: "Локация",
+            navProduction: "Производство",
+            navFinance: "Финансы",
+            navContact: "Связаться",
+            
+            heroTitle: 'Интенсивный сад<br><span class="text-gradient">Нового Поколения</span>',
+            heroSub: "Исмаиллы, Азербайджан. 10 Гектаров премиальных косточковых культур.<br>Стратегический выход на рынок в окно 'дефицита'.",
+            metPBP: "4.5 года",
+            lblPBP: "Окупаемость (PBP)",
+            lblLiquidity: "Ликвидность актива",
+            
+            stratTitle: "Фундаментальное Преимущество",
+            stratDesc: "Почему Исмаиллы (650м над у.м.)? Это не просто земля, это климатический хедж ваших инвестиций.",
+            chillTitle: "900+ Часов Холода",
+            chillDesc: "В отличие от равнинных зон (Кюрдамир, Сабирабад), наше предгорье гарантирует деревьям полноценный зимний покой. Это критический фактор для дружного цветения и формирования урожая. Без этого риска сад превращается в 'дрова'.",
+            uvTitle: "УФ-Удар & Окрас",
+            uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный темный цвет ('Dark Cherry'), а абрикос Giant Red становится 'кровавым'. Товарный вид продает сам себя.",
+            soilTitle: "Кальциевый Каркас",
+            soilDesc: "Карбонатные почвы работают как природный цемент. Фрукт растет плотным и хрустящим (crunchy). Это позволяет везти его фурами в Москву или авиа в Дубай без потери качества.",
+            earlyTitle: "Стратегия Раннего Окна",
+            earlyDesc: "Мы выходим на рынок на 14 дней раньше северных гигантов (Губа/Хачмаз). В этот момент цена на пике, а рынок пуст. Мы снимаем 'сливки' до обвала цен массовым урожаем.",
+            
+            locTitle: "Локация и Климат",
+            locDesc: "Координаты: 40.604977, 48.152331. Мониторинг условий в реальном времени.",
+            wHum: "Влажность",
+            wWind: "Ветер",
+            wPress: "Давление",
+            wSoil: "Почва",
+            wCarb: "Карбонат",
+            wAlt: "Высота",
+            
+            prodTitle: "Структура Сада (10 Га)",
+            prodDesc: "Экономика проекта 2023-2025. Баланс ранней маржи и валового объема.",
+            fruitCherry: "Черешня (Premium)",
+            yield20: "до 20 т/га",
+            descCherry: "Самая ранняя и дорогая ягода. Ультра-ранний выход на рынок обеспечивает максимальную маржу.",
+            fruitNect: "Нектарин (Лидер объема)",
+            yield40: "до 40 т/га",
+            descNect: "Наш 'тяжеловес'. Обеспечивает основной тоннаж и Cash Flow для рынков СНГ.",
+            fruitPeach: "Персик (Инжирный)",
+            descPeach: "Сетевой фаворит. Плоские сорта удобны для упаковки и пользуются повышенным спросом.",
+            fruitApricot: "Абрикос",
+            descApricot: "Высокая цена на старте сезона и устойчивый спрос на местном рынке.",
+            
+            roadTitle: "Roadmap Проекта",
+            t1Title: "CAPEX Фаза",
+            t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.",
+            t2Title: "Посадка Сада",
+            t2Desc: "Закладка 6600 деревьев (10 Га).",
+            t3Title: "Первый Коммерческий Урожай",
+            t3Desc: "Начало возврата инвестиций (Нектарин/Абрикос).",
+            t4Title: "Полная Мощность & Exit",
+            t4Desc: "Максимальная выручка. Возможность продажи сада как готового бизнеса.",
+            
+            finTitle: "Финансовая Модель",
+            finDesc: "Прозрачные цифры. Реалистичное планирование. Консервативный подход.",
+            investTitle: "Структура Инвестиций",
+            rowWater: "Водообеспечение",
+            rowMach: "Техника (Трактор +)",
+            rowIrr: "Орошение (Капля)",
+            rowTrees: "Саженцы (6600 шт)*",
+            rowInfra: "Инфраструктура",
+            rowEarth: "Земляные работы",
+            rowCapex: "ИТОГО CAPEX",
+            rowOpex: "OPEX (До окупаемости)",
+            finNote: "*Расчет саженцев по базовой цене 8.65 AZN. Премиальные лицензии могут потребовать доп. бюджета.",
+            
+            revChartTitle: "Прогноз Выручки (AZN)",
+            scenPess: "Пессимист",
+            scenReal: "Реалист",
+            scenOpt: "Оптимист",
+            baseCalc: "База расчета (Рынок 2023-2025)",
+            baseCherry: "Черешня:",
+            basePeach: "Персиковая группа:",
+            
+            secureTitle: "Инвестиции Защищены Государством",
+            secureDesc: "Проект субсидируется государством. Агрострахование покрывает 96% рисков (град, пожар, ветер), при этом государство оплачивает 50% стоимости полиса.",
+            
+            footTitle: "Готовы начать историю \"Gardens of Caucasus\"?",
+            footSub: "Земля готова. План утвержден. Команда собрана.",
+            initiatorRole: "Инициатор Проекта",
+            btnWhatsapp: "Обсудить Инвестиции в WhatsApp"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        
+        // Update Buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.innerText.toLowerCase() === lang) btn.classList.add('active');
+        });
+
+        // Update Text
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Update Chart Labels
+        chart.data.datasets[0].label = lang === 'ru' ? 'Выручка (AZN)' : 'Revenue (AZN)';
+        chart.update();
+
+        // Trigger Weather update to translate weather strings
+        updateWeather();
+    }
+
+
+    // 1. Initialize Icons
+    lucide.createIcons();
+
+    // 2. Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 3. WEATHER WIDGET LOGIC (ISMAYILLI)
+    async function updateWeather() {
+        // Координаты сада (Исмаиллы)
+        const lat = 40.604977;
+        const lon = 48.152331;
+        
+        const now = new Date();
+        const locale = currentLang === 'ru' ? 'ru-RU' : 'en-US';
+        const options = { 
+            weekday: 'short', 
+            day: 'numeric', 
+            month: 'long', 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        };
+        const dateString = now.toLocaleDateString(locale, options);
+        document.getElementById('live-date').innerText = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+
+        try {
+            const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,surface_pressure,wind_speed_10m,weather_code&wind_speed_unit=ms&timezone=auto`);
+            
+            if (!response.ok) throw new Error('Weather API Error');
+            
+            const data = await response.json();
+            const current = data.current;
+
+            // Temp
+            document.getElementById('live-temp').innerText = Math.round(current.temperature_2m) + "°C";
+            // Hum
+            document.getElementById('live-hum').innerText = current.relative_humidity_2m + "%";
+            // Wind
+            document.getElementById('live-wind').innerText = current.wind_speed_10m + " м/с";
+            // Press
+            const pressureMmHg = Math.round(current.surface_pressure * 0.75006);
+            document.getElementById('live-press').innerText = pressureMmHg + " mm";
+
+            // Icons
+            const code = current.weather_code;
+            let icon = "☀️"; 
+            if (code >= 1 && code <= 3) icon = "⛅"; 
+            if (code >= 45 && code <= 48) icon = "🌫️"; 
+            if (code >= 51 && code <= 67) icon = "🌧️"; 
+            if (code >= 71) icon = "❄️"; 
+            if (code >= 95) icon = "⚡"; 
+            
+            document.getElementById('live-icon').innerText = icon;
+
+        } catch (error) {
+            console.error("Weather Error:", error);
+            const errMsg = currentLang === 'ru' ? "Данные недоступны" : "Data unavailable";
+            document.getElementById('live-date').innerText = errMsg;
+        }
+    }
+
+    // Init Weather
+    updateWeather();
+    setInterval(updateWeather, 600000);
+
+    // 4. Chart Logic
+    const ctx = document.getElementById('revChart').getContext('2d');
+    const scenarios = {
+        pessimistic: [0, 0, 85000, 150000, 420000, 550000, 550000, 550000], 
+        realistic:   [0, 0, 120000, 250000, 680000, 850000, 850000, 850000], 
+        optimistic:  [0, 0, 160000, 320000, 890000, 1100000, 1100000, 1100000] 
+    };
+
+    let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032'],
+            datasets: [{
+                label: 'Revenue (AZN)',
+                data: scenarios.realistic,
+                borderColor: '#10B981',
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                    gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+                    gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+                    return gradient;
+                },
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#10B981',
+                pointBorderColor: '#fff',
+                pointRadius: 6,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: { 
+                    backgroundColor: '#1E293B',
+                    titleColor: '#fff',
+                    bodyColor: '#cbd5e1',
+                    padding: 10,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) { label += ': '; }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat(currentLang === 'ru' ? 'ru-RU' : 'en-US', { style: 'currency', currency: 'AZN' }).format(context.parsed.y);
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } },
+                x: { grid: { display: false }, ticks: { color: '#64748b' } }
+            }
+        }
+    });
+
+    function setScenario(type) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        if(type === 'pessimistic') document.getElementById('btn-pess').classList.add('active');
+        if(type === 'realistic') document.getElementById('btn-real').classList.add('active');
+        if(type === 'optimistic') document.getElementById('btn-opt').classList.add('active');
+
+        const newData = scenarios[type];
+        let color = '#10B981'; 
+        if (type === 'pessimistic') color = '#94A3B8'; 
+        if (type === 'optimistic') color = '#F59E0B'; 
+
+        chart.data.datasets[0].data = newData;
+        chart.data.datasets[0].borderColor = color;
+        chart.data.datasets[0].pointBackgroundColor = color;
+        chart.data.datasets[0].backgroundColor = (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+            gradient.addColorStop(0, color === '#10B981' ? 'rgba(16, 185, 129, 0.4)' : (type === 'optimistic' ? 'rgba(245, 158, 11, 0.4)' : 'rgba(148, 163, 184, 0.2)'));
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+            return gradient;
+        };
+        chart.update();
+    }
+</script>
+
+</body>
 </html>
