@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gardens of Caucasus | Investment Memorandum 2025</title>
     
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gardens-of-caucasus.vercel.app/">
-    <meta property="og:title" content="Gardens of Caucasus | Investment 2025">
-    <meta property="og:description" content="Next-Gen Intensive Orchard in Ismayilli. High Margin, Export Grade, Early Exit Strategy.">
-    <meta property="og:image" content="https://gardens-of-caucasus.vercel.app/preview.jpeg">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gardens of Caucasus | Investment 2025">
-    <meta name="twitter:description" content="Next-Gen Intensive Orchard in Ismayilli. High Margin, Export Grade.">
-    <meta name="twitter:image" content="https://gardens-of-caucasus.vercel.app/preview.jpeg">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -24,52 +13,91 @@
 
     <style>
         :root {
-            --primary: #10B981;       /* Emerald Green */
-            --primary-glow: rgba(16, 185, 129, 0.4);
-            --accent: #F59E0B;        /* Gold/Amber for Premium */
-            --bg-dark: #0F172A;       /* Slate 900 */
-            --bg-card: #1E293B;       /* Slate 800 */
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --border: rgba(255,255,255,0.08);
+            /* PEARL THEME VARIABLES */
+            --primary: #059669;       /* Emerald Green (Slightly darker for light bg) */
+            --primary-glow: rgba(5, 150, 105, 0.2);
+            --accent: #D97706;        /* Amber for Premium */
+            
+            --bg-base: #FDFBF7;       /* PEARL / CREAM WHITE BASE */
+            --bg-card: rgba(255, 255, 255, 0.75); /* Milky Glass */
+            --bg-contrast: #1E293B;   /* Slate 800 (For dark elements like buttons) */
+            
+            --text-main: #1E293B;     /* Dark Slate (Readable on pearl) */
+            --text-muted: #64748B;    /* Slate 500 */
+            
+            --border: rgba(0, 0, 0, 0.08); /* Subtle dark border */
             --font-main: 'Plus Jakarta Sans', sans-serif;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
         }
 
         /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body {
             font-family: var(--font-main);
-            background-color: #020617; /* Almost Black */
+            background-color: var(--bg-base);
             color: var(--text-main);
             line-height: 1.5;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
+        /* --- BACKGROUND PHOTO CONFIG --- */
+        .bg-photo {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            /* Ссылка на ваше фото */
+            background-image: url('preview.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* Прозрачность 20% */
+            opacity: 0.20; 
+            filter: saturate(0.8); /* Чуть приглушим цвета фото, чтобы не рябило */
+        }
+
+        /* Pearl Overlay to blend photo with background color */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, 
+                rgba(253, 251, 247, 0.8) 0%, 
+                rgba(253, 251, 247, 0.6) 50%, 
+                rgba(253, 251, 247, 0.9) 100%);
+            backdrop-filter: blur(2px); /* Легкое размытие фото */
+        }
+
         /* --- UTILS --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
         .text-gradient {
-            background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #047857 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        
         .badge {
             display: inline-flex; align-items: center; gap: 6px;
             padding: 6px 14px; border-radius: 100px;
             font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
             background: rgba(16, 185, 129, 0.1); color: var(--primary);
             border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 2px 10px rgba(16,185,129,0.1);
         }
+        
         .section-header { margin-bottom: 3rem; text-align: center; }
-        .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; color: #0F172A; }
         .section-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
-        /* --- CARD CLASS --- */
+        /* --- CARD CLASS (PEARL STYLE) --- */
         .content-card {
             background: var(--bg-card);
-            border: 1px solid var(--border);
+            border: 1px solid #fff;
             border-radius: 24px;
-            padding: 2rem; /* Desktop Padding */
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
         }
 
         /* --- ANIMATIONS --- */
@@ -77,40 +105,34 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         
         @keyframes pulse {
-            0% { opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { opacity: 1; box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
-            100% { opacity: 1; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
         .live-dot {
             width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display: inline-block;
             animation: pulse 2s infinite; margin-right: 6px;
         }
 
-        /* --- BACKGROUND FX --- */
-        .bg-mesh {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08), transparent 25%);
-        }
-
         /* --- NAV --- */
         nav {
             position: sticky; top: 0; z-index: 1000;
-            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(20px);
+            background: rgba(253, 251, 247, 0.85); /* Pearl Translucent */
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border); padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; cursor: pointer; white-space: nowrap; }
+        .logo { font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; cursor: pointer; white-space: nowrap; color: #0F172A; }
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: white; }
+        .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
 
         /* Lang Switcher */
         .lang-switch {
             margin-left: 2rem;
             display: flex;
-            background: rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.04);
             border-radius: 20px;
             padding: 2px;
             border: 1px solid var(--border);
@@ -120,11 +142,11 @@
             padding: 6px 14px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
             border-radius: 16px; transition: 0.3s;
         }
-        .lang-btn.active { background: var(--primary); color: #020617; }
+        .lang-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
         /* --- HERO --- */
         .hero { padding: 140px 0 100px; text-align: center; position: relative; }
-        .hero h1 { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.04em; }
+        .hero h1 { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.04em; color: #0F172A; }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem; }
         
         .hero-metrics {
@@ -132,81 +154,92 @@
             max-width: 1000px; margin: 0 auto;
         }
         .metric-card {
-            background: rgba(30, 41, 59, 0.4); border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.6); 
+            border: 1px solid #fff;
             padding: 1.5rem; border-radius: 16px; backdrop-filter: blur(10px);
             transition: 0.3s;
+            box-shadow: var(--shadow);
         }
-        .metric-val { font-size: 2rem; font-weight: 700; color: white; }
-        .metric-lbl { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 5px; }
+        .metric-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1); }
+        .metric-val { font-size: 2rem; font-weight: 800; color: var(--primary); }
+        .metric-lbl { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 5px; font-weight: 600; }
 
         /* --- BENTO GRID --- */
         .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .bento-item {
-            background: var(--bg-card); border: 1px solid var(--border);
+            background: var(--bg-card); border: 1px solid #fff;
             border-radius: 24px; padding: 2rem; position: relative; overflow: hidden;
             display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: var(--shadow);
         }
         .bento-item.span-2 { grid-column: span 2; }
-        .bento-item h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .bento-item h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; color: #0F172A; }
         .bento-item p { color: var(--text-muted); font-size: 0.95rem; }
         .bento-icon { 
             width: 48px; height: 48px; border-radius: 12px; 
-            background: rgba(255,255,255,0.05); color: var(--primary);
+            background: rgba(16, 185, 129, 0.1); color: var(--primary);
             display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
         }
 
         /* --- TIMELINE --- */
-        .timeline { position: relative; margin: 4rem 0; padding-left: 2rem; border-left: 2px solid var(--border); }
+        .timeline { position: relative; margin: 4rem 0; padding-left: 2rem; border-left: 2px solid rgba(0,0,0,0.1); }
         .timeline-item { margin-bottom: 3rem; position: relative; padding-left: 2rem; }
         .timeline-item::before {
             content: ''; position: absolute; left: -2.6rem; top: 0.5rem;
-            width: 1rem; height: 1rem; background: var(--bg-dark);
-            border: 2px solid var(--primary); border-radius: 50%; z-index: 2;
+            width: 1rem; height: 1rem; background: #fff;
+            border: 3px solid var(--primary); border-radius: 50%; z-index: 2;
         }
         .timeline-year { font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
-        .timeline-title { font-size: 1.25rem; font-weight: 700; color: white; }
+        .timeline-title { font-size: 1.25rem; font-weight: 700; color: #0F172A; }
 
         /* --- MAP & LOC --- */
         .map-wrapper {
             height: 450px; width: 100%; border-radius: 24px; overflow: hidden;
-            border: 1px solid var(--border); position: relative;
+            border: 4px solid white; position: relative;
+            box-shadow: var(--shadow);
         }
         .map-overlay {
             position: absolute; bottom: 20px; left: 20px; right: 20px;
-            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px);
-            padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.9); /* White overlay */
+            backdrop-filter: blur(16px);
+            padding: 1.5rem; border-radius: 16px; border: 1px solid #fff;
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            color: #1E293B;
         }
-        .weather-col { border-right: 1px solid rgba(255,255,255,0.1); padding-right: 10px; }
+        .weather-col { border-right: 1px solid rgba(0,0,0,0.1); padding-right: 10px; }
         .weather-col:last-child { border-right: none; }
 
         /* --- FINANCIALS --- */
         .fin-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; }
         .fin-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-        .fin-table td { padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: bottom; }
+        .fin-table td { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--text-muted); vertical-align: bottom; }
         .fin-table td:nth-child(1) { width: 65%; text-align: left; }
-        .fin-table td:nth-child(2) { width: 35%; text-align: right; color: white; font-family: monospace; font-size: 1.1rem; }
+        .fin-table td:nth-child(2) { width: 35%; text-align: right; color: #0F172A; font-family: monospace; font-size: 1.1rem; font-weight: 600; }
         .fin-table tr:last-child td { border: none; font-weight: 700; color: var(--primary); font-size: 1.2rem; padding-top: 20px; }
         
-        .scenario-tabs { display: flex; gap: 10px; margin-bottom: 1rem; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 12px; width: fit-content; overflow-x: auto; }
+        .scenario-tabs { display: flex; gap: 10px; margin-bottom: 1rem; background: rgba(0,0,0,0.05); padding: 5px; border-radius: 12px; width: fit-content; overflow-x: auto; }
         .tab-btn {
             background: none; border: none; color: var(--text-muted);
             padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.3s; white-space: nowrap;
         }
-        .tab-btn.active { background: var(--primary); color: #020617; }
+        .tab-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+        /* Bars in Fin Section */
+        .bar-bg { height:8px; background:rgba(0,0,0,0.05); border-radius:4px; overflow:hidden; }
 
         /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--border); padding: 80px 0; margin-top: 80px; text-align: center; }
+        footer { border-top: 1px solid rgba(0,0,0,0.1); padding: 80px 0; margin-top: 80px; text-align: center; background: white; }
         .cta-btn {
             display: inline-flex; align-items: center; gap: 10px;
-            background: var(--primary); color: #020617;
+            background: var(--bg-contrast); color: white;
             padding: 16px 40px; border-radius: 100px;
             font-weight: 700; text-decoration: none; transition: 0.3s;
             margin-top: 2rem;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(30, 41, 59, 0.3);
         }
+        .cta-btn:hover { transform: scale(1.02); background: var(--primary); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); }
 
         /* --- MOBILE ADAPTATION --- */
         @media(max-width: 900px) {
@@ -218,16 +251,14 @@
             .lang-switch { margin-left: auto; margin-right: 0; }
             .container.nav-inner { padding: 0 20px; }
             
-            /* Reduced Padding for Mobile Cards */
             .content-card { padding: 1.25rem !important; }
             .bento-item { padding: 1.5rem; }
 
-            /* Map Mobile */
             .map-wrapper { height: 350px; display: flex; flex-direction: column; }
             iframe { height: 200px !important; flex-shrink: 0; }
             .map-overlay {
                 position: relative; top: 0; left: 0; right: 0; bottom: 0;
-                background: #1E293B;
+                background: white;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
                 padding: 1rem;
@@ -237,7 +268,6 @@
             }
             .weather-col { border-right: none; text-align: left; padding: 0; }
             
-            /* Table Mobile Fixes */
             .fin-table td { font-size: 0.85rem; padding: 8px 0; }
             .fin-table td:nth-child(2) { font-size: 1rem; }
             .fin-table tr:last-child td { font-size: 1.1rem; }
@@ -256,12 +286,13 @@
 </head>
 <body>
 
-<div class="bg-mesh"></div>
+<div class="bg-photo"></div>
+<div class="bg-overlay"></div>
 
 <nav>
     <div class="container nav-inner">
         <div class="logo">
-            <i data-lucide="sprout" color="#10B981"></i>
+            <i data-lucide="sprout" color="#059669"></i>
             <span>GARDENS OF <span style="color:var(--primary)">CAUCASUS</span></span>
         </div>
         <div style="display: flex; align-items: center;">
@@ -330,7 +361,7 @@
                 <h3 data-i18n="soilTitle">Calcium Structure</h3>
                 <p data-i18n="soilDesc">Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai without quality loss.</p>
             </div>
-            <div class="bento-item span-2" style="background: linear-gradient(135deg, rgba(16,185,129,0.1), transparent); border-color: rgba(16,185,129,0.3);">
+            <div class="bento-item span-2" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6)); border-color: var(--primary);">
                 <div class="bento-icon"><i data-lucide="trending-up"></i></div>
                 <h3 data-i18n="earlyTitle">Early Window Strategy</h3>
                 <p data-i18n="earlyDesc">We enter the market 14 days earlier than the northern giants (Guba/Khachmaz). At this moment, prices are at their peak, and the market is empty. We skim the cream before the mass harvest collapses prices.</p>
@@ -349,7 +380,7 @@
         <div class="map-wrapper reveal">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3023.644786475658!2d48.152331!3d40.604977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDM2JzE3LjkiTiA0OMKwMDknMDguNCJF!5e1!3m2!1sen!2saz!4v1700000000000!5m2!1sen!2saz" 
-                width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(85%);" allowfullscreen="" loading="lazy">
+                width="100%" height="100%" style="border:0; filter: contrast(1.1);" allowfullscreen="" loading="lazy">
             </iframe>
             
             <div class="map-overlay">
@@ -360,26 +391,26 @@
                     </div>
                     <div style="display:flex; align-items:center; gap: 10px;">
                         <div id="live-icon" style="font-size: 2rem;">☀️</div>
-                        <div id="live-temp" style="font-size:2rem; font-weight:800; line-height: 1;">--°C</div>
+                        <div id="live-temp" style="font-size:2rem; font-weight:800; line-height: 1; color:#1e293b;">--°C</div>
                     </div>
                     <div id="live-date" style="font-size:0.7rem; color:var(--text-muted); margin-top: 8px; font-weight: 500;">Loading data...</div>
                 </div>
 
                 <div class="weather-col" style="display:flex; flex-direction: column; justify-content: center;">
-                    <div style="font-size:0.85rem; margin-bottom: 4px; color:var(--text-muted);"><span data-i18n="wHum">Humidity</span>: <span id="live-hum" style="color:white; font-weight:700;">--%</span></div>
-                    <div style="font-size:0.85rem; margin-bottom: 4px; color:var(--text-muted);"><span data-i18n="wWind">Wind</span>: <span id="live-wind" style="color:white; font-weight:700;">-- m/s</span></div>
-                    <div style="font-size:0.85rem; color:var(--text-muted);"><span data-i18n="wPress">Pressure</span>: <span id="live-press" style="color:white; font-weight:700;">-- mm</span></div>
+                    <div style="font-size:0.85rem; margin-bottom: 4px; color:var(--text-muted);"><span data-i18n="wHum">Humidity</span>: <span id="live-hum" style="color:#1e293b; font-weight:700;">--%</span></div>
+                    <div style="font-size:0.85rem; margin-bottom: 4px; color:var(--text-muted);"><span data-i18n="wWind">Wind</span>: <span id="live-wind" style="color:#1e293b; font-weight:700;">-- m/s</span></div>
+                    <div style="font-size:0.85rem; color:var(--text-muted);"><span data-i18n="wPress">Pressure</span>: <span id="live-press" style="color:#1e293b; font-weight:700;">-- mm</span></div>
                 </div>
 
                 <div class="weather-col">
                     <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom: 5px;" data-i18n="wSoil">Soil Type</div>
-                    <div style="font-size:1.4rem; font-weight:700;" data-i18n="wCarb">Carbonate</div>
+                    <div style="font-size:1.4rem; font-weight:700; color:#1e293b;" data-i18n="wCarb">Carbonate</div>
                     <div style="font-size:0.75rem; color:var(--primary);">High pH</div>
                 </div>
 
                 <div class="weather-col">
                     <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom: 5px;" data-i18n="wAlt">Elevation</div>
-                    <div style="font-size:1.4rem; font-weight:700;">650 m</div>
+                    <div style="font-size:1.4rem; font-weight:700; color:#1e293b;">650 m</div>
                     <div style="font-size:0.75rem; color:var(--primary);">ASL</div>
                 </div>
             </div>
@@ -399,16 +430,16 @@
                 <div style="margin-bottom: 2rem;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
                         <div>
-                            <span style="font-weight:700; font-size: 1.1rem; color:#F97316;">🍒 <span data-i18n="fruitCherry">Cherry (Premium)</span></span>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#D97706;">🍒 <span data-i18n="fruitCherry">Cherry (Premium)</span></span>
                             <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Early Lory, Giant Red</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:white;">5.00 – 11.00 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">5.00 – 11.00 ₼</div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div>
                         </div>
                     </div>
-                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
-                        <div style="width:20%; height:100%; background:#F97316;"></div>
+                    <div class="bar-bg">
+                        <div style="width:20%; height:100%; background:#D97706;"></div>
                     </div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descCherry">
                         The earliest and most expensive berry. Ultra-early market entry ensures maximum margin.
@@ -418,16 +449,16 @@
                 <div style="margin-bottom: 2rem;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
                         <div>
-                            <span style="font-weight:700; font-size: 1.1rem; color:#EC4899;">🍑 <span data-i18n="fruitNect">Nectarine (Volume Leader)</span></span>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#DB2777;">🍑 <span data-i18n="fruitNect">Nectarine (Volume Leader)</span></span>
                             <div style="font-size: 0.8rem; color: var(--text-muted);">4 ha • Extreme 28, Oreal</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:white;">1.80 – 2.20 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">1.80 – 2.20 ₼</div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div>
                         </div>
                     </div>
-                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
-                        <div style="width:40%; height:100%; background:#EC4899;"></div>
+                    <div class="bar-bg">
+                        <div style="width:40%; height:100%; background:#DB2777;"></div>
                     </div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descNect">
                         Our "heavyweight". Provides the main tonnage and Cash Flow for CIS markets.
@@ -437,16 +468,16 @@
                 <div style="margin-bottom: 2rem;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
                         <div>
-                            <span style="font-weight:700; font-size: 1.1rem; color:#FACC15;">🥯 <span data-i18n="fruitPeach">Flat Peach (Fig)</span></span>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#CA8A04;">🥯 <span data-i18n="fruitPeach">Flat Peach (Fig)</span></span>
                             <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Zodiac, Babylone</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:white;">2.00 – 2.20 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">2.00 – 2.20 ₼</div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div>
                         </div>
                     </div>
-                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
-                        <div style="width:20%; height:100%; background:#FACC15;"></div>
+                    <div class="bar-bg">
+                        <div style="width:20%; height:100%; background:#CA8A04;"></div>
                     </div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descPeach">
                         Retail chain favorite. Flat varieties are easy to pack and enjoy high consumer demand.
@@ -456,16 +487,16 @@
                 <div>
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
                         <div>
-                            <span style="font-weight:700; font-size: 1.1rem; color:#FB923C;">🔸 <span data-i18n="fruitApricot">Apricot</span></span>
+                            <span style="font-weight:700; font-size: 1.1rem; color:#EA580C;">🔸 <span data-i18n="fruitApricot">Apricot</span></span>
                             <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Traditional Demand</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:white;">2.20 – 4.00 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">2.20 – 4.00 ₼</div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div>
                         </div>
                     </div>
-                    <div style="height:6px; background:#334155; border-radius:4px; overflow:hidden;">
-                        <div style="width:20%; height:100%; background:#FB923C;"></div>
+                    <div class="bar-bg">
+                        <div style="width:20%; height:100%; background:#EA580C;"></div>
                     </div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px; line-height: 1.4;" data-i18n="descApricot">
                         High price at season start and stable demand in the local market.
@@ -474,7 +505,7 @@
             </div>
             
             <div class="content-card">
-                <h3 style="margin-bottom:1.5rem;" data-i18n="roadTitle">Project Roadmap</h3>
+                <h3 style="margin-bottom:1.5rem; color:#0F172A;" data-i18n="roadTitle">Project Roadmap</h3>
                 <div class="timeline" style="margin: 0; padding-left: 1.5rem;">
                     <div class="timeline-item">
                         <div class="timeline-year">Q1-Q2 2025</div>
@@ -502,7 +533,7 @@
     </div>
 </section>
 
-<section id="finance" style="padding: 80px 0; background: #0f172a;">
+<section id="finance" style="padding: 80px 0;">
     <div class="container">
         <div class="section-header reveal">
             <h2 class="section-title" data-i18n="finTitle">Financial Model</h2>
@@ -511,7 +542,7 @@
 
         <div class="fin-grid reveal">
             <div class="content-card">
-                <h3 style="margin-bottom: 1.5rem;" data-i18n="investTitle">Investment Structure</h3>
+                <h3 style="margin-bottom: 1.5rem; color:#0F172A;" data-i18n="investTitle">Investment Structure</h3>
                 <table class="fin-table">
                     <tr><td data-i18n="rowWater">Water Supply</td><td>90 000 ₼</td></tr>
                     <tr><td data-i18n="rowMach">Machinery (Tractor +)</td><td>85 000 ₼</td></tr>
@@ -521,12 +552,12 @@
                     <tr><td data-i18n="rowEarth">Earthworks</td><td>18 500 ₼</td></tr>
                     <tr><td data-i18n="rowCapex">TOTAL CAPEX</td><td>380 590 ₼</td></tr>
                 </table>
-                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--border);">
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed rgba(0,0,0,0.1);">
                     <div style="display:flex; justify-content:space-between; margin-bottom: 5px; color: var(--text-muted);">
                         <span data-i18n="rowOpex">OPEX (Until Payback)</span>
                         <span>138 300 ₼</span>
                     </div>
-                    <div style="display:flex; justify-content:space-between; font-size: 1.25rem; font-weight: 800; color: white; margin-top: 10px;">
+                    <div style="display:flex; justify-content:space-between; font-size: 1.25rem; font-weight: 800; color: #1E293B; margin-top: 10px;">
                         <span>TOTAL ASK:</span>
                         <span style="color: var(--primary);">518 890 ₼</span>
                     </div>
@@ -536,7 +567,7 @@
 
             <div class="content-card" style="display:flex; flex-direction:column;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
-                    <h3 data-i18n="revChartTitle" style="font-size: 1.25rem;">Revenue Forecast (AZN)</h3>
+                    <h3 data-i18n="revChartTitle" style="font-size: 1.25rem; color:#0F172A;">Revenue Forecast (AZN)</h3>
                     <div class="scenario-tabs">
                         <button class="tab-btn" onclick="setScenario('pessimistic')" id="btn-pess" data-i18n="scenPess">Pessimist</button>
                         <button class="tab-btn active" onclick="setScenario('realistic')" id="btn-real" data-i18n="scenReal">Realist</button>
@@ -547,7 +578,7 @@
                     <canvas id="revChart"></canvas>
                 </div>
                 
-                <div style="margin-top: 1.5rem; background: rgba(2, 6, 23, 0.5); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 12px;">
+                <div style="margin-top: 1.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); padding: 1rem; border-radius: 12px;">
                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
                         <i data-lucide="bar-chart-3" style="width: 16px; height: 16px;"></i>
                         <span data-i18n="baseCalc">Calculation Base (Market 2023-2025)</span>
@@ -556,17 +587,17 @@
                     <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
                         
                         <div style="display: flex; align-items: center; gap: 6px;">
-                            <span style="width: 8px; height: 8px; background: #F97316; border-radius: 50%; display: inline-block;"></span>
-                            <span style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="baseCherry">Cherry:</span>
-                            <span style="color: white; font-weight: 700;">~11.00 ₼</span>
+                            <span style="width: 8px; height: 8px; background: #D97706; border-radius: 50%; display: inline-block;"></span>
+                            <span style="color: #64748B; font-size: 0.9rem;" data-i18n="baseCherry">Cherry:</span>
+                            <span style="color: #1E293B; font-weight: 700;">~11.00 ₼</span>
                         </div>
                 
-                        <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.1);"></div>
+                        <div style="width: 1px; height: 16px; background: rgba(0,0,0,0.1);"></div>
                 
                         <div style="display: flex; align-items: center; gap: 6px;">
-                            <span style="width: 8px; height: 8px; background: #FACC15; border-radius: 50%; display: inline-block;"></span>
-                            <span style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="basePeach">Peach Group:</span>
-                            <span style="color: white; font-weight: 700;">~2.20 ₼</span>
+                            <span style="width: 8px; height: 8px; background: #CA8A04; border-radius: 50%; display: inline-block;"></span>
+                            <span style="color: #64748B; font-size: 0.9rem;" data-i18n="basePeach">Peach Group:</span>
+                            <span style="color: #1E293B; font-weight: 700;">~2.20 ₼</span>
                         </div>
                 
                     </div>
@@ -579,9 +610,9 @@
 
 <section style="padding: 80px 0;">
     <div class="container reveal">
-        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(59,130,246,0.1)); border: 1px solid rgba(16,185,129,0.3); padding: 3rem; border-radius: 24px; text-align: center;">
+        <div style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6)); border: 1px solid white; padding: 3rem; border-radius: 24px; text-align: center; box-shadow: var(--shadow);">
             <i data-lucide="shield-check" size="48" style="color:var(--primary); margin-bottom: 1rem;"></i>
-            <h2 style="margin-bottom: 1rem;" data-i18n="secureTitle">Government-Backed Investment</h2>
+            <h2 style="margin-bottom: 1rem; color:#0F172A;" data-i18n="secureTitle">Government-Backed Investment</h2>
             <p style="max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted);" data-i18n="secureDesc">
                 The project is subsidized by the state. Agro-insurance covers 96% of risks (hail, fire, wind), with the government paying 50% of the insurance premium cost.
             </p>
@@ -591,11 +622,11 @@
 
 <footer id="contact">
     <div class="container">
-        <h2 data-i18n="footTitle">Ready to start the "Gardens of Caucasus" story?</h2>
+        <h2 data-i18n="footTitle" style="color: #0F172A; font-weight: 800; font-size: 2rem;">Ready to start the "Gardens of Caucasus" story?</h2>
         <p style="color: var(--text-muted); margin: 1rem 0 2rem;" data-i18n="footSub">Land ready. Plan approved. Team assembled.</p>
         
         <div style="margin-bottom: 2rem;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: white;">Guliyev Rashad</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #0F172A;">Guliyev Rashad</div>
             <div style="color: var(--primary);" data-i18n="initiatorRole">Project Initiator</div>
         </div>
 
@@ -604,7 +635,7 @@
             <span data-i18n="btnWhatsapp">Discuss Investment on WhatsApp</span>
         </a>
         
-        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #475569;">
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #94A3B8;">
             © 2025 Gardens of Caucasus. Confidential. All rights reserved.<br>
             Designed for High-Value Agriculture.
         </div>
@@ -902,18 +933,18 @@
             datasets: [{
                 label: 'Revenue (AZN)',
                 data: scenarios.realistic,
-                borderColor: '#10B981',
+                borderColor: '#059669', // Darker Emerald for Light Theme
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                    gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
-                    gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+                    gradient.addColorStop(0, 'rgba(5, 150, 105, 0.4)');
+                    gradient.addColorStop(1, 'rgba(5, 150, 105, 0)');
                     return gradient;
                 },
                 borderWidth: 3,
                 fill: true,
                 tension: 0.4,
-                pointBackgroundColor: '#10B981',
+                pointBackgroundColor: '#059669',
                 pointBorderColor: '#fff',
                 pointRadius: 6,
                 pointHoverRadius: 8
@@ -925,9 +956,11 @@
             plugins: {
                 legend: { display: false },
                 tooltip: { 
-                    backgroundColor: '#1E293B',
-                    titleColor: '#fff',
-                    bodyColor: '#cbd5e1',
+                    backgroundColor: '#fff',
+                    titleColor: '#1E293B',
+                    bodyColor: '#64748B',
+                    borderColor: 'rgba(0,0,0,0.1)',
+                    borderWidth: 1,
                     padding: 10,
                     displayColors: false,
                     callbacks: {
@@ -943,7 +976,7 @@
                 }
             },
             scales: {
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } },
+                y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { color: '#64748b' } },
                 x: { grid: { display: false }, ticks: { color: '#64748b' } }
             }
         }
@@ -956,9 +989,9 @@
         if(type === 'optimistic') document.getElementById('btn-opt').classList.add('active');
 
         const newData = scenarios[type];
-        let color = '#10B981'; 
+        let color = '#059669'; 
         if (type === 'pessimistic') color = '#94A3B8'; 
-        if (type === 'optimistic') color = '#F59E0B'; 
+        if (type === 'optimistic') color = '#D97706'; 
 
         chart.data.datasets[0].data = newData;
         chart.data.datasets[0].borderColor = color;
@@ -966,7 +999,7 @@
         chart.data.datasets[0].backgroundColor = (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-            gradient.addColorStop(0, color === '#10B981' ? 'rgba(16, 185, 129, 0.4)' : (type === 'optimistic' ? 'rgba(245, 158, 11, 0.4)' : 'rgba(148, 163, 184, 0.2)'));
+            gradient.addColorStop(0, color === '#059669' ? 'rgba(5, 150, 105, 0.4)' : (type === 'optimistic' ? 'rgba(217, 119, 6, 0.4)' : 'rgba(148, 163, 184, 0.2)'));
             gradient.addColorStop(1, 'rgba(0,0,0,0)');
             return gradient;
         };
