@@ -126,7 +126,6 @@
         .map-overlay { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); padding: 1.5rem; border-radius: 16px; border: 1px solid #fff; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; box-shadow: 0 10px 40px rgba(0,0,0,0.1); color: #1E293B; }
         .weather-col { border-right: 1px solid rgba(0,0,0,0.1); padding-right: 10px; }
         .weather-col:last-child { border-right: none; }
-        .live-dot { width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; margin-right: 6px; }
 
         .fin-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; }
         .fin-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -156,7 +155,7 @@
         .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-contrast); color: white; padding: 16px 40px; border-radius: 100px; font-weight: 700; text-decoration: none; transition: 0.3s; margin-top: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(30, 41, 59, 0.3); }
         .cta-btn:hover { transform: scale(1.02); background: var(--primary); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); }
 
-        /* --- MOBILE ADAPTATIONS (UPDATED) --- */
+        /* --- MOBILE ADAPTATIONS (FIXED) --- */
         @media(max-width: 900px) {
             .hero { padding: 100px 0 60px; }
             .hero h1 { font-size: 2.2rem; padding: 0 10px; }
@@ -168,7 +167,7 @@
                 padding: 0 10px; 
             }
             .metric-card { padding: 1rem; }
-            .metric-val { font-size: 1.4rem; } /* Slightly smaller font */
+            .metric-val { font-size: 1.4rem; }
             .metric-lbl { font-size: 0.65rem; }
             .metric-sub { font-size: 0.6rem; }
 
@@ -177,17 +176,54 @@
             .nav-links { display: none; }
             .lang-switch { margin-left: auto; margin-right: 0; }
             .container.nav-inner { padding: 0 20px; }
-            .map-wrapper { height: 350px; display: flex; flex-direction: column; }
-            iframe { height: 200px !important; flex-shrink: 0; }
-            .map-overlay { position: relative; top: 0; background: white; grid-template-columns: repeat(2, 1fr); margin-top: -5px; border-radius: 0 0 24px 24px; border-top: none; padding: 1rem; }
-            .weather-col { border-right: none; text-align: left; padding: 0; }
+            
+            /* FIXED MAP & WEATHER OVERLAY */
+            .map-wrapper { 
+                height: auto; 
+                display: flex; 
+                flex-direction: column; 
+                /* Remove fixed height to allow stacking */
+            }
+            iframe { 
+                height: 250px !important; /* Taller for better usage */
+                flex-shrink: 0; 
+                border-radius: 24px 24px 0 0;
+            }
+            .map-overlay { 
+                position: relative; 
+                top: 0; 
+                left: 0; 
+                right: 0; 
+                bottom: 0;
+                background: white; 
+                grid-template-columns: 1fr 1fr; /* 2 columns for data */
+                gap: 15px;
+                margin-top: 0; 
+                border-radius: 0 0 24px 24px; 
+                border-top: none; 
+                padding: 1.5rem; 
+            }
+            .weather-col { 
+                border-right: none; 
+                text-align: left; 
+                padding: 0; 
+                margin-bottom: 10px;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                padding-bottom: 10px;
+            }
+            .weather-col:nth-last-child(-n+2) {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+
             .cta-btn { width: 100%; justify-content: center; padding: 16px 20px; }
             .opex-grid { grid-template-columns: 1fr; }
             .partners-grid { grid-template-columns: 1fr; }
         }
         @media(max-width: 400px) { 
             .hero h1 { font-size: 2rem; } 
-            .hero-metrics { grid-template-columns: 1fr; } /* 1 column for very small screens */
+            .hero-metrics { grid-template-columns: 1fr; } 
         }
     </style>
 </head>
@@ -226,6 +262,11 @@
         
         <div class="hero-metrics">
             <div class="metric-card">
+                <div class="metric-val" data-i18n="metGrowth">x5 Growth</div>
+                <div class="metric-lbl" data-i18n="lblValuation">Capitalization</div>
+                <div class="metric-sub" data-i18n="subValuation">Asset Value by 2032</div>
+            </div>
+            <div class="metric-card">
                 <div class="metric-val">~80%</div>
                 <div class="metric-lbl" data-i18n="lblEbitda">EBITDA Margin</div>
                 <div class="metric-sub" data-i18n="subEbitda">High Efficiency</div>
@@ -239,11 +280,6 @@
                 <div class="metric-val">~90%+</div>
                 <div class="metric-lbl" data-i18n="lblGrade">Export Grade A</div>
                 <div class="metric-sub" data-i18n="subGrade">Aiming for Perfection</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-val" data-i18n="metGrowth">x5 Growth</div>
-                <div class="metric-lbl" data-i18n="lblValuation">Capitalization</div>
-                <div class="metric-sub" data-i18n="subValuation">Asset Value by 2032</div>
             </div>
         </div>
     </div>
@@ -618,7 +654,7 @@
             heroSub: "Исмаиллы, Азербайджан. 10 Гектаров премиальных косточковых культур.<br>Стратегический выход на рынок в окно 'дефицита'.",
             
             lblEbitda: "Маржа EBITDA", subEbitda: "Высокая Эффективность",
-            metROI: "~85%", lblROI: "Доход в год", subROI: "Пессимистичный прогноз",
+            metROI: "~85%", lblROI: "Доход в год", subROI: "Консервативная оценка",
             lblGrade: "Экспортный Сорт А", subGrade: "Стремимся к 100%",
             metGrowth: "x5 Рост", lblValuation: "Капитализация", subValuation: "Стоимость бизнеса к 2032",
 
