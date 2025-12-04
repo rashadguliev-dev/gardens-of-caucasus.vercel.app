@@ -126,6 +126,7 @@
         .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .bento-item { background: var(--bg-card); border: 1px solid #fff; border-radius: 24px; padding: 2rem; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow); }
         .bento-item.span-2 { grid-column: span 2; }
+        .bento-item.span-3 { grid-column: span 3; }
         .bento-item h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; color: #0F172A; }
         .bento-item p { color: var(--text-muted); font-size: 0.95rem; }
         .bento-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
@@ -192,7 +193,7 @@
             .metric-sub { font-size: 0.6rem; }
 
             .bento-grid, .fin-grid { grid-template-columns: 1fr; }
-            .bento-item.span-2 { grid-column: span 1; }
+            .bento-item.span-2, .bento-item.span-3 { grid-column: span 1; }
             .nav-links { display: none; }
             .lang-switch { margin-left: auto; margin-right: 0; }
             .container.nav-inner { padding: 0 20px; }
@@ -318,19 +319,33 @@
                 <p data-i18n="entryDesc">The northern regions (Quba-Khachmaz) are the main producers, but they harvest 2-3 weeks later than Ismayilli. We enter the market in May-June when supply is low and prices are at their peak. By the time the "big wave" from the north arrives, we have already sold our crop.</p>
             </div>
             <div class="bento-item">
-                <div class="bento-icon"><i data-lucide="truck"></i></div>
-                <h3 data-i18n="logTitle">Zero Logistics Headache</h3>
-                <p data-i18n="logDesc">We do not chase buyers. Exporters contract the harvest directly at the orchard gate (FCA Model). They handle packing, cooling, and transport. Pre-payment on the field is the standard industry practice.</p>
+                <div class="bento-icon"><i data-lucide="snowflake"></i></div>
+                <h3 data-i18n="chillTitle">900+ Chill Hours</h3>
+                <p data-i18n="chillDesc">Unlike lowland zones (Kurdamir, Sabirabad), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation.</p>
+            </div>
+            <div class="bento-item">
+                <div class="bento-icon"><i data-lucide="sun"></i></div>
+                <h3 data-i18n="uvTitle">UV Impact & Coloration</h3>
+                <p data-i18n="uvDesc">Elevation provides 15% more UV radiation. Cherries achieve a premium "Dark" color, and Giant Red Apricots become deep red. The visual appeal sells the product.</p>
             </div>
             <div class="bento-item">
                 <div class="bento-icon"><i data-lucide="droplets"></i></div>
                 <h3 data-i18n="soilTitle">Calcium Structure</h3>
-                <p data-i18n="soilDesc">Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai without quality loss.</p>
+                <p data-i18n="soilDesc">Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai.</p>
             </div>
-            <div class="bento-item span-2" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6)); border-color: var(--primary);">
-                <div class="bento-icon"><i data-lucide="shield-check"></i></div>
-                <h3 data-i18n="earlyTitle">Biological Reality</h3>
-                <p data-i18n="earlyDesc">We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.</p>
+            <div class="bento-item">
+                <div class="bento-icon"><i data-lucide="truck"></i></div>
+                <h3 data-i18n="logTitle">Zero Logistics Headache</h3>
+                <p data-i18n="logDesc">We do not chase buyers. Exporters contract the harvest directly at the orchard gate (FCA Model). Pre-payment on the field.</p>
+            </div>
+            <div class="bento-item span-3" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6)); border-color: var(--primary);">
+                <div style="display:flex; align-items:center; gap: 15px;">
+                    <div class="bento-icon" style="margin-bottom:0;"><i data-lucide="shield-check"></i></div>
+                    <div>
+                        <h3 style="margin-bottom: 5px;" data-i18n="earlyTitle">Biological Reality</h3>
+                        <p style="margin:0; font-size:0.9rem;" data-i18n="earlyDesc">We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -632,9 +647,11 @@
 
             stratTitle: "The \"First Mover\" Advantage", stratDesc: "Our strategy is simple: Harvest when the market is empty. Sell before the price drops.",
             entryTitle: "Beating Quba & Khachmaz", entryDesc: "The northern regions (Quba-Khachmaz) are the main producers, but they harvest 2-3 weeks later than Ismayilli. We enter the market in May-June when supply is low and prices are at their peak. By the time the \"big wave\" from the north arrives, we have already sold our crop.",
-            logTitle: "Zero Logistics Headache", logDesc: "We do not chase buyers. Exporters contract the harvest directly at the orchard gate (FCA Model). They handle packing, cooling, and transport. Pre-payment on the field is the standard industry practice.",
-            soilTitle: "Calcium Structure", soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows safe transport.",
-            earlyTitle: "Biological Reality", earlyDesc: "Planting in Q4 2026. First commercial harvest in 2029 (Year 3). Conservative modeling eliminates the risk of unmet expectations.",
+            chillTitle: "900+ Chill Hours", chillDesc: "Unlike lowland zones (Kurdamir, Sabirabad), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation.",
+            uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red. The visual appeal sells the product.",
+            soilTitle: "Calcium Structure", soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai.",
+            logTitle: "Zero Logistics Headache", logDesc: "We do not chase buyers. Exporters contract the harvest directly at the orchard gate (FCA Model). Pre-payment on the field.",
+            earlyTitle: "Biological Reality", earlyDesc: "We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.",
             
             locTitle: "Location & Climate", locDesc: "Coordinates: 40.604977, 48.152331. Secured Land. Secured Water.",
             wHum: "Humidity", wWind: "Wind", wPress: "Pressure", wSoil: "Land Status", landStat: "Private (Kupcha)", wWater: "Water Source", wWell: "Well + Reservoir",
@@ -645,7 +662,6 @@
             r3: "<b>Water Security:</b> Dedicated sub-artesian well + on-site Reservoir eliminates drought risk typical for lowlands.",
             r4: "<b>Expertise:</b> We are not guessing. Chief Agronomist selection (shortlist of 3) ensures technological discipline.",
 
-            // PRODUCTION TRANSLATIONS (RESTORED)
             prodTitle: "Orchard Structure (10 Ha)", prodDesc: "Project economics. Balancing early high-margin fruits with gross volume.",
             currKg: "₼/kg",
             fruitCherry: "Cherry (Premium)", varCherry: "2 ha • Early Lory, Giant Red", yield20: "up to 20 t/ha", descCherry: "The earliest and most expensive berry. Ultra-early market entry ensures maximum margin.",
@@ -688,9 +704,11 @@
 
             stratTitle: "Преимущество \"Первого Хода\"", stratDesc: "Наша стратегия проста: собирать урожай, когда рынок пуст. Продавать до падения цен.",
             entryTitle: "Опережая Губу и Хачмаз", entryDesc: "Северные регионы (Губа-Хачмаз) — основные производители, но они собирают урожай на 2-3 недели позже. Мы выходим на рынок в мае-июне, в окно 'дефицита', когда цена максимальна. Когда придет 'большая волна' с севера, мы уже продадим урожай.",
-            logTitle: "Без Головной Боли с Логистикой", logDesc: "Мы не ищем покупателей. Экспортеры выкупают урожай прямо 'у ворот сада' (модель FCA). Упаковка, охлаждение и транспорт — на их стороне. Предоплата на поле — стандарт рынка.",
-            soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как цемент. Фрукт плотный и хрустящий, выдерживает дальнюю дорогу.",
-            earlyTitle: "Биологическая Реальность", earlyDesc: "Посадка в Q4 2026. Первый коммерческий урожай в 2029. Консервативное моделирование.",
+            chillTitle: "900+ Часов Холода", chillDesc: "В отличие от равнинных зон (Кюрдамир, Сабирабад), наше предгорье гарантирует деревьям полноценный зимний покой. Это критический фактор для цветения.",
+            uvTitle: "УФ-Удар и Окрас", uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный темный цвет ('Dark Cherry'), а абрикос Giant Red становится насыщенно-красным. Вид продает.",
+            soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как природный цемент. Фрукт растет плотным и хрустящим (crunchy), что позволяет безопасно везти его в Москву или Дубай.",
+            logTitle: "Без Головной Боли с Логистикой", logDesc: "Мы не ищем покупателей. Экспортеры выкупают урожай прямо 'у ворот сада' (модель FCA). Предоплата на поле.",
+            earlyTitle: "Биологическая Реальность", earlyDesc: "Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029 (3-й год). Консервативное моделирование.",
             
             locTitle: "Локация и Климат", locDesc: "Координаты: 40.604977, 48.152331. Земля и Вода обеспечены.",
             wHum: "Влажность", wWind: "Ветер", wPress: "Давление", wSoil: "Земля", landStat: "Купчая (Частная)", wWater: "Вода", wWell: "Скважина + Резервуар",
@@ -701,7 +719,6 @@
             r3: "<b>Водная Безопасность:</b> Собственная субретезианская скважина + Резервуар-накопитель исключают риск засухи.",
             r4: "<b>Экспертиза:</b> Мы не гадаем. Главный Агроном выбирается из шорт-листа (3 кандидата), что гарантирует технологическую дисциплину.",
 
-            // PRODUCTION TRANSLATIONS RU (RESTORED)
             prodTitle: "Структура Сада (10 Га)", prodDesc: "Экономика проекта. Баланс ранней маржи и валового объема.",
             currKg: "₼/кг",
             fruitCherry: "Черешня (Premium)", varCherry: "2 га • Early Lory, Giant Red", yield20: "до 20 т/га", descCherry: "Самая ранняя и дорогая ягода. Ультра-ранний выход на рынок обеспечивает максимальную маржу.",
