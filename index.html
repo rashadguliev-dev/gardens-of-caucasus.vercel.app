@@ -156,13 +156,22 @@
         .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-contrast); color: white; padding: 16px 40px; border-radius: 100px; font-weight: 700; text-decoration: none; transition: 0.3s; margin-top: 2rem; text-align: center; box-shadow: 0 4px 15px rgba(30, 41, 59, 0.3); }
         .cta-btn:hover { transform: scale(1.02); background: var(--primary); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); }
 
-        /* --- MOBILE --- */
+        /* --- MOBILE ADAPTATIONS (UPDATED) --- */
         @media(max-width: 900px) {
-            .hero h1 { font-size: 2.5rem; padding: 0 10px; }
-            .hero-metrics { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
+            .hero { padding: 100px 0 60px; }
+            .hero h1 { font-size: 2.2rem; padding: 0 10px; }
+            
+            /* Metric Grid Fixes for Mobile */
+            .hero-metrics { 
+                grid-template-columns: repeat(2, 1fr); /* 2 columns */
+                gap: 10px; 
+                padding: 0 10px; 
+            }
             .metric-card { padding: 1rem; }
-            .metric-val { font-size: 1.5rem; }
+            .metric-val { font-size: 1.4rem; } /* Slightly smaller font */
             .metric-lbl { font-size: 0.65rem; }
+            .metric-sub { font-size: 0.6rem; }
+
             .bento-grid, .fin-grid { grid-template-columns: 1fr; }
             .bento-item.span-2 { grid-column: span 1; }
             .nav-links { display: none; }
@@ -170,13 +179,16 @@
             .container.nav-inner { padding: 0 20px; }
             .map-wrapper { height: 350px; display: flex; flex-direction: column; }
             iframe { height: 200px !important; flex-shrink: 0; }
-            .map-overlay { position: relative; top: 0; background: white; grid-template-columns: repeat(2, 1fr); margin-top: -5px; border-radius: 0 0 24px 24px; border-top: none; }
-            .weather-col { border-right: none; }
-            .cta-btn { width: 100%; justify-content: center; }
+            .map-overlay { position: relative; top: 0; background: white; grid-template-columns: repeat(2, 1fr); margin-top: -5px; border-radius: 0 0 24px 24px; border-top: none; padding: 1rem; }
+            .weather-col { border-right: none; text-align: left; padding: 0; }
+            .cta-btn { width: 100%; justify-content: center; padding: 16px 20px; }
             .opex-grid { grid-template-columns: 1fr; }
             .partners-grid { grid-template-columns: 1fr; }
         }
-        @media(max-width: 400px) { .hero h1 { font-size: 2rem; } .hero-metrics { grid-template-columns: 1fr; } }
+        @media(max-width: 400px) { 
+            .hero h1 { font-size: 2rem; } 
+            .hero-metrics { grid-template-columns: 1fr; } /* 1 column for very small screens */
+        }
     </style>
 </head>
 <body>
@@ -219,14 +231,14 @@
                 <div class="metric-sub" data-i18n="subEbitda">High Efficiency</div>
             </div>
             <div class="metric-card">
-                <div class="metric-val" data-i18n="metROI">~115%</div>
+                <div class="metric-val" data-i18n="metROI">~85%</div>
                 <div class="metric-lbl" data-i18n="lblROI">Annual Return</div>
-                <div class="metric-sub" data-i18n="subROI">On Maturity (2031+)</div>
+                <div class="metric-sub" data-i18n="subROI">Conservative Estimate</div>
             </div>
             <div class="metric-card">
-                <div class="metric-val">100%</div>
+                <div class="metric-val">~90%+</div>
                 <div class="metric-lbl" data-i18n="lblGrade">Export Grade A</div>
-                <div class="metric-sub" data-i18n="subGrade">Premium Quality</div>
+                <div class="metric-sub" data-i18n="subGrade">Aiming for Perfection</div>
             </div>
             <div class="metric-card">
                 <div class="metric-val" data-i18n="metGrowth">x5 Growth</div>
@@ -551,14 +563,14 @@
             heroSub: "Ismayilli, Azerbaijan. 10 Hectares of Premium Stone Fruit.<br>Strategic market entry during the 'deficit window'.",
             
             lblEbitda: "EBITDA Margin", subEbitda: "High Efficiency",
-            metROI: "~115%", lblROI: "Annual Return", subROI: "On Maturity (2031+)",
-            lblGrade: "Export Grade A", subGrade: "Premium Quality",
+            metROI: "~85%", lblROI: "Annual Return", subROI: "Conservative Estimate",
+            lblGrade: "Export Grade A", subGrade: "Aiming for Perfection",
             metGrowth: "x5 Growth", lblValuation: "Capitalization", subValuation: "Asset Value by 2032",
 
             stratTitle: "Fundamental Advantage", stratDesc: "Why Ismayilli (650m ASL)? It's not just land, it's a climate hedge for your investment.",
             chillTitle: "900+ Chill Hours", chillDesc: "Unlike lowland zones (Kurdamir, Sabirabad), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation. Without this, the orchard risks becoming just 'firewood'.",
-            uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red. The visual appeal sells the product.",
-            soilTitle: "Calcium Structure", soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai without quality loss.",
+            uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red. The visual appeal sells the product directly increases its market value.",
+            soilTitle: "Calcium Structure", soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows safe long-haul transport to destinations like Moscow or Dubai.",
             earlyTitle: "Biological Reality", earlyDesc: "We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.",
             
             locTitle: "Location & Climate", locDesc: "Coordinates: 40.604977, 48.152331. Real-time condition monitoring.",
@@ -606,14 +618,14 @@
             heroSub: "Исмаиллы, Азербайджан. 10 Гектаров премиальных косточковых культур.<br>Стратегический выход на рынок в окно 'дефицита'.",
             
             lblEbitda: "Маржа EBITDA", subEbitda: "Высокая Эффективность",
-            metROI: "~115%", lblROI: "Доход в год", subROI: "На пике мощности (2031+)",
-            lblGrade: "Экспортный Сорт А", subGrade: "Премиум Качество",
-            metGrowth: "x5 Рост", lblValuation: "Оценка Актива", subValuation: "Стоимость бизнеса к 2032",
+            metROI: "~85%", lblROI: "Доход в год", subROI: "Пессимистичный прогноз",
+            lblGrade: "Экспортный Сорт А", subGrade: "Стремимся к 100%",
+            metGrowth: "x5 Рост", lblValuation: "Капитализация", subValuation: "Стоимость бизнеса к 2032",
 
             stratTitle: "Фундаментальное Преимущество", stratDesc: "Почему Исмаиллы (650м н.у.м.)? Это не просто земля, это климатический хедж ваших инвестиций.",
             chillTitle: "900+ Часов Холода", chillDesc: "В отличие от равнинных зон (Кюрдамир, Сабирабад), наше предгорье гарантирует деревьям полноценный зимний покой. Без достаточного зимнего охлаждения сад рискует превратиться просто в “дрова”.",
             uvTitle: "УФ-воздействие и окраска", uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный тёмно-бордовый цвет, а абрикос Giant Red становится насыщенно-красным. Визуальная привлекательность продукта напрямую увеличивает его рыночную стоимость.",
-            soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как природный цемент. Фрукт растет плотным и хрустящим. Такая плотная структура позволяет безопасно перевозить плоды на дальние расстояния, включая Москву и Дубай.",
+            soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как природный цемент. Фрукт растет плотным и хрустящим (crunchy). Такая плотная структура позволяет безопасно перевозить плоды на дальние расстояния, включая Москву и Дубай.",
             earlyTitle: "Биологическая Реальность", earlyDesc: "Мы предпочитаем правду хайпу. Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029 (3-й год). Такое консервативное моделирование исключает риск завышенных ожиданий.",
             
             locTitle: "Локация и Климат", locDesc: "Координаты: 40.604977, 48.152331. Мониторинг условий в реальном времени.",
@@ -736,10 +748,7 @@
                         label: function(context) {
                             let label = context.dataset.label || '';
                             if (label) { label += ': '; }
-                            if (context.parsed.y !== null) { 
-                                // FORCE ₼ SYMBOL ALWAYS
-                                label += new Intl.NumberFormat(currentLang === 'ru' ? 'ru-RU' : 'en-US').format(context.parsed.y) + ' ₼'; 
-                            }
+                            if (context.parsed.y !== null) { label += new Intl.NumberFormat(currentLang === 'ru' ? 'ru-RU' : 'en-US').format(context.parsed.y) + ' ₼'; }
                             return label;
                         }
                     }
