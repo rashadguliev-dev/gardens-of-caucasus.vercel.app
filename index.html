@@ -322,7 +322,7 @@
                             <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Early Lory, Giant Red</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:#1E293B;">5.00 – 9.00 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">5.00 – 9.00 <span data-i18n="currKg">₼/kg</span></div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div>
                         </div>
                     </div>
@@ -337,7 +337,7 @@
                             <div style="font-size: 0.8rem; color: var(--text-muted);">4 ha • Extreme 28, Oreal</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:#1E293B;">1.80 – 2.20 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">1.80 – 2.20 <span data-i18n="currKg">₼/kg</span></div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div>
                         </div>
                     </div>
@@ -352,7 +352,7 @@
                             <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Zodiac, Babylone</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:#1E293B;">2.00 – 2.20 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">2.00 – 2.20 <span data-i18n="currKg">₼/kg</span></div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div>
                         </div>
                     </div>
@@ -367,7 +367,7 @@
                             <div style="font-size: 0.8rem; color: var(--text-muted);">2 ha • Traditional Demand</div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="font-weight:700; color:#1E293B;">2.20 – 4.00 ₼</div>
+                            <div style="font-weight:700; color:#1E293B;">2.20 – 4.00 <span data-i18n="currKg">₼/kg</span></div>
                             <div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div>
                         </div>
                     </div>
@@ -433,7 +433,8 @@
                         <span>TOTAL ASK:</span>
                         <span style="color: var(--primary);">518 890 ₼</span>
                     </div>
-                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:10px;" data-i18n="finNote">*Seedling calculation based on base price 8.65 AZN. Premium licenses may require additional budget.</div>
+                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:10px; line-height:1.4;" data-i18n="finNote">*Seedling calculation based on base price 8.65 AZN. Premium licenses may require additional budget.</div>
+                    <div style="font-size:0.85rem; color:#059669; margin-top:12px; font-weight:600;" data-i18n="finPaybackNote">Project payback is projected in 2031–2032, after the orchard reaches full capacity.</div>
                 </div>
 
                 <div class="opex-grid">
@@ -452,13 +453,14 @@
                     <div class="opex-item">
                         <div class="opex-title"><i data-lucide="shield" size="14"></i><span data-i18n="opSafeT">Benefits</span></div>
                         <div class="opex-list" data-i18n="opSafe"><b>0% Profit Tax</b> (Agro Exemption), Contingency</div>
+                        <div class="opex-list" style="margin-top:2px; font-size:0.65rem; color:#94A3B8;" data-i18n="opSafeSub">*Early years OPEX included in Total Ask</div>
                     </div>
                 </div>
 
             </div>
             <div class="content-card" style="display:flex; flex-direction:column;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
-                    <h3 data-i18n="revChartTitle" style="font-size: 1.25rem; color:#0F172A;">Revenue Forecast (AZN)</h3>
+                    <h3 data-i18n="revChartTitle" style="font-size: 1.25rem; color:#0F172A;">Revenue Forecast (₼)</h3>
                     <div class="scenario-tabs">
                         <button class="tab-btn" onclick="setScenario('pessimistic')" id="btn-pess" data-i18n="scenPess">Pessimist</button>
                         <button class="tab-btn active" onclick="setScenario('realistic')" id="btn-real" data-i18n="scenReal">Realist</button>
@@ -554,15 +556,16 @@
             metGrowth: "x5 Growth", lblValuation: "Capitalization", subValuation: "Asset Value by 2032",
 
             stratTitle: "Fundamental Advantage", stratDesc: "Why Ismayilli (650m ASL)? It's not just land, it's a climate hedge for your investment.",
-            chillTitle: "900+ Chill Hours", chillDesc: "Unlike lowland zones (Kurdamir, Sabirabad), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation.",
-            uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red.",
-            soilTitle: "Calcium Structure", soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy.",
-            earlyTitle: "Biological Reality", earlyDesc: "We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3).",
+            chillTitle: "900+ Chill Hours", chillDesc: "Unlike lowland zones (Kurdamir, Sabirabad), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation. Without this, the orchard risks becoming just 'firewood'.",
+            uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red. The visual appeal sells the product.",
+            soilTitle: "Calcium Structure", soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai without quality loss.",
+            earlyTitle: "Biological Reality", earlyDesc: "We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.",
             
             locTitle: "Location & Climate", locDesc: "Coordinates: 40.604977, 48.152331. Real-time condition monitoring.",
             wHum: "Humidity", wWind: "Wind", wPress: "Pressure", wSoil: "Soil Type", wCarb: "Carbonate", wAlt: "Elevation",
             
             prodTitle: "Orchard Structure (10 Ha)", prodDesc: "Project economics. Balancing early high-margin fruits with gross volume.",
+            currKg: "₼/kg",
             fruitCherry: "Cherry (Premium)", yield20: "up to 20 t/ha", descCherry: "The earliest and most expensive berry. Ultra-early market entry ensures maximum margin.",
             fruitNect: "Nectarine (Volume Leader)", yield40: "up to 40 t/ha", descNect: "Our 'heavyweight'. Provides the main tonnage and Cash Flow for CIS markets.",
             fruitPeach: "Flat Peach (Fig)", descPeach: "Retail chain favorite. Flat varieties are easy to pack and enjoy high consumer demand.",
@@ -576,12 +579,14 @@
             
             finTitle: "Financial Model", finDesc: "Transparent numbers. Realistic planning. Conservative approach.",
             investTitle: "Investment Structure", rowWater: "Water Supply", rowMach: "Machinery (Tractor +)", rowIrr: "Irrigation (Drip)", rowTrees: "Seedlings (6600 units)*", rowInfra: "Infrastructure", rowEarth: "Earthworks", rowCapex: "TOTAL CAPEX", rowOpex: "OPEX (Until Payback)", finNote: "*Seedling calculation based on base price 8.65 AZN. Premium licenses may require additional budget.",
-            
+            finPaybackNote: "Project payback is projected in 2031–2032, after the orchard reaches full capacity.",
+
             // OPEX TRANSLATIONS
             opLaborT: "Labor", opLabor: "Agronomist, Guard, Seasonal pruning/harvesting",
             opMatT: "Inputs", opMat: "Fertilizers (NPK), Protection (CPP), Fuel (Diesel)",
             opUtilT: "Utilities", opUtil: "Electricity (Pump), Repairs (Trellis/Drip), Tools",
             opSafeT: "Benefits", opSafe: "<b>0% Profit Tax</b> (Agro Exemption), Contingency",
+            opSafeSub: "*Early years OPEX included in Total Ask",
 
             // PARTNERS TRANSLATIONS
             partTitle: "Key Partners & Guarantees", partDesc: "We mitigate risks by working with industry leaders and state support.",
@@ -590,7 +595,7 @@
             roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).",
             roleAgro: "Management", nameAgro: "Chief Agronomist", descAgro: "Tender process in progress. Selection of top-tier expert.",
 
-            revChartTitle: "Revenue Forecast (AZN)", scenPess: "Pessimist", scenReal: "Realist", scenOpt: "Optimist", baseCalc: "Calculation Base (Market 2023-2025)", baseCherry: "Cherry:", basePeach: "Peach Group:",
+            revChartTitle: "Revenue Forecast (₼)", scenPess: "Pessimist", scenReal: "Realist", scenOpt: "Optimist", baseCalc: "Calculation Base (Market 2023-2025)", baseCherry: "Cherry:", basePeach: "Peach Group:",
             secureTitle: "Government-Backed Investment", secureDesc: "The project is subsidized by the state. Agro-insurance covers 96% of risks (hail, fire, wind), with the government paying 50% of the insurance premium cost.",
             footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp"
         },
@@ -603,37 +608,40 @@
             lblEbitda: "Маржа EBITDA", subEbitda: "Высокая Эффективность",
             metROI: "~115%", lblROI: "Доход в год", subROI: "На пике мощности (2031+)",
             lblGrade: "Экспортный Сорт А", subGrade: "Премиум Качество",
-            metGrowth: "x5 Рост", lblValuation: "Капитализация", subValuation: "Стоимость бизнеса к 2032",
+            metGrowth: "x5 Рост", lblValuation: "Оценка Актива", subValuation: "Стоимость бизнеса к 2032",
 
-            stratTitle: "Фундаментальное Преимущество", stratDesc: "Почему Исмаиллы (650м над у.м.)? Это не просто земля, это климатический хедж ваших инвестиций.",
-            chillTitle: "900+ Часов Холода", chillDesc: "В отличие от равнинных зон (Кюрдамир, Сабирабад), наше предгорье гарантирует деревьям полноценный зимний покой.",
-            uvTitle: "УФ-Удар & Окрас", uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный темный цвет ('Dark Cherry'), а абрикос Giant Red становится 'кровавым'.",
-            soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как природный цемент. Фрукт растет плотным и хрустящим (crunchy).",
-            earlyTitle: "Биологическая Реальность", earlyDesc: "Мы предпочитаем правду хайпу. Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029 (3-й год).",
+            stratTitle: "Фундаментальное Преимущество", stratDesc: "Почему Исмаиллы (650м н.у.м.)? Это не просто земля, это климатический хедж ваших инвестиций.",
+            chillTitle: "900+ Часов Холода", chillDesc: "В отличие от равнинных зон (Кюрдамир, Сабирабад), наше предгорье гарантирует деревьям полноценный зимний покой. Без достаточного зимнего охлаждения сад рискует превратиться просто в “дрова”.",
+            uvTitle: "УФ-воздействие и окраска", uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный тёмно-бордовый цвет, а абрикос Giant Red становится насыщенно-красным. Визуальная привлекательность продукта напрямую увеличивает его рыночную стоимость.",
+            soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как природный цемент. Фрукт растет плотным и хрустящим. Такая плотная структура позволяет безопасно перевозить плоды на дальние расстояния, включая Москву и Дубай.",
+            earlyTitle: "Биологическая Реальность", earlyDesc: "Мы предпочитаем правду хайпу. Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029 (3-й год). Такое консервативное моделирование исключает риск завышенных ожиданий.",
             
             locTitle: "Локация и Климат", locDesc: "Координаты: 40.604977, 48.152331. Мониторинг условий в реальном времени.",
             wHum: "Влажность", wWind: "Ветер", wPress: "Давление", wSoil: "Почва", wCarb: "Карбонат", wAlt: "Высота",
             
             prodTitle: "Структура Сада (10 Га)", prodDesc: "Экономика проекта. Баланс ранней маржи и валового объема.",
+            currKg: "₼/кг",
             fruitCherry: "Черешня (Premium)", yield20: "до 20 т/га", descCherry: "Самая ранняя и дорогая ягода. Ультра-ранний выход на рынок обеспечивает максимальную маржу.",
-            fruitNect: "Нектарин (Лидер объема)", yield40: "до 40 т/га", descNect: "Наш 'тяжеловес'. Обеспечивает основной тоннаж и Cash Flow для рынков СНГ.",
+            fruitNect: "Нектарин (Лидер объема)", yield40: "до 40 т/га", descNect: "Наш 'тяжеловес'. Обеспечивает основной тоннаж и Денежный поток для рынков СНГ.",
             fruitPeach: "Персик (Инжирный)", descPeach: "Сетевой фаворит. Плоские сорта удобны для упаковки и пользуются повышенным спросом.",
             fruitApricot: "Абрикос", descApricot: "Высокая цена на старте сезона и устойчивый спрос на местном рынке.",
             
-            roadTitle: "Roadmap Проекта", 
+            roadTitle: "Дорожная карта проекта", 
             t1Title: "CAPEX Фаза", t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.",
             t2Title: "Посадка Сада", t2Desc: "Закладка 6600 деревьев. Старт биологических часов.",
             t3Title: "Первый Урожай", t3Desc: "Частичный сбор (~15%). Первая выручка.",
-            t4Title: "Полная Мощность & Exit", t4Desc: "Максимальная выручка (100%). Опция продажи сада.",
+            t4Title: "Полная мощность и выход", t4Desc: "Максимальная выручка (100%). Опция продажи сада.",
             
             finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Реалистичное планирование. Консервативный подход.",
             investTitle: "Структура Инвестиций", rowWater: "Водообеспечение", rowMach: "Техника (Трактор +)", rowIrr: "Орошение (Капля)", rowTrees: "Саженцы (6600 шт)*", rowInfra: "Инфраструктура", rowEarth: "Земляные работы", rowCapex: "ИТОГО CAPEX", rowOpex: "OPEX (До окупаемости)", finNote: "*Расчет саженцев по базовой цене 8.65 AZN. Премиальные лицензии могут потребовать доп. бюджета.",
-            
+            finPaybackNote: "Окупаемость проекта прогнозируется в период 2031–2032 гг., после выхода сада на полную мощность.",
+
             // OPEX TRANSLATIONS RU
-            opLaborT: "Люди", opLabor: "Агроном, Охрана, Сезонные (обрезка, сбор)",
+            opLaborT: "Персонал", opLabor: "Агроном, Охрана, Сезонные (обрезка, сбор)",
             opMatT: "Материалы", opMat: "Удобрения (NPK), СЗР, Дизельное топливо (ГСМ)",
             opUtilT: "Эксплуатация", opUtil: "Свет (Насос), Ремонт техники и полива, Инвентарь",
             opSafeT: "Льготы", opSafe: "<b>0% Налог на прибыль</b>, Непредвиденные (10%)",
+            opSafeSub: "*Ранний OPEX (27-28) включен в сумму инвестиций",
 
             // PARTNERS TRANSLATIONS RU
             partTitle: "Партнеры и Гарантии", partDesc: "Мы минимизируем риски, работая с лидерами индустрии и господдержкой.",
@@ -642,7 +650,7 @@
             roleIns: "Страхование", descIns: "Государственное покрытие рисков (Град, Пожар, Ветер).",
             roleAgro: "Управление", nameAgro: "Главный Агроном", descAgro: "Идет тендерный отбор. Выбор эксперта с опытом в интенсиве.",
 
-            revChartTitle: "Прогноз Выручки (AZN)", scenPess: "Пессимист", scenReal: "Реалист", scenOpt: "Оптимист", baseCalc: "База расчета (Рынок 2023-2025)", baseCherry: "Черешня:", basePeach: "Персиковая группа:",
+            revChartTitle: "Прогноз Выручки (₼)", scenPess: "Пессимист", scenReal: "Реалист", scenOpt: "Оптимист", baseCalc: "База расчета (Рынок 2023-2025)", baseCherry: "Черешня:", basePeach: "Персиковая группа:",
             secureTitle: "Инвестиции Защищены Государством", secureDesc: "Проект субсидируется государством. Агрострахование покрывает 96% рисков (град, пожар, ветер), при этом государство оплачивает 50% стоимости полиса.",
             footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp"
         }
@@ -654,7 +662,7 @@
         document.documentElement.lang = lang;
         document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.remove('active'); if(btn.innerText.toLowerCase() === lang) btn.classList.add('active'); });
         document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(translations[lang][key]) el.innerHTML = translations[lang][key]; });
-        chart.data.datasets[0].label = lang === 'ru' ? 'Выручка (AZN)' : 'Revenue (AZN)';
+        chart.data.datasets[0].label = lang === 'ru' ? 'Выручка (₼)' : 'Revenue (₼)';
         chart.update();
         updateWeather();
     }
@@ -698,7 +706,7 @@
         data: {
             labels: ['2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033'],
             datasets: [{
-                label: 'Revenue (AZN)',
+                label: 'Revenue (₼)',
                 data: scenarios.realistic,
                 borderColor: '#059669',
                 backgroundColor: (context) => {
@@ -728,7 +736,10 @@
                         label: function(context) {
                             let label = context.dataset.label || '';
                             if (label) { label += ': '; }
-                            if (context.parsed.y !== null) { label += new Intl.NumberFormat(currentLang === 'ru' ? 'ru-RU' : 'en-US', { style: 'currency', currency: 'AZN' }).format(context.parsed.y); }
+                            if (context.parsed.y !== null) { 
+                                // FORCE ₼ SYMBOL ALWAYS
+                                label += new Intl.NumberFormat(currentLang === 'ru' ? 'ru-RU' : 'en-US').format(context.parsed.y) + ' ₼'; 
+                            }
                             return label;
                         }
                     }
