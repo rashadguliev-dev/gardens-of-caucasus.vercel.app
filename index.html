@@ -176,7 +176,7 @@
         .risk-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .risk-li { display: flex; gap: 10px; font-size: 0.9rem; color: #7C2D12; }
 
-        /* --- PAYBACK CALC BOX (NEW) --- */
+        /* --- PAYBACK CALC BOX --- */
         .payback-box {
             margin-top: 1.5rem; padding: 1.25rem;
             background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06);
@@ -513,14 +513,14 @@
                         <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t2Desc">Planting 6600 trees. Biology starts here.</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-year">2029 (3-й год)</div>
+                        <div class="timeline-year" data-i18n="t3Year">2029 (Year 3)</div>
                         <div class="timeline-title" data-i18n="t3Title">First Harvest</div>
                         <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t3Desc">Partial harvest (~15%). First Revenue.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">2031-2032</div>
-                        <div class="timeline-title" data-i18n="t4Title">Full Capacity</div>
-                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t4Desc">Max revenue (100%).</div>
+                        <div class="timeline-title" data-i18n="t4Title">Full Capacity & Exit</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t4Desc">Max revenue (100%). Option to sell the orchard.</div>
                     </div>
                 </div>
             </div>
@@ -699,10 +699,11 @@
             fruitNect: "Nectarine (Volume Leader)", varNect: "4 ha • Extreme 28, Oreal", yield40: "up to 40 t/ha", descNect: "Our 'heavyweight'. Provides the main tonnage and Cash Flow for CIS markets.",
             fruitPeach: "Flat Peach (Fig)", varPeach: "2 ha • Zodiac, Babylone", descPeach: "Retail chain favorite. Flat varieties are easy to pack and enjoy high consumer demand.",
             fruitApricot: "Apricot", descApricot: "High price at season start and stable demand in the local market.",
+            
             roadTitle: "Project Roadmap", 
             t1Title: "CAPEX Phase", t1Desc: "Land preparation, well drilling, fencing, seedling procurement.",
             t2Title: "Planting", t2Desc: "Planting 6600 trees. Biology starts here.", 
-            t3Title: "First Harvest", t3Desc: "Partial harvest (~15%). First Revenue.",
+            t3Year: "2029 (Year 3)", t3Title: "First Harvest", t3Desc: "Partial harvest (~15%). First Revenue.",
             t4Title: "Full Capacity & Exit", t4Desc: "Max revenue (100%). Option to sell the orchard.",
 
             finTitle: "Financial Model", finDesc: "Transparent numbers. Realistic planning. Conservative approach.",
@@ -744,7 +745,7 @@
             entryTitle: "Опережая Губу и Хачмаз", entryDesc: "Северные регионы (Губа-Хачмаз) — основные производители, но они собирают урожай на 2-3 недели позже. Мы выходим на рынок в мае-июне, в окно 'дефицита', когда цена максимальна. Когда придет 'большая волна' с севера, мы уже продадим урожай.",
             logTitle: "Без Головной Боли с Логистикой", logDesc: "Мы не ищем покупателей. Экспортеры выкупают урожай прямо 'у ворот сада' (модель FCA). Предоплата на поле.",
             soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как цемент. Фрукт плотный и хрустящий, выдерживает дальнюю дорогу.",
-            earlyTitle: "Биологическая Реальность", earlyDesc: "Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029 (3-й год). Консервативное моделирование.",
+            earlyTitle: "Биологическая Реальность", earlyDesc: "Посадка в Q4 2026. Первый коммерческий урожай в 2029. Консервативное моделирование.",
             chillTitle: "900+ Часов Холода", chillDesc: "В отличие от равнинных зон (Кюрдамир, Сабирабад), наше предгорье гарантирует деревьям полноценный зимний покой. Это критический фактор для цветения.",
             uvTitle: "УФ-Удар и Окрас", uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный темный цвет ('Dark Cherry'), а абрикос Giant Red становится насыщенно-красным. Вид продает.",
             
@@ -763,10 +764,11 @@
             fruitNect: "Нектарин (Лидер объема)", varNect: "4 га • Extreme 28, Oreal", yield40: "до 40 т/га", descNect: "Наш 'тяжеловес'. Обеспечивает основной тоннаж и Денежный поток для рынков СНГ.",
             fruitPeach: "Персик (Инжирный)", varPeach: "2 га • Zodiac, Babylone", descPeach: "Сетевой фаворит. Плоские сорта удобны для упаковки и пользуются повышенным спросом.",
             fruitApricot: "Абрикос", descApricot: "Высокая цена на старте сезона и устойчивый спрос на местном рынке.",
+            
             roadTitle: "Дорожная карта проекта", 
             t1Title: "CAPEX Фаза", t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.",
             t2Title: "Посадка Сада", t2Desc: "Закладка 6600 деревьев. Старт биологических часов.", 
-            t3Title: "Первый Урожай", t3Desc: "Частичный сбор (~15%). Первая выручка.",
+            t3Year: "2029 (3-й год)", t3Title: "Первый Урожай", t3Desc: "Частичный сбор (~15%). Первая выручка.",
             t4Title: "Полная мощность & Exit", t4Desc: "Максимальная выручка (100%). Опция продажи сада.",
 
             finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Реалистичное планирование. Консервативный подход.",
