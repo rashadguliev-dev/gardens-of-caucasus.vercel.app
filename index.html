@@ -14,20 +14,20 @@
     <style>
         :root {
             /* PEARL THEME VARIABLES */
-            --primary: #059669;       /* Emerald Green (Slightly darker for light bg) */
+            --primary: #059669;       /* Emerald Green */
             --primary-glow: rgba(5, 150, 105, 0.2);
-            --accent: #D97706;        /* Amber for Premium */
+            --accent: #D97706;        /* Amber */
             
             --bg-base: #FDFBF7;       /* PEARL / CREAM WHITE BASE */
-            --bg-card: rgba(255, 255, 255, 0.75); /* Milky Glass */
-            --bg-contrast: #1E293B;   /* Slate 800 (For dark elements like buttons) */
+            --bg-card: rgba(255, 255, 255, 0.85); /* Milky Glass */
+            --bg-contrast: #1E293B;   /* Slate 800 */
             
-            --text-main: #1E293B;     /* Dark Slate (Readable on pearl) */
+            --text-main: #1E293B;     /* Dark Slate */
             --text-muted: #64748B;    /* Slate 500 */
             
-            --border: rgba(0, 0, 0, 0.08); /* Subtle dark border */
+            --border: rgba(0, 0, 0, 0.08);
             --font-main: 'Plus Jakarta Sans', sans-serif;
-            --shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
         }
 
         /* --- RESET & BASE --- */
@@ -41,22 +41,22 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- BACKGROUND PHOTO CONFIG --- */
+        /* --- BACKGROUND PHOTO --- */
         .bg-photo {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2;
-            /* Ссылка на ваше фото */
-            background-image: url('preview.jpeg'); 
+            /* Ссылка на ваше фото или запасное */
+            background-image: url('preview.jpeg'), url('https://images.unsplash.com/photo-1623227866882-c005c207758f?q=80&w=2070&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* Прозрачность 20% */
-            opacity: 2.8; 
-            filter: saturate(0.9); /* Чуть приглушим цвета фото, чтобы не рябило */
+            /* Исправлена прозрачность на 30% */
+            opacity: 0.30; 
+            filter: saturate(0.9);
         }
 
-        /* Pearl Overlay to blend photo with background color */
+        /* Pearl Overlay */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -65,7 +65,7 @@
                 rgba(253, 251, 247, 0.8) 0%, 
                 rgba(253, 251, 247, 0.6) 50%, 
                 rgba(253, 251, 247, 0.9) 100%);
-            backdrop-filter: blur(2px); /* Легкое размытие фото */
+            backdrop-filter: blur(3px);
         }
 
         /* --- UTILS --- */
@@ -90,7 +90,7 @@
         .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; color: #0F172A; }
         .section-desc { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
-        /* --- CARD CLASS (PEARL STYLE) --- */
+        /* --- CARD CLASS --- */
         .content-card {
             background: var(--bg-card);
             border: 1px solid #fff;
@@ -117,7 +117,7 @@
         /* --- NAV --- */
         nav {
             position: sticky; top: 0; z-index: 1000;
-            background: rgba(253, 251, 247, 0.85); /* Pearl Translucent */
+            background: rgba(253, 251, 247, 0.85);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border); padding: 1rem 0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.02);
@@ -200,7 +200,7 @@
         }
         .map-overlay {
             position: absolute; bottom: 20px; left: 20px; right: 20px;
-            background: rgba(255, 255, 255, 0.9); /* White overlay */
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(16px);
             padding: 1.5rem; border-radius: 16px; border: 1px solid #fff;
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
@@ -225,7 +225,6 @@
         }
         .tab-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
-        /* Bars in Fin Section */
         .bar-bg { height:8px; background:rgba(0,0,0,0.05); border-radius:4px; overflow:hidden; }
 
         /* --- FOOTER --- */
@@ -241,7 +240,7 @@
         }
         .cta-btn:hover { transform: scale(1.02); background: var(--primary); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); }
 
-        /* --- MOBILE ADAPTATION --- */
+        /* --- MOBILE --- */
         @media(max-width: 900px) {
             .hero h1 { font-size: 2.5rem; padding: 0 10px; }
             .hero-metrics { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
@@ -250,10 +249,8 @@
             .nav-links { display: none; }
             .lang-switch { margin-left: auto; margin-right: 0; }
             .container.nav-inner { padding: 0 20px; }
-            
             .content-card { padding: 1.25rem !important; }
             .bento-item { padding: 1.5rem; }
-
             .map-wrapper { height: 350px; display: flex; flex-direction: column; }
             iframe { height: 200px !important; flex-shrink: 0; }
             .map-overlay {
@@ -267,16 +264,11 @@
                 margin-top: -5px;
             }
             .weather-col { border-right: none; text-align: left; padding: 0; }
-            
             .fin-table td { font-size: 0.85rem; padding: 8px 0; }
-            .fin-table td:nth-child(2) { font-size: 1rem; }
-            .fin-table tr:last-child td { font-size: 1.1rem; }
-            
             .hero { padding: 100px 0 60px; }
             .container { padding: 0 16px; }
             .cta-btn { width: 100%; justify-content: center; padding: 16px 20px; }
         }
-
         @media(max-width: 400px) {
             .hero h1 { font-size: 2rem; }
             .hero-metrics { grid-template-columns: 1fr; }
@@ -313,7 +305,7 @@
 
 <section class="hero reveal active">
     <div class="container">
-        <div class="badge">Early Exit Strategy • 2025-2030</div>
+        <div class="badge">Early Exit Strategy • 2026-2032</div>
         <h1 data-i18n="heroTitle">Next-Gen Intensive<br><span class="text-gradient">Orchard</span></h1>
         <p data-i18n="heroSub">Ismayilli, Azerbaijan. 10 Hectares of Premium Stone Fruit.<br>Strategic market entry during the "deficit window".</p>
         
@@ -323,8 +315,8 @@
                 <div class="metric-lbl">EBITDA Margin</div>
             </div>
             <div class="metric-card">
-                <div class="metric-val" data-i18n="metPBP">4.5 years</div>
-                <div class="metric-lbl" data-i18n="lblPBP">Payback Period</div>
+                <div class="metric-val" data-i18n="metPBP">~4.5 years</div>
+                <div class="metric-lbl" data-i18n="lblPBP">From Planting (2026)</div>
             </div>
             <div class="metric-card">
                 <div class="metric-val">100%</div>
@@ -363,8 +355,8 @@
             </div>
             <div class="bento-item span-2" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6)); border-color: var(--primary);">
                 <div class="bento-icon"><i data-lucide="trending-up"></i></div>
-                <h3 data-i18n="earlyTitle">Early Window Strategy</h3>
-                <p data-i18n="earlyDesc">We enter the market 14 days earlier than the northern giants (Guba/Khachmaz). At this moment, prices are at their peak, and the market is empty. We skim the cream before the mass harvest collapses prices.</p>
+                <h3 data-i18n="earlyTitle">Biological Reality</h3>
+                <p data-i18n="earlyDesc">We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.</p>
             </div>
         </div>
     </div>
@@ -424,7 +416,7 @@
             <div>
                 <h2 class="section-title" data-i18n="prodTitle">Orchard Structure (10 Ha)</h2>
                 <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="prodDesc">
-                    Project economics 2023-2025. Balancing early high-margin fruits with gross volume.
+                    Project economics. Balancing early high-margin fruits with gross volume.
                 </p>
                 
                 <div style="margin-bottom: 2rem;">
@@ -508,24 +500,24 @@
                 <h3 style="margin-bottom:1.5rem; color:#0F172A;" data-i18n="roadTitle">Project Roadmap</h3>
                 <div class="timeline" style="margin: 0; padding-left: 1.5rem;">
                     <div class="timeline-item">
-                        <div class="timeline-year">Q1-Q2 2025</div>
+                        <div class="timeline-year">Q1-Q3 2026</div>
                         <div class="timeline-title" data-i18n="t1Title">CAPEX Phase</div>
                         <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t1Desc">Land preparation, well drilling, fencing, seedling procurement.</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-year">Q4 2025</div>
+                        <div class="timeline-year" style="color:#D97706;">Q4 2026</div>
                         <div class="timeline-title" data-i18n="t2Title">Planting</div>
-                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t2Desc">Planting 6600 trees (10 Ha).</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t2Desc">Planting 6600 trees. Biology starts here.</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-year">2027-2028 (Year 3-4)</div>
-                        <div class="timeline-title" data-i18n="t3Title">First Commercial Harvest</div>
-                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t3Desc">ROI begins (Nectarine/Apricot).</div>
+                        <div class="timeline-year">2029 (Year 3)</div>
+                        <div class="timeline-title" data-i18n="t3Title">First Harvest</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t3Desc">Partial harvest (~15%). First Revenue.</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-year">2030 (Year 5-6)</div>
+                        <div class="timeline-year">2031-2032</div>
                         <div class="timeline-title" data-i18n="t4Title">Full Capacity & Exit</div>
-                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t4Desc">Max revenue. Option to sell the orchard as a turnkey business.</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t4Desc">Max revenue (100%). Option to sell the orchard.</div>
                     </div>
                 </div>
             </div>
@@ -626,11 +618,11 @@
         <p style="color: var(--text-muted); margin: 1rem 0 2rem;" data-i18n="footSub">Land ready. Plan approved. Team assembled.</p>
         
         <div style="margin-bottom: 2rem;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: #0F172A;">Stalskiy Ruslan</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #0F172A;">Guliyev Rashad</div>
             <div style="color: var(--primary);" data-i18n="initiatorRole">Project Initiator</div>
         </div>
 
-        <a href="https://wa.me/994553392039" class="cta-btn">
+        <a href="https://wa.me/994702166666" class="cta-btn">
             <i data-lucide="message-circle"></i>
             <span data-i18n="btnWhatsapp">Discuss Investment on WhatsApp</span>
         </a>
@@ -654,8 +646,8 @@
             
             heroTitle: 'Next-Gen Intensive<br><span class="text-gradient">Orchard</span>',
             heroSub: "Ismayilli, Azerbaijan. 10 Hectares of Premium Stone Fruit.<br>Strategic market entry during the 'deficit window'.",
-            metPBP: "4.5 years",
-            lblPBP: "Payback Period (PBP)",
+            metPBP: "~4.5 years",
+            lblPBP: "From Planting (2026)",
             lblLiquidity: "Asset Liquidity",
             
             stratTitle: "Fundamental Advantage",
@@ -666,8 +658,8 @@
             uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red. The visual appeal sells the product.",
             soilTitle: "Calcium Structure",
             soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy. This allows long-haul transport to Moscow or Dubai without quality loss.",
-            earlyTitle: "Early Window Strategy",
-            earlyDesc: "We enter the market 14 days earlier than the northern giants (Guba/Khachmaz). At this moment, prices are at their peak, and the market is empty. We skim the cream before the mass harvest collapses prices.",
+            earlyTitle: "Biological Reality",
+            earlyDesc: "We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.",
             
             locTitle: "Location & Climate",
             locDesc: "Coordinates: 40.604977, 48.152331. Real-time condition monitoring.",
@@ -679,7 +671,7 @@
             wAlt: "Elevation",
             
             prodTitle: "Orchard Structure (10 Ha)",
-            prodDesc: "Project economics 2023-2025. Balancing early high-margin fruits with gross volume.",
+            prodDesc: "Project economics. Balancing early high-margin fruits with gross volume.",
             fruitCherry: "Cherry (Premium)",
             yield20: "up to 20 t/ha",
             descCherry: "The earliest and most expensive berry. Ultra-early market entry ensures maximum margin.",
@@ -695,11 +687,11 @@
             t1Title: "CAPEX Phase",
             t1Desc: "Land preparation, well drilling, fencing, seedling procurement.",
             t2Title: "Planting",
-            t2Desc: "Planting 6600 trees (10 Ha).",
-            t3Title: "First Commercial Harvest",
-            t3Desc: "ROI begins (Nectarine/Apricot).",
+            t2Desc: "Planting 6600 trees. Biology starts here.",
+            t3Title: "First Harvest",
+            t3Desc: "Partial harvest (~15%). First Revenue.",
             t4Title: "Full Capacity & Exit",
-            t4Desc: "Max revenue. Option to sell the orchard as a turnkey business.",
+            t4Desc: "Max revenue (100%). Option to sell the orchard.",
             
             finTitle: "Financial Model",
             finDesc: "Transparent numbers. Realistic planning. Conservative approach.",
@@ -739,8 +731,8 @@
             
             heroTitle: 'Интенсивный сад<br><span class="text-gradient">Нового Поколения</span>',
             heroSub: "Исмаиллы, Азербайджан. 10 Гектаров премиальных косточковых культур.<br>Стратегический выход на рынок в окно 'дефицита'.",
-            metPBP: "4.5 года",
-            lblPBP: "Окупаемость (PBP)",
+            metPBP: "~4.5 года",
+            lblPBP: "С момента посадки (2026)",
             lblLiquidity: "Ликвидность актива",
             
             stratTitle: "Фундаментальное Преимущество",
@@ -751,8 +743,8 @@
             uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный темный цвет ('Dark Cherry'), а абрикос Giant Red становится 'кровавым'. Товарный вид продает сам себя.",
             soilTitle: "Кальциевый Каркас",
             soilDesc: "Карбонатные почвы работают как природный цемент. Фрукт растет плотным и хрустящим (crunchy). Это позволяет везти его фурами в Москву или авиа в Дубай без потери качества.",
-            earlyTitle: "Стратегия Раннего Окна",
-            earlyDesc: "Мы выходим на рынок на 14 дней раньше северных гигантов (Губа/Хачмаз). В этот момент цена на пике, а рынок пуст. Мы снимаем 'сливки' до обвала цен массовым урожаем.",
+            earlyTitle: "Биологическая Реальность",
+            earlyDesc: "Мы предпочитаем правду хайпу. Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029 (3-й год). Этот консервативный подход исключает риск завышенных ожиданий.",
             
             locTitle: "Локация и Климат",
             locDesc: "Координаты: 40.604977, 48.152331. Мониторинг условий в реальном времени.",
@@ -764,7 +756,7 @@
             wAlt: "Высота",
             
             prodTitle: "Структура Сада (10 Га)",
-            prodDesc: "Экономика проекта 2023-2025. Баланс ранней маржи и валового объема.",
+            prodDesc: "Экономика проекта. Баланс ранней маржи и валового объема.",
             fruitCherry: "Черешня (Premium)",
             yield20: "до 20 т/га",
             descCherry: "Самая ранняя и дорогая ягода. Ультра-ранний выход на рынок обеспечивает максимальную маржу.",
@@ -780,11 +772,11 @@
             t1Title: "CAPEX Фаза",
             t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.",
             t2Title: "Посадка Сада",
-            t2Desc: "Закладка 6600 деревьев (10 Га).",
-            t3Title: "Первый Коммерческий Урожай",
-            t3Desc: "Начало возврата инвестиций (Нектарин/Абрикос).",
+            t2Desc: "Закладка 6600 деревьев. Старт биологических часов.",
+            t3Title: "Первый Урожай",
+            t3Desc: "Частичный сбор (~15%). Первая выручка.",
             t4Title: "Полная Мощность & Exit",
-            t4Desc: "Максимальная выручка. Возможность продажи сада как готового бизнеса.",
+            t4Desc: "Максимальная выручка (100%). Опция продажи сада.",
             
             finTitle: "Финансовая Модель",
             finDesc: "Прозрачные цифры. Реалистичное планирование. Консервативный подход.",
@@ -921,15 +913,16 @@
     // 4. Chart Logic
     const ctx = document.getElementById('revChart').getContext('2d');
     const scenarios = {
-        pessimistic: [0, 0, 85000, 150000, 420000, 550000, 550000, 550000], 
-        realistic:   [0, 0, 120000, 250000, 680000, 850000, 850000, 850000], 
-        optimistic:  [0, 0, 160000, 320000, 890000, 1100000, 1100000, 1100000] 
+        // Updated data for 2026-2033 (including zero revenue years)
+        pessimistic: [0, 0, 0, 80000, 180000, 450000, 600000, 600000], 
+        realistic:   [0, 0, 0, 120000, 250000, 680000, 850000, 850000], 
+        optimistic:  [0, 0, 0, 160000, 320000, 800000, 1100000, 1100000] 
     };
 
     let chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032'],
+            labels: ['2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033'],
             datasets: [{
                 label: 'Revenue (AZN)',
                 data: scenarios.realistic,
