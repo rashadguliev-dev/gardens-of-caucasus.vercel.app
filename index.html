@@ -20,7 +20,7 @@
             --bg-base: #FDFBF7;       /* Pearl White */
             --bg-card: rgba(255, 255, 255, 0.85);
             --bg-contrast: #1E293B;   
-            --text-main: #1E293B;     
+            --text-main: #1E293B;      
             --text-muted: #64748B;    
             --border: rgba(0, 0, 0, 0.08);
             --font-main: 'Plus Jakarta Sans', sans-serif;
@@ -144,20 +144,14 @@
 
         .fin-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; }
         .fin-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-        .fin-table td { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--text-muted); vertical-align: bottom; }
+        .fin-table td { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--text-muted); vertical-align: middle; font-size: 0.9rem; }
         .fin-table td:nth-child(1) { width: 65%; text-align: left; }
-        .fin-table td:nth-child(2) { width: 35%; text-align: right; color: #0F172A; font-family: monospace; font-size: 1.1rem; font-weight: 600; }
-        .fin-table tr:last-child td { border: none; font-weight: 700; color: var(--primary); font-size: 1.2rem; padding-top: 20px; }
+        .fin-table td:nth-child(2) { width: 35%; text-align: right; color: #0F172A; font-family: monospace; font-size: 1rem; font-weight: 600; }
+        
         .bar-bg { height:8px; background:rgba(0,0,0,0.05); border-radius:4px; overflow:hidden; }
         .scenario-tabs { display: flex; gap: 10px; margin-bottom: 1rem; background: rgba(0,0,0,0.05); padding: 5px; border-radius: 12px; width: fit-content; overflow-x: auto; }
         .tab-btn { background: none; border: none; color: var(--text-muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; }
         .tab-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-
-        /* --- OPEX & PARTNERS GRID --- */
-        .opex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1.5rem; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 1.5rem; }
-        .opex-item { background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.8); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
-        .opex-title { font-weight: 700; font-size: 0.8rem; color: #0F172A; display: flex; align-items: center; gap: 6px; }
-        .opex-list { font-size: 0.7rem; color: var(--text-muted); line-height: 1.3; }
 
         .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
         .partner-card { background: white; border: 1px solid rgba(0,0,0,0.05); padding: 1.5rem; border-radius: 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: var(--shadow); }
@@ -184,6 +178,10 @@
         }
         .payback-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
         .payback-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; color: #1E293B; margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); }
+        
+        .control-block {
+            margin-top:20px; font-size:0.85rem; color:var(--text-muted); background:white; padding:20px; border-radius:16px; border:1px solid var(--border); text-align:left; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
 
         /* --- MOBILE ADAPTATIONS --- */
         @media(max-width: 900px) {
@@ -235,7 +233,6 @@
             .weather-col:nth-last-child(-n+2) { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
             .cta-btn { width: 100%; justify-content: center; padding: 16px 20px; }
-            .opex-grid { grid-template-columns: 1fr; }
             .partners-grid { grid-template-columns: 1fr; }
             .risk-list { grid-template-columns: 1fr; }
         }
@@ -302,9 +299,9 @@
                 <div class="metric-sub" data-i18n="subEbitda">Target at Full Capacity</div>
             </div>
             <div class="metric-card">
-                <div class="metric-val" data-i18n="metROI">FCA</div>
-                <div class="metric-lbl" data-i18n="lblSales">Sales Model</div>
-                <div class="metric-sub" data-i18n="subSales">Exporters Pick-up</div>
+                <div class="metric-val" data-i18n="metROI">2031</div>
+                <div class="metric-lbl" data-i18n="lblSales">Full Payback</div>
+                <div class="metric-sub" data-i18n="subSales">Net Profit from 2032</div>
             </div>
             <div class="metric-card">
                 <div class="metric-val">~90%+</div>
@@ -394,7 +391,7 @@
                 <div class="weather-col">
                     <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom: 5px;" data-i18n="wWater">Water Source</div>
                     <div style="font-size:1.2rem; font-weight:700; color:#1e293b;" data-i18n="wWell">Well + Reservoir</div>
-                    <div style="font-size:0.75rem; color:var(--primary);">Drought Secure</div>
+                    <div style="font-size:0.75rem; color:var(--primary);">License Secured</div>
                 </div>
             </div>
         </div>
@@ -424,7 +421,7 @@
                 </li>
                 <li class="risk-li">
                     <i data-lucide="check-circle-2" color="#059669" size="18"></i>
-                    <span data-i18n="r4"><b>Expertise:</b> We are not guessing. Chief Agronomist selection (shortlist of 3) ensures technological discipline.</span>
+                    <span data-i18n="r4"><b>Expertise:</b> Chief Agronomist selection (shortlist of 3) ensures technological discipline. 24/7 Monitoring.</span>
                 </li>
             </ul>
          </div>
@@ -520,7 +517,7 @@
                     <div class="timeline-item">
                         <div class="timeline-year">2031-2032</div>
                         <div class="timeline-title" data-i18n="t4Title">Full Capacity</div>
-                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t4Desc">Max revenue (100%).</div>
+                        <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="t4Desc">Max revenue (100%). Net Profit Zone.</div>
                     </div>
                 </div>
             </div>
@@ -532,70 +529,68 @@
     <div class="container">
         <div class="section-header reveal">
             <h2 class="section-title" data-i18n="finTitle">Financial Model</h2>
-            <p class="section-desc" data-i18n="finDesc">Transparent numbers. Realistic planning. Conservative approach.</p>
+            <p class="section-desc" data-i18n="finDesc">Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.</p>
         </div>
         <div class="fin-grid reveal">
             <div class="content-card">
-                <h3 style="margin-bottom: 1.5rem; color:#0F172A;" data-i18n="investTitle">Investment Structure</h3>
-                <table class="fin-table">
-                    <tr><td data-i18n="rowWater">Water (Well + Reservoir)</td><td>90 000 ₼</td></tr>
-                    <tr><td data-i18n="rowMach">Machinery (Tractor +)</td><td>85 000 ₼</td></tr>
-                    <tr><td data-i18n="rowIrr">Irrigation (Drip)</td><td>60 000 ₼</td></tr>
-                    <tr><td data-i18n="rowTrees">Seedlings (6600 units)*</td><td>57 090 ₼</td></tr>
-                    <tr><td data-i18n="rowInfra">Infrastructure</td><td>70 000 ₼</td></tr>
-                    <tr><td data-i18n="rowEarth">Earthworks</td><td>18 500 ₼</td></tr>
-                    <tr><td data-i18n="rowCapex">TOTAL CAPEX</td><td>380 590 ₼</td></tr>
-                </table>
+                <h3 style="margin-bottom: 1.5rem; color:#0F172A;" data-i18n="investTitle">Investment Structure (Until Payback)</h3>
                 
-                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed rgba(0,0,0,0.1);">
-                    <div style="display:flex; justify-content:space-between; margin-bottom: 5px; color: var(--text-muted);">
-                        <span data-i18n="rowOpex">OPEX (Until Payback)</span>
-                        <span>138 300 ₼</span>
-                    </div>
-                    <div style="display:flex; justify-content:space-between; font-size: 1.25rem; font-weight: 800; color: #1E293B; margin-top: 10px;">
-                        <span>TOTAL ASK:</span>
-                        <span style="color: var(--primary);">518 890 ₼</span>
-                    </div>
+                <table class="fin-table">
+                    <tr>
+                        <td colspan="2" style="font-weight:800; color:#0F172A; padding-top:15px; border-bottom: 2px solid var(--primary);" data-i18n="rowSecCap">I. CAPEX (Launch)</td>
+                    </tr>
+                    <tr>
+                        <td><i data-lucide="hammer" size="14" style="margin-right:5px; opacity:0.7"></i> <span data-i18n="rowInfra">Infrastructure (House, Warehouse, Fencing, Electric)</span></td>
+                        <td>118 020 ₼</td>
+                    </tr>
+                    <tr>
+                        <td><i data-lucide="droplets" size="14" style="margin-right:5px; opacity:0.7"></i> <span data-i18n="rowWater">Water (Well + Reservoir)</span></td>
+                        <td>32 400 ₼</td>
+                    </tr>
+                    <tr>
+                        <td><i data-lucide="tractor" size="14" style="margin-right:5px; opacity:0.7"></i> <span data-i18n="rowMach">Machinery (Tractor Yuto, Sprayer, etc.)</span></td>
+                        <td>61 500 ₼</td>
+                    </tr>
+                    <tr>
+                        <td><i data-lucide="sprout" size="14" style="margin-right:5px; opacity:0.7"></i> <span data-i18n="rowTrees">Saplings (6600 units) + Planting</span></td>
+                        <td>72 760 ₼</td>
+                    </tr>
+                    <tr>
+                        <td><i data-lucide="settings" size="14" style="margin-right:5px; opacity:0.7"></i> <span data-i18n="rowIrr">Irrigation (Netafim) + Pumps</span></td>
+                        <td>56 000 ₼</td>
+                    </tr>
+                    <tr style="background: rgba(5,150,105,0.05);">
+                        <td style="font-weight:700; color:var(--primary);" data-i18n="rowCapex">TOTAL CAPEX</td>
+                        <td style="font-weight:700; color:var(--primary);">340 680 ₼</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="font-weight:800; color:#0F172A; padding-top:20px; border-bottom: 2px solid #D97706;" data-i18n="rowSecOp">II. OPEX (2026-2029)</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:0.85rem; color:var(--text-muted);"><span data-i18n="rowOpDesc">Garden maintenance until 1st revenue (3 years)<br><i>Salaries, Fertilizers, Agronomist, Fuel</i></span></td>
+                        <td>229 800 ₼</td>
+                    </tr>
                     
-                    <div style="margin-top: 12px; padding: 8px 12px; background: rgba(5, 150, 105, 0.1); border-radius: 8px; border: 1px solid rgba(5, 150, 105, 0.2); font-size: 0.8rem; color: #065F46; line-height: 1.4;">
-                        <i data-lucide="check-circle" style="width: 14px; height: 14px; vertical-align: text-top; margin-right: 4px;"></i>
-                        <span data-i18n="landNote"><b>Note:</b> Land cost is not included. However, the selected 10ha plots have <b>Full Private Ownership (Kupcha)</b> belonging 100% to the investor.</span>
-                    </div>
+                    <tr style="border:none;">
+                        <td style="padding-top:25px; font-weight:800; font-size:1.1rem;" data-i18n="rowTotalAsk">TOTAL INVESTMENT:</td>
+                        <td style="padding-top:25px; font-weight:800; font-size:1.4rem; color:#0F172A;">570 480 ₼</td>
+                    </tr>
+                </table>
 
-                    <div class="payback-box">
-                        <div style="font-weight: 700; color: #0F172A; margin-bottom: 10px; font-size: 0.9rem;" data-i18n="pbTitle">Payback Logic (Cumulative EBITDA):</div>
-                        <div class="payback-row">
-                            <span data-i18n="pb29">2029 (Start):</span>
-                            <span>~96 000 ₼</span>
-                        </div>
-                        <div class="payback-row">
-                            <span data-i18n="pb30">2030 (Growth):</span>
-                            <span>~200 000 ₼</span>
-                        </div>
-                        <div class="payback-row">
-                            <span data-i18n="pb31">2031 (Full):</span>
-                            <span>~520 000 ₼</span>
-                        </div>
-                        <div class="payback-total">
-                            <span data-i18n="pbTotal">Total Return by 2031:</span>
-                            <span style="color: var(--primary);">~816 000 ₼</span>
-                        </div>
-                        <div style="font-size: 0.7rem; color: #94A3B8; margin-top: 8px; line-height: 1.3;" data-i18n="pbDesc">
-                            Conservative estimate. Cumulative profit (~816k) exceeds initial investment (518k) within 2031. 2032+ is pure net profit.
-                        </div>
+                <div style="margin-top: 15px; display:flex; flex-direction:column; gap:10px;">
+                    <div style="padding: 10px 15px; background: #F1F5F9; border-radius: 8px; font-size: 0.8rem; color: #475569; line-height: 1.4;">
+                        <i data-lucide="map-pin" size="14" style="vertical-align: text-top; margin-right: 4px;"></i>
+                        <span data-i18n="landNote"><b>Land:</b> Purchased directly by investor. 100% Private Deed (Kupcha). Not included in CAPEX.</span>
                     </div>
-
-                </div>
-
-                <div class="opex-grid">
-                    <div class="opex-item">
-                        <div class="opex-title"><i data-lucide="users" size="14"></i><span data-i18n="opLaborT">Labor</span></div>
-                        <div class="opex-list" data-i18n="opLabor">Agronomist, Guard, Seasonal pruning/harvesting</div>
+                    <div style="padding: 10px 15px; background: #FFF7ED; border-radius: 8px; font-size: 0.8rem; color: #9A3412; line-height: 1.4;">
+                        <i data-lucide="alert-triangle" size="14" style="vertical-align: text-top; margin-right: 4px;"></i>
+                        <span data-i18n="resNote"><b>Reserve:</b> We recommend keeping a reserve fund of <b>10-15%</b> for unforeseen expenses.</span>
                     </div>
-                    <div class="opex-item">
-                        <div class="opex-title"><i data-lucide="flask-conical" size="14"></i><span data-i18n="opMatT">Inputs</span></div>
-                        <div class="opex-list" data-i18n="opMat">Fertilizers (NPK), Protection (CPP), Fuel (Diesel)</div>
-                    </div>
+                    <a href="#" style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:10px; background:#1E293B; color:white; padding:12px; border-radius:12px; text-decoration:none; font-weight:600; font-size:0.9rem; transition:0.3s;">
+                        <i data-lucide="file-spreadsheet"></i>
+                        <span data-i18n="btnDl">Download Detailed PDF + Excel</span>
+                    </a>
                 </div>
 
             </div>
@@ -608,9 +603,42 @@
                         <button class="tab-btn" onclick="setScenario('optimistic')" id="btn-opt" data-i18n="scenOpt">Optimist</button>
                     </div>
                 </div>
-                <div style="flex-grow:1; position:relative; min-height: 300px;">
+                <div style="flex-grow:1; position:relative; min-height: 250px;">
                     <canvas id="revChart"></canvas>
                 </div>
+
+                <div class="payback-box">
+                    <div style="font-weight: 700; color: #0F172A; margin-bottom: 10px; font-size: 0.9rem;" data-i18n="pbTitle">Payback Logic (EBITDA):</div>
+                    
+                    <div class="payback-row">
+                        <span data-i18n="pbInv">Investment (2026-2028):</span>
+                        <span style="color:#ef4444;">-570 480 ₼</span>
+                    </div>
+                    
+                    <div style="height:1px; background:rgba(0,0,0,0.1); margin:8px 0;"></div>
+
+                    <div class="payback-row">
+                        <span data-i18n="pb29">2029 (Start):</span>
+                        <span style="color:#059669;">+96 000 ₼</span>
+                    </div>
+                    <div class="payback-row">
+                        <span data-i18n="pb30">2030 (Growth):</span>
+                        <span style="color:#059669;">+200 000 ₼</span>
+                    </div>
+                    <div class="payback-row">
+                        <span data-i18n="pb31">2031 (Peak):</span>
+                        <span style="color:#059669;">+520 000 ₼</span>
+                    </div>
+
+                    <div class="payback-total">
+                        <span data-i18n="pbNet">Net Result by End of 2031:</span>
+                        <span style="color: var(--primary);">+245 520 ₼</span>
+                    </div>
+                    <div style="font-size: 0.7rem; color: #94A3B8; margin-top: 8px; line-height: 1.3;" data-i18n="pbDesc">
+                        Full Return on Investment occurs within 2031. From 2032 onwards, the orchard generates pure net profit (~500k+ annually).
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -654,11 +682,23 @@
     <div class="container">
         <h2 data-i18n="footTitle" style="color: #0F172A; font-weight: 800; font-size: 2rem;">Ready to start the "Gardens of Caucasus" story?</h2>
         <p style="color: var(--text-muted); margin: 1rem 0 2rem;" data-i18n="footSub">Land ready. Plan approved. Team assembled.</p>
+        
         <div style="margin-bottom: 2rem;">
             <div style="font-size: 1.5rem; font-weight: 700; color: #0F172A;">Guliyev Rashad</div>
             <div style="color: var(--primary);" data-i18n="initiatorRole">Project Initiator</div>
+            
+            <div class="control-block">
+                <div style="font-weight:700; color:#0F172A; margin-bottom:5px;" data-i18n="ctrlTitle">Operational Control:</div>
+                <ul style="list-style: none; padding:0; line-height:1.6;">
+                    <li style="margin-bottom:5px;">✅ <span data-i18n="ctrl1"><b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.</span></li>
+                    <li style="margin-bottom:5px;">✅ <span data-i18n="ctrl2"><b>Expertise:</b> Chief Agronomist monitors technology & nutrition.</span></li>
+                    <li>✅ <span data-i18n="ctrl3"><b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning seasons. Strict control of sales & shipment (FCA).</span></li>
+                </ul>
+            </div>
         </div>
+
         <a href="https://wa.me/994702166666" class="cta-btn"><i data-lucide="message-circle"></i><span data-i18n="btnWhatsapp">Discuss Investment on WhatsApp</span></a>
+        
         <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #94A3B8;">© 2025 Gardens of Caucasus. Confidential. All rights reserved.<br>Designed for High-Value Agriculture.</div>
     </div>
 </footer>
@@ -672,7 +712,7 @@
             heroSub: "Ismayilli, Azerbaijan. 10 Hectares of Premium Stone Fruit.<br>Beating the northern competitors (Quba-Khachmaz) to market.",
             
             lblEbitda: "EBITDA Margin", subEbitda: "Target at Full Capacity",
-            metROI: "FCA", lblSales: "Sales Model", subSales: "Exporters Pick-up",
+            metROI: "2031", lblSales: "Full Payback", subSales: "Net Profit from 2032",
             lblGrade: "Export Grade A", subGrade: "Premium Quality",
             metGrowth: "100%", lblLand: "Land Ownership", subLand: "Private Deed (Kupcha)",
 
@@ -691,7 +731,7 @@
             r1: "<b>Location Hedge:</b> Ismayilli foothills have naturally low hail probability compared to steppe zones. Rare severe frosts.",
             r2: "<b>State Insurance (Aqrar Sığorta):</b> 96% coverage for Hail, Fire, and Wind. <b>Government pays 50%</b> of the insurance premium cost.",
             r3: "<b>Water Security:</b> Dedicated sub-artesian well + on-site Reservoir eliminates drought risk typical for lowlands.",
-            r4: "<b>Expertise:</b> We are not guessing. Chief Agronomist selection (shortlist of 3) ensures technological discipline.",
+            r4: "<b>Expertise:</b> Chief Agronomist selection (shortlist of 3) ensures technological discipline. 24/7 Monitoring.",
 
             prodTitle: "Orchard Structure (10 Ha)", prodDesc: "Project economics. Balancing early high-margin fruits with gross volume.",
             currKg: "₼/kg",
@@ -704,22 +744,35 @@
             t1Title: "CAPEX Phase", t1Desc: "Land preparation, well drilling, fencing, seedling procurement.",
             t2Title: "Planting", t2Desc: "Planting 6600 trees. Biology starts here.", 
             t3Year: "2029 (Year 3)", t3Title: "First Harvest", t3Desc: "Partial harvest (~15%). First Revenue.",
-            t4Title: "Full Capacity", t4Desc: "Max revenue (100%).",
+            t4Title: "Full Capacity", t4Desc: "Max revenue (100%). Net Profit Zone.",
 
-            finTitle: "Financial Model", finDesc: "Transparent numbers. Realistic planning. Conservative approach.",
-            investTitle: "Investment Structure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery (Tractor +)", rowIrr: "Irrigation (Drip)", rowTrees: "Seedlings (6600 units)*", rowInfra: "Infrastructure", rowEarth: "Earthworks", rowCapex: "TOTAL CAPEX", rowOpex: "OPEX (Until Payback)", 
-            landNote: "<b>Note:</b> Land cost is not included. However, the selected 10ha plots have <b>Full Private Ownership (Kupcha)</b> belonging 100% to the investor.",
-            finPaybackNote: "See detailed Payback Logic below.",
+            finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.",
+            investTitle: "Investment Structure (Until Payback)",
             
-            pbTitle: "Payback Logic (Cumulative EBITDA):",
+            rowSecCap: "I. CAPEX (Launch)",
+            rowInfra: "Infrastructure (House, Warehouse, Fencing, Electric)",
+            rowWater: "Water (Well + Reservoir)",
+            rowMach: "Machinery (Tractor Yuto, Sprayer, etc.)",
+            rowTrees: "Saplings (6600 units) + Planting",
+            rowIrr: "Irrigation (Netafim) + Pumps",
+            rowCapex: "TOTAL CAPEX",
+            
+            rowSecOp: "II. OPEX (2026-2029)",
+            rowOpDesc: "Garden maintenance until 1st revenue (3 years)<br><i>Salaries, Fertilizers, Agronomist, Fuel</i>",
+            
+            rowTotalAsk: "TOTAL INVESTMENT:",
+            
+            landNote: "<b>Land:</b> Purchased directly by investor. 100% Private Deed (Kupcha). Not included in CAPEX.",
+            resNote: "<b>Reserve:</b> We recommend keeping a reserve fund of <b>10-15%</b> for unforeseen expenses.",
+            btnDl: "Download Detailed PDF + Excel",
+
+            pbTitle: "Payback Logic (EBITDA):",
+            pbInv: "Investment (2026-2028):",
             pb29: "2029 (Start):",
             pb30: "2030 (Growth):",
-            pb31: "2031 (Full):",
-            pbTotal: "Total Return by 2031:",
-            pbDesc: "Conservative estimate. Cumulative profit (~816k) exceeds initial investment (518k) within 2031. 2032+ is pure net profit.",
-
-            opLaborT: "Labor", opLabor: "Agronomist, Guard, Seasonal pruning/harvesting",
-            opMatT: "Inputs", opMat: "Fertilizers (NPK), Protection (CPP), Fuel (Diesel)",
+            pb31: "2031 (Peak):",
+            pbNet: "Net Result by End of 2031:",
+            pbDesc: "Full Return on Investment occurs within 2031. From 2032 onwards, the orchard generates pure net profit (~500k+ annually).",
 
             partTitle: "Key Partners & Guarantees", 
             roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.",
@@ -728,7 +781,12 @@
             roleAgro: "Management", nameAgro: "Chief Agronomist", descAgro: "Selecting top candidate from shortlist (1 of 3).",
 
             revChartTitle: "Revenue Forecast (₼)", scenPess: "Pessimist", scenReal: "Realist", scenOpt: "Optimist",
-            footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp"
+            
+            footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp",
+            ctrlTitle: "Operational Control:",
+            ctrl1: "<b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.",
+            ctrl2: "<b>Expertise:</b> Chief Agronomist monitors technology & nutrition.",
+            ctrl3: "<b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning seasons. Strict control of sales & shipment (FCA)."
         },
         ru: {
             navStrategy: "Стратегия", navLocation: "Локация", navProduction: "Производство", navFinance: "Финансы", navRisk: "Риски", navContact: "Связаться", btnMob: "Связаться с Инициатором",
@@ -737,7 +795,7 @@
             heroSub: "Исмаиллы, Азербайджан. 10 Га премиальных фруктов.<br>Выходим на рынок раньше конкурентов из Губы и Хачмаза.",
             
             lblEbitda: "Маржа EBITDA", subEbitda: "На пике мощности (2031+)",
-            metROI: "FCA", lblSales: "Модель продаж", subSales: "Самовывоз с поля",
+            metROI: "2031", lblSales: "Полная Окупаемость", subSales: "Чистая прибыль с 2032",
             lblGrade: "Экспортный Сорт А", subGrade: "Стремимся к 100%",
             metGrowth: "100%", lblLand: "Статус Земли", subLand: "Купчая (Частная)",
 
@@ -756,7 +814,7 @@
             r1: "<b>Локация как защита:</b> Предгорье Исмаиллы имеет природно низкую вероятность града по сравнению со степными зонами. Редкие сильные заморозки.",
             r2: "<b>Агрострахование (Aqrar Sığorta):</b> Покрытие 96% рисков (Град, Пожар, Ветер). <b>Государство оплачивает 50%</b> стоимости полиса.",
             r3: "<b>Водная Безопасность:</b> Собственная субретезианская скважина + Резервуар-накопитель исключают риск засухи.",
-            r4: "<b>Экспертиза:</b> Мы не гадаем. Главный Агроном выбирается из шорт-листа (3 кандидата), что гарантирует технологическую дисциплину.",
+            r4: "<b>Экспертиза:</b> Главный Агроном выбирается из шорт-листа (3 кандидата). Круглосуточный мониторинг.",
 
             prodTitle: "Структура Сада (10 Га)", prodDesc: "Экономика проекта. Баланс ранней маржи и валового объема.",
             currKg: "₼/кг",
@@ -769,23 +827,35 @@
             t1Title: "CAPEX Фаза", t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.",
             t2Title: "Посадка Сада", t2Desc: "Закладка 6600 деревьев. Старт биологических часов.", 
             t3Year: "2029 (3-й год)", t3Title: "Первый Урожай", t3Desc: "Частичный сбор (~15%). Первая выручка.",
-            t4Title: "Полная мощность", t4Desc: "Максимальная выручка (100%).",
+            t4Title: "Полная мощность", t4Desc: "Максимальная выручка (100%). Зона чистой прибыли.",
 
-            finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Реалистичное планирование. Консервативный подход.",
-            investTitle: "Структура Инвестиций", rowWater: "Вода (Скважина + Резервуар)", rowMach: "Техника (Трактор +)", rowIrr: "Орошение (Капля)", rowTrees: "Саженцы (6600 шт)*", rowInfra: "Инфраструктура", rowEarth: "Земляные работы", rowCapex: "ИТОГО CAPEX", rowOpex: "OPEX (До окупаемости)", 
-            landNote: "<b>Важно:</b> Стоимость покупки земли не включена. Выбранные участки (10 га) имеют <b>100% Частную Собственность (Купчая)</b> и оформляются на инвестора.",
-            finPaybackNote: "См. детальный расчет окупаемости ниже.",
+            finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Полная детализация CAPEX и OPEX. Окупаемость 2031 год.",
+            investTitle: "Структура Инвестиций (До окупаемости)",
+            
+            rowSecCap: "I. CAPEX (Запуск)",
+            rowInfra: "Инфраструктура (Дом, Склад, Забор, Свет)",
+            rowWater: "Вода (Скважина + Резервуар)",
+            rowMach: "Техника (Трактор Yuto, Опрыскиватель и др.)",
+            rowTrees: "Саженцы (6600 шт) + Посадка",
+            rowIrr: "Орошение (Netafim) + Насосы",
+            rowCapex: "ИТОГО CAPEX",
+            
+            rowSecOp: "II. OPEX (2026-2029)",
+            rowOpDesc: "Содержание сада до 1-й выручки (3 года)<br><i>Зарплаты, Удобрения, Агроном, Топливо</i>",
+            
+            rowTotalAsk: "ВСЕГО ИНВЕСТИЦИИ:",
+            
+            landNote: "<b>Земля:</b> Покупается инвестором напрямую. 100% Купчая (Частная). Не входит в CAPEX.",
+            resNote: "<b>Резерв:</b> Рекомендуем держать резервный фонд <b>10-15%</b> на непредвиденные расходы.",
+            btnDl: "Скачать Детальный PDF + Excel",
 
-            // PAYBACK BOX TRANSLATIONS RU
-            pbTitle: "Логика Окупаемости (Накопительная EBITDA):",
+            pbTitle: "Логика Окупаемости (EBITDA):",
+            pbInv: "Инвестиции (2026-2028):",
             pb29: "2029 (Старт):",
             pb30: "2030 (Рост):",
             pb31: "2031 (Пик):",
-            pbTotal: "Итого возврат к 2031:",
-            pbDesc: "Консервативная оценка. Совокупная прибыль (~816k) перекрывает инвестиции (518k) уже в течение 2031 года. 2032+ год — зона чистой прибыли.",
-
-            opLaborT: "Персонал", opLabor: "Агроном, Охрана, Сезонные (обрезка, сбор)",
-            opMatT: "Материалы", opMat: "Удобрения (NPK), СЗР, Дизельное топливо (ГСМ)",
+            pbNet: "Чистый итог к концу 2031:",
+            pbDesc: "Полный возврат инвестиций происходит в течение 2031 года. Начиная с 2032 года, сад генерирует чистую прибыль (~500k+ ежегодно).",
 
             partTitle: "Партнеры и Гарантии", 
             roleSap: "Саженцы", nameSap: "Испания / Турция", descSap: "Гарантия приживаемости 95%.",
@@ -794,7 +864,12 @@
             roleAgro: "Управление", nameAgro: "Главный Агроном", descAgro: "Выбор лучшего кандидата из шорт-листа (1 из 3).",
 
             revChartTitle: "Прогноз Выручки (₼)", scenPess: "Пессимист", scenReal: "Реалист", scenOpt: "Оптимист",
-            footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp"
+            
+            footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp",
+            ctrlTitle: "Операционный Контроль:",
+            ctrl1: "<b>Команда на месте:</b> Бригадир и Охрана (24/7) + Видеонаблюдение.",
+            ctrl2: "<b>Агрономия:</b> Главный агроном (технология питания и защиты).",
+            ctrl3: "<b>Мой личный контроль:</b> Еженедельные визиты + Полное присутствие в сезон сбора урожая и обрезки. Контроль отгрузки и сбыта (FCA)."
         }
     };
 
