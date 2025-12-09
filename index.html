@@ -533,68 +533,159 @@
 
 <script>
     // --- DATA MODELS ---
+    // FIXED: Полная детализация для всех масштабов (10, 20, 30 га)
     const orchardModels = {
         10: {
             areaHa: 10,
             capex: { infra: 118020, water: 32400, machinery: 61500, treesPlusPlanting: 72760, irrPlusPumps: 56000, totalCapex: 340680 },
             details: {
-                infra: [{en:"House", ru:"Дом", val:35000}, {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, {en:"Gates", ru:"Ворота", val:2500}, {en:"Sheds", ru:"Навесы", val:15000}, {en:"CCTV + Internet", ru:"Камеры + интернет", val:2020}, {en:"Restroom", ru:"Туалет", val:1000}, {en:"Pool Fencing", ru:"Забор бассейна", val:1500}, {en:"Perimeter Fence", ru:"Забор территории", val:15000}, {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}],
-                water: [{en:"Well Drilling", ru:"Скважина", val:20000}, {en:"Reservoir Excavation", ru:"Копка резервуара", val:4000}, {en:"KamAZ Transport", ru:"КамАЗы", val:7000}, {en:"Membrane", ru:"Мембрана", val:1400}],
-                mach: [{en:"Tractor Yuto", ru:"Трактор Yuto", val:35000}, {en:"Mulcher", ru:"Измельчитель", val:5000}, {en:"Weeder", ru:"Очиститель сорняков", val:6500}, {en:"Harrow", ru:"Борона", val:2500}, {en:"Sprayer", ru:"Опрыскиватель", val:12500}],
-                trees: [{en:"Saplings (6,600 units)", ru:"Саженцы (6 600 шт)", val:61710}, {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:11050}],
-                irr: [{en:"Netafim Drip System", ru:"Система Netafim", val:50000}, {en:"Pumps (3 units)", ru:"Насосы (3 шт)", val:6000}],
-                opex: [{en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, {en:"Care & Maintenance", ru:"Уход и работы", val:22000}, {en:"Fertilizers", ru:"Удобрения", val:7200}, {en:"Agronomist", ru:"Агроном", val:15600}, {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:6800}, {en:"Inventory (One-off)", ru:"Инвентарь (разово)", val:3000}]
+                infra: [
+                    {en:"House (Office + Storage)", ru:"Дом (Офис + Склад)", val:35000}, 
+                    {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, 
+                    {en:"Gates", ru:"Ворота", val:2500}, 
+                    {en:"Sheds", ru:"Навесы", val:15000}, 
+                    {en:"CCTV + Internet", ru:"Камеры + интернет", val:2020}, 
+                    {en:"Restroom", ru:"Туалет", val:1000}, 
+                    {en:"Pool Fencing", ru:"Забор бассейна", val:1500}, 
+                    {en:"Perimeter Fence", ru:"Забор территории", val:15000}, 
+                    {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
+                ],
+                water: [
+                    {en:"Well Drilling", ru:"Скважина", val:20000}, 
+                    {en:"Reservoir Excavation", ru:"Копка резервуара", val:4000}, 
+                    {en:"KamAZ Transport", ru:"КамАЗы (вывоз грунта)", val:7000}, 
+                    {en:"Membrane", ru:"Мембрана", val:1400}
+                ],
+                mach: [
+                    {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
+                    {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
+                    {en:"Weeder", ru:"Фреза приствольная", val:6500}, 
+                    {en:"Harrow", ru:"Борона дисковая", val:2500}, 
+                    {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
+                ],
+                trees: [
+                    {en:"Saplings (6,600 units)", ru:"Саженцы (6 600 шт)", val:61710}, 
+                    {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:11050}
+                ],
+                irr: [
+                    {en:"Netafim Drip System", ru:"Система Netafim", val:50000}, 
+                    {en:"Pumps (3 units)", ru:"Насосы (3 шт)", val:6000}
+                ],
+                opex: [
+                    {en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
+                    {en:"Care & Maintenance", ru:"Уход и работы (Сезонные)", val:22000}, 
+                    {en:"Fertilizers", ru:"Удобрения и СЗР", val:7200}, 
+                    {en:"Agronomist", ru:"Агроном", val:15600}, 
+                    {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:6800}, 
+                    {en:"Inventory (One-off)", ru:"Инвентарь (разово)", val:3000}
+                ]
             },
             opexTotal: 229800, totalInvestment: 570480,
-            // Scenarios for 10ha
-            scenarios: {
-                pess: [65000, 140000, 360000],
-                real: [96000, 200000, 520000],
-                opt: [120000, 280000, 680000]
-            }
+            scenarios: { pess: [65000, 140000, 360000], real: [96000, 200000, 520000], opt: [120000, 280000, 680000] }
         },
         20: {
             areaHa: 20,
             capex: { infra: 166540, water: 64800, machinery: 61500, treesPlusPlanting: 145520, irrPlusPumps: 108000, totalCapex: 546360 },
             details: {
-                infra: [{en:"House", ru:"Дом", val:35000}, {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, {en:"Gates", ru:"Ворота", val:2500}, {en:"Sheds", ru:"Навесы", val:45000}, {en:"CCTV + Internet", ru:"Камеры + интернет", val:4040}, {en:"Restroom", ru:"Туалет", val:1000}, {en:"Pool Fencing", ru:"Забор бассейна", val:3000}, {en:"Perimeter Fence", ru:"Забор территории", val:30000}, {en:"Electric/Trafo", ru:"Электрика", val:40000}],
-                water: [{en:"Well Drilling", ru:"Скважина", val:40000}, {en:"Reservoir Excavation", ru:"Копка резервуара", val:8000}, {en:"KamAZ Transport", ru:"КамАЗы", val:14000}, {en:"Membrane", ru:"Мембрана", val:2800}],
-                mach: [{en:"Tractor Yuto + Implements", ru:"Трактор Yuto + Оборудование", val:61500}],
-                trees: [{en:"Saplings (13,200 units)", ru:"Саженцы (13 200 шт)", val:123420}, {en:"Earthworks & Planting", ru:"Земляные работы", val:22100}],
-                irr: [{en:"Netafim Drip System", ru:"Система Netafim", val:100000}, {en:"Pumps (4 units)", ru:"Насосы (4 шт)", val:8000}],
-                opex: [{en:"Annual OPEX", ru:"Годовой OPEX", val:111600}, {en:"Inventory", ru:"Инвентарь", val:6000}]
+                infra: [
+                    {en:"House (Office + Storage)", ru:"Дом (Офис + Склад)", val:35000}, 
+                    {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, 
+                    {en:"Gates", ru:"Ворота", val:2500}, 
+                    {en:"Sheds (Extended)", ru:"Навесы (Расширенные)", val:45000}, 
+                    {en:"CCTV + Internet", ru:"Камеры + интернет", val:4040}, 
+                    {en:"Restroom", ru:"Туалет", val:1000}, 
+                    {en:"Pool Fencing", ru:"Забор бассейна", val:3000}, 
+                    {en:"Perimeter Fence", ru:"Забор территории", val:30000}, 
+                    {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
+                ],
+                water: [
+                    {en:"Well Drilling (Deep)", ru:"Скважина (Глубокая)", val:40000}, 
+                    {en:"Reservoir Excavation", ru:"Копка резервуара (x2)", val:8000}, 
+                    {en:"KamAZ Transport", ru:"КамАЗы (вывоз грунта)", val:14000}, 
+                    {en:"Membrane", ru:"Мембрана", val:2800}
+                ],
+                mach: [
+                    {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
+                    {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
+                    {en:"Weeder", ru:"Фреза приствольная", val:6500}, 
+                    {en:"Harrow", ru:"Борона дисковая", val:2500}, 
+                    {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
+                ],
+                trees: [
+                    {en:"Saplings (13,200 units)", ru:"Саженцы (13 200 шт)", val:123420}, 
+                    {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:22100}
+                ],
+                irr: [
+                    {en:"Netafim Drip System", ru:"Система Netafim", val:100000}, 
+                    {en:"Pumps (4 units)", ru:"Насосы (4 шт)", val:8000}
+                ],
+                opex: [
+                    // OPEX Scaled for 20ha (Economy of scale applied)
+                    {en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
+                    {en:"Seasonal Workers", ru:"Сезонные рабочие", val:18000}, 
+                    {en:"Care & Maintenance", ru:"Уход и работы", val:38000}, 
+                    {en:"Fertilizers", ru:"Удобрения и СЗР", val:14400}, 
+                    {en:"Agronomist", ru:"Агроном", val:15600}, 
+                    {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:10600},
+                    {en:"Inventory", ru:"Инвентарь", val:6000}
+                ]
             },
-            opexTotal: 340800, totalInvestment: 887160,
-            // Scenarios for 20ha (x2 approx)
-            scenarios: {
-                pess: [130000, 280000, 720000],
-                real: [192000, 400000, 1040000],
-                opt: [240000, 560000, 1360000]
-            }
+            opexTotal: 380800, totalInvestment: 927160,
+            scenarios: { pess: [130000, 280000, 720000], real: [192000, 400000, 1040000], opt: [240000, 560000, 1360000] }
         },
         30: {
             areaHa: 30,
             capex: { infra: 185060, water: 77200, machinery: 61500, treesPlusPlanting: 218280, irrPlusPumps: 162000, totalCapex: 704040 },
             details: {
-                infra: [{en:"House", ru:"Дом", val:35000}, {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, {en:"Gates", ru:"Ворота", val:2500}, {en:"Sheds", ru:"Навесы", val:45000}, {en:"CCTV + Internet", ru:"Камеры + интернет", val:6060}, {en:"Restroom", ru:"Туалет", val:1000}, {en:"Pool Fencing", ru:"Забор бассейна", val:4500}, {en:"Perimeter Fence", ru:"Забор территории", val:45000}, {en:"Electric/Trafo", ru:"Электрика", val:40000}],
-                water: [{en:"Well Drilling", ru:"Скважина", val:40000}, {en:"Reservoir Excavation", ru:"Копка резервуара", val:12000}, {en:"KamAZ Transport", ru:"КамАЗы", val:21000}, {en:"Membrane", ru:"Мембрана", val:4200}],
-                mach: [{en:"Tractor Yuto + Implements", ru:"Трактор Yuto + Оборудование", val:61500}],
-                trees: [{en:"Saplings (19,800 units)", ru:"Саженцы (19 800 шт)", val:185130}, {en:"Earthworks & Planting", ru:"Земляные работы", val:33150}],
-                irr: [{en:"Netafim Drip System", ru:"Система Netafim", val:150000}, {en:"Pumps (6 units)", ru:"Насосы (6 шт)", val:12000}],
-                opex: [{en:"Annual OPEX", ru:"Годовой OPEX", val:147600}, {en:"Inventory", ru:"Инвентарь", val:9000}]
+                infra: [
+                    {en:"House (Office + Storage)", ru:"Дом (Офис + Склад)", val:35000}, 
+                    {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, 
+                    {en:"Gates", ru:"Ворота", val:2500}, 
+                    {en:"Sheds (Extended)", ru:"Навесы (Расширенные)", val:45000}, 
+                    {en:"CCTV + Internet", ru:"Камеры + интернет", val:6060}, 
+                    {en:"Restroom", ru:"Туалет", val:1000}, 
+                    {en:"Pool Fencing", ru:"Забор бассейна", val:4500}, 
+                    {en:"Perimeter Fence", ru:"Забор территории", val:45000}, 
+                    {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
+                ],
+                water: [
+                    {en:"Well Drilling", ru:"Скважина", val:40000}, 
+                    {en:"Reservoir Excavation", ru:"Копка резервуара (x3)", val:12000}, 
+                    {en:"KamAZ Transport", ru:"КамАЗы (вывоз грунта)", val:21000}, 
+                    {en:"Membrane", ru:"Мембрана", val:4200}
+                ],
+                mach: [
+                    {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
+                    {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
+                    {en:"Weeder", ru:"Фреза приствольная", val:6500}, 
+                    {en:"Harrow", ru:"Борона дисковая", val:2500}, 
+                    {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
+                ],
+                trees: [
+                    {en:"Saplings (19,800 units)", ru:"Саженцы (19 800 шт)", val:185130}, 
+                    {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:33150}
+                ],
+                irr: [
+                    {en:"Netafim Drip System", ru:"Система Netafim", val:150000}, 
+                    {en:"Pumps (6 units)", ru:"Насосы (6 шт)", val:12000}
+                ],
+                opex: [
+                    {en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
+                    {en:"Seasonal Workers", ru:"Сезонные рабочие", val:27000}, 
+                    {en:"Care & Maintenance", ru:"Уход и работы", val:55000}, 
+                    {en:"Fertilizers", ru:"Удобрения и СЗР", val:21600}, 
+                    {en:"Agronomist", ru:"Агроном", val:15600}, 
+                    {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:14400},
+                    {en:"Inventory", ru:"Инвентарь", val:9000}
+                ]
             },
-            opexTotal: 451800, totalInvestment: 1155840,
-            // Scenarios for 30ha (x3 approx)
-            scenarios: {
-                pess: [195000, 420000, 1080000],
-                real: [288000, 600000, 1560000],
-                opt: [360000, 840000, 2040000]
-            }
+            opexTotal: 499800, totalInvestment: 1203840,
+            scenarios: { pess: [195000, 420000, 1080000], real: [288000, 600000, 1560000], opt: [360000, 840000, 2040000] }
         }
     };
 
-    let currentArea = 30; 
-    let currentLang = 'en';
+    let currentArea = 30; // Default to 30 as requested
+    let currentLang = 'ru'; // Default to Russian as requested
     let currentScen = 'real';
 
     const translations = {
@@ -627,8 +718,6 @@
             finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.", areaSel: "Orchard Size:", investTitle: "Investment Structure", rowSecCap: "I. CAPEX (Launch)", rowInfra: "Infrastructure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery", rowTrees: "Saplings + Planting", rowIrr: "Irrigation + Pumps", rowCapex: "TOTAL CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Maintenance until Harvest (3 years)", rowTotalAsk: "TOTAL INVESTMENT:", landNote: "<b>Land:</b> Purchased directly by investor. 100% Private Deed (Kupcha). Not included in CAPEX.", machNote: "<b>Operational Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.",
             pbTitle: "Payback Analysis:", pbInv: "Investment (2026-2028):", pb29: "2029 (Start):", pb30: "2030 (Growth):", pb31: "2031 (Peak):", pbNet: "Cumulative Net Result (2031):", pbDesc: "Full Return on Investment occurs within 2031. From 2032 onwards, the orchard generates pure net profit.",
             partTitle: "Key Partners & Guarantees", roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.", roleIrr: "Irrigation", descIrr: "World Leader in precision irrigation. Automated drip systems.", roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).", roleAgro: "Management", nameAgro: "Chief Agronomist", descAgro: "Selecting top candidate from shortlist (1 of 3).", revChartTitle: "EBITDA Forecast (₼)", footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp", ctrlTitle: "Operational Control:", ctrl1: "<b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.", ctrl2: "<b>Expertise:</b> Chief Agronomist monitors technology & nutrition.", ctrl3: "<b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning. Control of sales (FCA).",
-            
-            // NEW KEYS FOR METHODOLOGY
             sPess: "Pessimist", sReal: "Realist", sOpt: "Optimist",
             chartCap: "Each point represents projected EBITDA (Revenue - OPEX). Based on agreed agronomic model.",
             metScenTitle: "Scenario Matrix", metTableTitle: "Revenue Logic (Matrix)",
@@ -665,8 +754,6 @@
             finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Полная детализация CAPEX и OPEX. Окупаемость 2031 год.", areaSel: "Площадь Сада:", investTitle: "Структура Инвестиций", rowSecCap: "I. CAPEX (Запуск)", rowInfra: "Инфраструктура", rowWater: "Вода (Скважина + Резервуар)", rowMach: "Техника", rowTrees: "Саженцы + Посадка", rowIrr: "Орошение + Насосы", rowCapex: "ИТОГО CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Содержание до 1-й выручки (3 года)", rowTotalAsk: "ВСЕГО ИНВЕСТИЦИИ:", landNote: "<b>Земля:</b> Покупается инвестором напрямую. 100% Купчая (Частная). Не входит в CAPEX.", machNote: "<b>Операционная Эффективность:</b> Один трактор обеспечивает достаточную мощность до 30 га благодаря последовательному графику работ. Это оптимизирует использование капитала.",
             pbTitle: "Анализ Окупаемости:", pbInv: "Инвестиции (2026-2028):", pb29: "2029 (Старт):", pb30: "2030 (Рост):", pb31: "2031 (Пик):", pbNet: "Накопленный Чистый Итог (2031):", pbDesc: "Полный возврат инвестиций происходит в течение 2031 года. С 2032 года сад генерирует чистую прибыль.",
             partTitle: "Партнеры и Гарантии", roleSap: "Саженцы", nameSap: "Испания / Турция", descSap: "Гарантия приживаемости 95%.", roleIrr: "Орошение", descIrr: "Мировой лидер в точном орошении. Автоматика.", roleIns: "Страхование", descIns: "Гос. покрытие рисков (Град, Пожар, Ветер).", roleAgro: "Управление", nameAgro: "Главный Агроном", descAgro: "Выбор лучшего кандидата из шорт-листа (1 из 3).", revChartTitle: "Прогноз EBITDA (₼)", footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp", ctrlTitle: "Операционный Контроль:", ctrl1: "<b>Команда на месте:</b> Бригадир и Охрана (24/7) + Видеонаблюдение.", ctrl2: "<b>Агрономия:</b> Главный агроном контролирует технологию.", ctrl3: "<b>Мой контроль:</b> Еженедельные визиты + Полное присутствие в сезон сбора. Контроль сбыта (FCA).",
-            
-            // NEW KEYS FOR METHODOLOGY
             sPess: "Пессимист", sReal: "Реалист", sOpt: "Оптимист",
             chartCap: "Каждая точка отражает прогноз EBITDA (Выручка - Расходы). Основано на агрономической модели.",
             metScenTitle: "Матрица Сценариев", metTableTitle: "Логика Выручки (Матрица)",
@@ -749,6 +836,7 @@
 
     function renderDetails(id, items) {
         const container = document.getElementById('details-' + id);
+        if(!items) { container.innerHTML = ''; return; }
         container.innerHTML = items.map(item => `<div class="detail-item"><span>${currentLang === 'ru' ? item.ru : item.en}</span><span class="detail-val">${formatAz(item.val)}</span></div>`).join('');
     }
 
@@ -824,8 +912,9 @@
         });
     });
 
-    // Init
-    updateFinanceView();
+    // Init Logic
+    switchLanguage('ru'); // Force Russian init for Rashad
+    document.querySelector('.area-btn[data-area="30"]').click(); // Force 30ha view default
 </script>
 
 </body>
