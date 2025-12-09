@@ -76,7 +76,6 @@
             padding: 2rem; box-shadow: var(--shadow); backdrop-filter: blur(12px);
         }
         
-        /* Pro Info Box Style */
         .info-box {
             background: #F1F5F9; border-left: 4px solid var(--primary);
             padding: 1.25rem; border-radius: 8px; margin-top: 1.5rem;
@@ -435,9 +434,9 @@
         
         <div class="area-switch-container reveal">
             <div style="font-size:0.9rem; color:var(--text-muted); margin-right: 10px;" data-i18n="areaSel">Select Configuration:</div>
-            <button class="area-btn area-active" data-area="10">10 Ha</button>
+            <button class="area-btn" data-area="10">10 Ha</button>
             <button class="area-btn" data-area="20">20 Ha</button>
-            <button class="area-btn" data-area="30">30 Ha</button>
+            <button class="area-btn area-active" data-area="30">30 Ha</button>
         </div>
 
         <div class="fin-grid reveal">
@@ -635,7 +634,6 @@
 
 <script>
     // --- FINANCIAL DATA MODELS ---
-    // All values sourced directly from the investment memorandum calculations.
     const orchardModels = {
         10: {
             areaHa: 10,
@@ -647,11 +645,12 @@
                 infra: [
                     {en: "House & Facilities", ru: "Дом и постройки", val: 35000}, {en: "Container + Delivery", ru: "Контейнер + доставка", val: 6000},
                     {en: "Sheds", ru: "Навесы", val: 15000}, {en: "Security (CCTV)", ru: "Камеры + интернет", val: 2020},
-                    {en: "Fencing (Perimeter)", ru: "Забор территории", val: 15000}, {en: "Electric/Trafo", ru: "Электрика / Трансформатор", val: 40000}
+                    {en: "Worker Toilet", ru: "Туалет", val: 1000}, {en: "Pool Fencing", ru: "Забор бассейна", val: 1500},
+                    {en: "Gates", ru: "Ворота", val: 2500}, {en: "Fencing (Perimeter)", ru: "Забор территории", val: 15000}, {en: "Electric/Trafo", ru: "Электрика / Трансформатор", val: 40000}
                 ],
                 water: [
-                    {en: "Well Drilling", ru: "Скважина", val: 20000}, {en: "Reservoir (2000 m3)", ru: "Резервуар (2000 м3)", val: 4000},
-                    {en: "Transport & Materials", ru: "Материалы и транспорт", val: 8400}
+                    {en: "Well Drilling", ru: "Скважина", val: 20000}, {en: "Reservoir (2000 m3)", ru: "Копка Резервуара", val: 4000},
+                    {en: "Soil Removal (KamAZ)", ru: "Вывоз грунта (КамАЗ)", val: 7000}, {en: "Membrane", ru: "Мембрана", val: 1400}
                 ],
                 mach: [
                     {en: "Tractor Yuto 504", ru: "Трактор Yuto 504", val: 35000}, {en: "Sprayer 2T", ru: "Опрыскиватель 2Т", val: 12500},
@@ -680,13 +679,14 @@
             },
             details: {
                 infra: [
-                    {en: "House & Facilities", ru: "Дом и постройки", val: 35000}, {en: "Sheds (Expanded)", ru: "Навесы (Расширенные)", val: 45000},
-                    {en: "Security (CCTV)", ru: "Камеры + интернет", val: 4040}, {en: "Fencing (20ha)", ru: "Забор территории (20га)", val: 30000},
-                    {en: "Electric/Trafo", ru: "Электрика", val: 40000}
+                    {en: "House & Facilities", ru: "Дом и постройки", val: 35000}, {en: "Container", ru: "Контейнер", val: 6000},
+                    {en: "Sheds (Expanded)", ru: "Навесы (Расширенные)", val: 45000}, {en: "Security (CCTV)", ru: "Камеры + интернет", val: 4040},
+                    {en: "Worker Toilet", ru: "Туалет", val: 1000}, {en: "Pool Fencing (x2)", ru: "Забор бассейна (x2)", val: 3000},
+                    {en: "Gates", ru: "Ворота", val: 2500}, {en: "Fencing (20ha)", ru: "Забор территории (20га)", val: 30000}, {en: "Electric/Trafo", ru: "Электрика", val: 40000}
                 ],
                 water: [
-                    {en: "Well (Scaled Capacity)", ru: "Скважина (x2)", val: 40000}, {en: "Reservoir (Scaled)", ru: "Резервуар (Масштаб)", val: 8000},
-                    {en: "Transport & Materials", ru: "Материалы и транспорт", val: 16800}
+                    {en: "Well (Scaled Capacity)", ru: "Скважина (x2)", val: 40000}, {en: "Reservoir (Scaled)", ru: "Копка Резервуара (x2)", val: 8000},
+                    {en: "Soil Removal (KamAZ x2)", ru: "Вывоз грунта (КамАЗ x2)", val: 14000}, {en: "Membrane (x2)", ru: "Мембрана (x2)", val: 2800}
                 ],
                 mach: [
                     {en: "Tractor Yuto 504", ru: "Трактор Yuto 504", val: 35000}, {en: "Equipment Set", ru: "Комплект оборудования", val: 26500}
@@ -714,13 +714,14 @@
             },
             details: {
                 infra: [
-                    {en: "House & Facilities", ru: "Дом и постройки", val: 35000}, {en: "Sheds (Max)", ru: "Навесы (Макс)", val: 45000},
-                    {en: "Security (CCTV)", ru: "Камеры + интернет", val: 6060}, {en: "Fencing (30ha)", ru: "Забор территории (30га)", val: 45000},
-                    {en: "Electric/Trafo", ru: "Электрика", val: 40000}
+                    {en: "House & Facilities", ru: "Дом и постройки", val: 35000}, {en: "Container", ru: "Контейнер", val: 6000},
+                    {en: "Sheds (Max)", ru: "Навесы (Макс)", val: 45000}, {en: "Security (CCTV)", ru: "Камеры + интернет", val: 6060},
+                    {en: "Worker Toilet", ru: "Туалет", val: 1000}, {en: "Pool Fencing (x3)", ru: "Забор бассейна (x3)", val: 4500},
+                    {en: "Gates", ru: "Ворота", val: 2500}, {en: "Fencing (30ha)", ru: "Забор территории (30га)", val: 45000}, {en: "Electric/Trafo", ru: "Электрика", val: 40000}
                 ],
                 water: [
-                    {en: "Well (Scaled)", ru: "Скважина (x2)", val: 40000}, {en: "Reservoir (Max)", ru: "Резервуар (Макс)", val: 12000},
-                    {en: "Transport & Materials", ru: "Материалы и транспорт", val: 25200}
+                    {en: "Well (Scaled)", ru: "Скважина (x2)", val: 40000}, {en: "Reservoir Digging (x3)", ru: "Копка Резервуара (x3)", val: 12000},
+                    {en: "Soil Removal (KamAZ x3)", ru: "Вывоз грунта (КамАЗ x3)", val: 21000}, {en: "Membrane (x3)", ru: "Мембрана (x3)", val: 4200}
                 ],
                 mach: [
                     {en: "Tractor Yuto 504", ru: "Трактор Yuto 504", val: 35000}, {en: "Equipment Set", ru: "Комплект оборудования", val: 26500}
@@ -742,7 +743,8 @@
         }
     };
 
-    let currentArea = 10; 
+    // SET DEFAULT TO 30 HA AS REQUESTED
+    let currentArea = 30; 
     let currentLang = 'en';
 
     // --- TRANSLATIONS (PROFESSIONAL GRADE) ---
@@ -759,10 +761,10 @@
             metGrowth: "100%", lblLand: "Land Ownership", subLand: "Private Deed (Kupcha)",
 
             stratTitle: "Strategic Market Opportunity", stratDesc: "Capitalizing on structural supply deficits in the May-June window.",
-            entryTitle: "Earlier Market Entry", entryDesc: "The northern regions (Quba-Khachmaz) harvest 2-3 weeks later than Ismayilli. We enter the market in May-June during the deficit window when pricing commands a 60-80% premium. By the time the \"big wave\" arrives, our crop is sold.",
-            logTitle: "No Logistics Burden", logDesc: "Sales are executed through pre-qualified export partners under contractual purchase arrangements (FCA Model). Pre-payment on the field is standard.",
+            entryTitle: "Accelerated Market Entry Advantage", entryDesc: "The northern regions (Quba-Khachmaz) harvest 2-3 weeks later than Ismayilli. We enter the market in May-June during the deficit window when pricing commands a 60-80% premium. By the time the \"big wave\" arrives, our crop is sold.",
+            logTitle: "FCA Export Contract Model", logDesc: "Sales are executed through pre-qualified export partners under contractual purchase arrangements (FCA Model). No logistics burden for investor. Pre-payment on the field is standard.",
             soilTitle: "Calcium Structure", soilDesc: "Carbonate soils act as natural cement for the fruit. The texture becomes dense and crunchy, allowing for safe long-haul transport.",
-            earlyTitle: "Realistic Biological Timeline", earlyDesc: "We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modelling eliminates the risk of unmet expectations.",
+            earlyTitle: "Biological Development Phase", earlyDesc: "We prioritize truth over hype. Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modelling eliminates the risk of unmet expectations.",
             uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color, and Giant Red Apricots become deep red. Visual appeal drives export demand.",
             
             riskTitle: "Risk Mitigation Framework",
@@ -777,7 +779,7 @@
             fruitNect: "Nectarine (Volume)", varNect: "40% • Extreme 28, Oreal", yield40: "up to 40 t/ha",
             
             opTitle: '<i data-lucide="settings-2" size="16"></i> Operational Efficiency',
-            opDesc: "Operational processes (soil preparation, spraying, mowing) are sequential rather than simultaneous. A single modern tractor unit provides sufficient capacity for up to 30 hectares without productivity loss. This preserves capital efficiency.",
+            opDesc: "Operational processes (soil preparation, spraying, mowing) are sequential rather than simultaneous. A single modern tractor unit provides sufficient capacity for up to 30 hectares without productivity loss. This maintains optimal capital utilisation.",
 
             finTitle: "Financial Model", finDesc: "Detailed CAPEX & OPEX structure. Full Payback 2031.",
             investTitle: "Investment Structure",
@@ -795,6 +797,9 @@
             engTitle: '<i data-lucide="info" size="16"></i> Engineering Note',
             engDesc: "Water infrastructure for 20 and 30 ha configurations is designed using modular principles. Groundwater extraction capacity and reservoir storage are scaled to ensure full irrigation autonomy.",
 
+            landNote: "<b>Land:</b> Purchased directly by investor. 100% Private Deed (Kupcha). Not included in CAPEX.",
+            resNote: "<b>Reserve:</b> We recommend keeping a reserve fund of <b>10-15%</b> for unforeseen expenses.",
+
             pbTitle: "Payback Logic (EBITDA):",
             pbInv: "Investment (2026-2028):",
             pb29: "2029 (Start):",
@@ -806,6 +811,10 @@
             revChartTitle: "EBITDA Forecast (₼)", 
             
             footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp",
+            ctrlTitle: "Operational Control:",
+            ctrl1: "<b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.",
+            ctrl2: "<b>Expertise:</b> Chief Agronomist monitors technology & nutrition.",
+            ctrl3: "<b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning seasons. Strict control of sales & shipment (FCA)."
         },
         ru: {
             navStrategy: "Стратегия", navLocation: "Локация", navProduction: "Производство", navFinance: "Финансы", navRisk: "Риски", navContact: "Связаться", btnMob: "Связаться с Инициатором",
@@ -819,10 +828,10 @@
             metGrowth: "100%", lblLand: "Статус Земли", subLand: "Купчая (Частная)",
 
             stratTitle: "Стратегическая Возможность", stratDesc: "Капитализация структурного дефицита в окне Май-Июнь.",
-            entryTitle: "Ранний Вход в Рынок", entryDesc: "Северные регионы собирают урожай на 2-3 недели позже. Мы выходим на рынок в мае-июне, в окно дефицита, когда цена выше на 60-80%. Когда придет 'большая волна' с севера, наш урожай уже продан.",
-            logTitle: "Отсутствие Логистической Нагрузки", logDesc: "Продажи осуществляются через пре-квалифицированных экспортеров по контрактам FCA. Предоплата на поле.",
+            entryTitle: "Ускоренный Вход в Рынок", entryDesc: "Северные регионы собирают урожай на 2-3 недели позже. Мы выходим на рынок в мае-июне, в окно дефицита, когда цена выше на 60-80%. Когда придет 'большая волна' с севера, наш урожай уже продан.",
+            logTitle: "Экспортная Модель FCA", logDesc: "Продажи осуществляются через пре-квалифицированных экспортеров по контрактам FCA. Никакой логистической нагрузки на инвестора. Предоплата на поле.",
             soilTitle: "Кальциевый Каркас", soilDesc: "Карбонатные почвы работают как цемент. Фрукт плотный и хрустящий, выдерживает дальнюю логистику.",
-            earlyTitle: "Реалистичный Биологический План", earlyDesc: "Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029. Консервативное моделирование исключает риск неоправданных ожиданий.",
+            earlyTitle: "Биологическая Фаза Развития", earlyDesc: "Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай только в 2029. Консервативное моделирование исключает риск неоправданных ожиданий.",
             uvTitle: "УФ-Удар и Окрас", uvDesc: "Высокогорье дает на 15% больше УФ-излучения. Черешня получает премиальный темный цвет, а абрикос — насыщенный румянец. Вид стимулирует экспортный спрос.",
             
             riskTitle: "Управление Рисками",
@@ -837,7 +846,7 @@
             fruitNect: "Нектарин (Volume)", varNect: "40% • Extreme 28, Oreal", yield40: "до 40 т/га",
             
             opTitle: '<i data-lucide="settings-2" size="16"></i> Операционная Эффективность',
-            opDesc: "Агротехнические операции (обработка почвы, опрыскивание) разнесены во времени. Одной современной единицы техники достаточно для обслуживания до 30 га без потери производительности. Это сохраняет эффективность капитала.",
+            opDesc: "Агротехнические операции (обработка почвы, опрыскивание) разнесены во времени. Одной современной единицы техники достаточно для обслуживания до 30 га без потери производительности. Это сохраняет оптимальную утилизацию капитала.",
 
             finTitle: "Финансовая Модель", finDesc: "Детальная структура CAPEX и OPEX. Окупаемость 2031 год.",
             investTitle: "Структура Инвестиций",
@@ -855,6 +864,9 @@
             engTitle: '<i data-lucide="info" size="16"></i> Инженерное Примечание',
             engDesc: "Водная инфраструктура для 20 и 30 га спроектирована по модульному принципу. Дебит скважины и объем резервуара масштабируются для обеспечения полной автономности полива.",
 
+            landNote: "<b>Земля:</b> Покупается инвестором напрямую. 100% Купчая (Частная). Не входит в CAPEX.",
+            resNote: "<b>Резерв:</b> Рекомендуем держать резервный фонд <b>10-15%</b> на непредвиденные расходы.",
+
             pbTitle: "Логика Окупаемости (EBITDA):",
             pbInv: "Инвестиции (2026-2028):",
             pb29: "2029 (Старт):",
@@ -866,6 +878,10 @@
             revChartTitle: "Прогноз EBITDA (₼)", 
             
             footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp",
+            ctrlTitle: "Операционный Контроль:",
+            ctrl1: "<b>Команда на месте:</b> Бригадир и Охрана (24/7) + Видеонаблюдение.",
+            ctrl2: "<b>Агрономия:</b> Главный агроном (технология питания и защиты).",
+            ctrl3: "<b>Мой личный контроль:</b> Еженедельные визиты + Полное присутствие в сезон сбора урожая и обрезки. Контроль отгрузки и сбыта (FCA)."
         }
     };
 
@@ -894,7 +910,7 @@
             labels: ['2026', '2027', '2028', '2029', '2030', '2031', '2032'],
             datasets: [{
                 label: 'EBITDA (₼)',
-                data: orchardModels[10].chartData, // Default
+                data: orchardModels[30].chartData, // Default 30 HA
                 borderColor: '#059669',
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
