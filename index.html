@@ -100,7 +100,23 @@
         .payback-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; }
         .payback-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); }
 
-        .method-box { margin-top: 20px; font-size: 0.75rem; color: #64748B; background: #F1F5F9; padding: 15px; border-radius: 12px; line-height: 1.6; }
+        /* NEW METHODOLOGY STYLES */
+        .methodology-wrapper { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1.5rem; }
+        .chart-caption { font-size: 0.8rem; color: #64748B; font-style: italic; margin-top: 10px; text-align: center; }
+        
+        .scen-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; margin-top: 10px; }
+        .scen-card { background: #F8FAFC; padding: 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); font-size: 0.8rem; }
+        .scen-card.real { border-color: var(--primary); background: rgba(5,150,105,0.03); }
+        .scen-title { font-weight: 800; margin-bottom: 6px; display: block; }
+        
+        .logic-table-wrapper { overflow-x: auto; margin-bottom: 20px; }
+        .logic-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 400px; }
+        .logic-table th { text-align: left; padding: 8px; border-bottom: 2px solid #E2E8F0; color: #64748B; font-weight: 700; }
+        .logic-table td { padding: 8px; border-bottom: 1px solid #E2E8F0; color: #1E293B; }
+        .logic-table tr:last-child td { border-bottom: none; }
+        
+        .source-badge { display: flex; align-items: flex-start; gap: 10px; background: #fff; border: 1px solid #E2E8F0; padding: 15px; border-radius: 12px; font-size: 0.8rem; color: #64748B; }
+
         .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
         .partner-card { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: var(--shadow); }
 
@@ -118,6 +134,7 @@
             .map-wrapper { height: auto; display: flex; flex-direction: column; }
             .map-overlay { position: relative; border-radius: 0 0 24px 24px; padding: 1.5rem; top:0; left:0; right:0; bottom:0; grid-template-columns: 1fr 1fr; }
             .weather-col { border-right: none; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            .scen-cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -274,16 +291,16 @@
 
 <section id="risks" style="padding: 40px 0;">
     <div class="container reveal">
-         <div class="risk-card">
-            <div class="risk-header">
-                <i data-lucide="shield-alert"></i>
-                <span data-i18n="riskTitle">Risk Mitigation Framework</span>
+         <div class="risk-card" style="background:#F0FDF4; border:1px solid #BBF7D0; padding:2rem; border-radius:16px;">
+            <div class="risk-header" style="display:flex; align-items:center; gap:10px; margin-bottom:1rem;">
+                <i data-lucide="shield-alert" color="#059669"></i>
+                <span style="font-weight:700; font-size:1.1rem; color:#059669;" data-i18n="riskTitle">Risk Mitigation Framework</span>
             </div>
-            <ul class="risk-list">
-                <li class="risk-li"><i data-lucide="check-circle-2" color="#059669"></i><span data-i18n="r1"><b>Location Hedge:</b> Naturally low hail probability.</span></li>
-                <li class="risk-li"><i data-lucide="check-circle-2" color="#059669"></i><span data-i18n="r2"><b>State Insurance:</b> 96% coverage. <b>Govt pays 50%</b> of premium.</span></li>
-                <li class="risk-li"><i data-lucide="check-circle-2" color="#059669"></i><span data-i18n="r3"><b>Water Security:</b> Well + On-site Reservoir.</span></li>
-                <li class="risk-li"><i data-lucide="check-circle-2" color="#059669"></i><span data-i18n="r4"><b>Expertise:</b> Chief Agronomist & 24/7 Monitoring.</span></li>
+            <ul class="risk-list" style="list-style:none;">
+                <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r1"><b>Location Hedge:</b> Naturally low hail probability.</span></li>
+                <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r2"><b>State Insurance:</b> 96% coverage. <b>Govt pays 50%</b> of premium.</span></li>
+                <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r3"><b>Water Security:</b> Well + On-site Reservoir.</span></li>
+                <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r4"><b>Expertise:</b> Chief Agronomist & 24/7 Monitoring.</span></li>
             </ul>
          </div>
     </div>
@@ -301,7 +318,7 @@
                         <div><span style="font-weight:700; font-size: 1.1rem; color:#D97706;">🍒 <span data-i18n="fruitCherry">Cherry (Premium)</span></span><div style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="varCherry">20% • Early Lory, Giant Red</div></div>
                         <div style="text-align:right;"><div style="font-weight:700; color:#1E293B;">5.00 – 9.00 <span data-i18n="currKg">₼/kg</span></div><div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div></div>
                     </div>
-                    <div class="bar-bg"><div style="width:20%; height:100%; background:#D97706;"></div></div>
+                    <div class="bar-bg" style="width:100%; height:8px; background:#f1f5f9; border-radius:4px; overflow:hidden;"><div style="width:20%; height:100%; background:#D97706;"></div></div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;" data-i18n="descCherry">The earliest and most expensive berry. Ultra-early market entry.</p>
                 </div>
 
@@ -310,7 +327,7 @@
                         <div><span style="font-weight:700; font-size: 1.1rem; color:#DB2777;">🍑 <span data-i18n="fruitNect">Nectarine (Volume)</span></span><div style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="varNect">40% • Extreme 28, Oreal</div></div>
                         <div style="text-align:right;"><div style="font-weight:700; color:#1E293B;">1.80 – 2.20 <span data-i18n="currKg">₼/kg</span></div><div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div></div>
                     </div>
-                    <div class="bar-bg"><div style="width:40%; height:100%; background:#DB2777;"></div></div>
+                    <div class="bar-bg" style="width:100%; height:8px; background:#f1f5f9; border-radius:4px; overflow:hidden;"><div style="width:40%; height:100%; background:#DB2777;"></div></div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;" data-i18n="descNect">Our "heavyweight". Provides main tonnage and Cash Flow.</p>
                 </div>
 
@@ -319,7 +336,7 @@
                         <div><span style="font-weight:700; font-size: 1.1rem; color:#CA8A04;">🥯 <span data-i18n="fruitPeach">Flat Peach</span></span><div style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="varPeach">20% • Zodiac, Babylone</div></div>
                         <div style="text-align:right;"><div style="font-weight:700; color:#1E293B;">2.00 – 2.20 <span data-i18n="currKg">₼/kg</span></div><div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield40">up to 40 t/ha</div></div>
                     </div>
-                    <div class="bar-bg"><div style="width:20%; height:100%; background:#CA8A04;"></div></div>
+                    <div class="bar-bg" style="width:100%; height:8px; background:#f1f5f9; border-radius:4px; overflow:hidden;"><div style="width:20%; height:100%; background:#CA8A04;"></div></div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;" data-i18n="descPeach">Retail chain favorite. Easy to pack.</p>
                 </div>
 
@@ -328,7 +345,7 @@
                         <div><span style="font-weight:700; font-size: 1.1rem; color:#EA580C;">🔸 <span data-i18n="fruitApricot">Apricot</span></span><div style="font-size: 0.8rem; color: var(--text-muted);">20% • Traditional</div></div>
                         <div style="text-align:right;"><div style="font-weight:700; color:#1E293B;">2.20 – 4.00 <span data-i18n="currKg">₼/kg</span></div><div style="font-size: 0.75rem; color: var(--primary);" data-i18n="yield20">up to 20 t/ha</div></div>
                     </div>
-                    <div class="bar-bg"><div style="width:20%; height:100%; background:#EA580C;"></div></div>
+                    <div class="bar-bg" style="width:100%; height:8px; background:#f1f5f9; border-radius:4px; overflow:hidden;"><div style="width:20%; height:100%; background:#EA580C;"></div></div>
                     <p style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;" data-i18n="descApricot">High price at season start.</p>
                 </div>
             </div>
@@ -408,13 +425,66 @@
                 <div style="flex-grow:1; position:relative; min-height: 250px;">
                     <canvas id="revChart"></canvas>
                 </div>
-                
-                <div class="method-box">
-                    <div style="font-weight:700; margin-bottom:5px; color:#1E293B;" data-i18n="methodTitle">Methodology & Assumptions:</div>
-                    <div data-i18n="methodText">
-                        <b>Formula:</b> EBITDA = (Gross Yield × Market Price) - Operational Costs.<br>
-                        <b>Prices used (Realistic):</b> Cherry 5-9 ₼/kg, Nectarine 1.8-2.2 ₼/kg, Peach 2.0-2.2 ₼/kg, Apricot 2.2-4.0 ₼/kg.<br>
-                        <b>Yields:</b> Modeled conservatively at 15% (Year 3), 40% (Year 4), 80% (Year 5). Pessimistic scenario assumes -30% revenue shock.
+                <div class="chart-caption" data-i18n="chartCap">Each point represents projected EBITDA (Revenue - OPEX). Based on agreed agronomic model.</div>
+
+                <div class="methodology-wrapper">
+                    <h4 style="font-size: 0.9rem; font-weight: 800; color:#1E293B; margin-bottom: 10px;" data-i18n="metScenTitle">Scenario Matrix</h4>
+                    
+                    <div class="scen-cards">
+                        <div class="scen-card">
+                            <span class="scen-title" style="color:#64748B;" data-i18n="sPess">Pessimist</span>
+                            <div data-i18n="dPess">Min Yield, Min Price. 25% Loss (Weather).</div>
+                        </div>
+                        <div class="scen-card real">
+                            <span class="scen-title" style="color:#059669;" data-i18n="sReal">Realist</span>
+                            <div data-i18n="dReal">Avg Yield, Avg Price. Standard Norms.</div>
+                        </div>
+                        <div class="scen-card">
+                            <span class="scen-title" style="color:#D97706;" data-i18n="sOpt">Optimist</span>
+                            <div data-i18n="dOpt">Max Yield, Max Price. Perfect Season.</div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-size: 0.9rem; font-weight: 800; color:#1E293B; margin-bottom: 10px;" data-i18n="metTableTitle">Revenue Logic (Matrix)</h4>
+                    <div class="logic-table-wrapper">
+                        <table class="logic-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="thCrop">Crop</th>
+                                    <th data-i18n="thYield">Yield (t/ha)<br><span style="font-size:0.7em; font-weight:400">Min / Avg / Max</span></th>
+                                    <th data-i18n="thPrice">Price (₼/kg)<br><span style="font-size:0.7em; font-weight:400">Min / Avg / Max</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-i18n="fruitCherry">Cherry</td>
+                                    <td>10 / 14 / 20</td>
+                                    <td>5.0 / 7.0 / 9.0</td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="fruitNect">Nectarine</td>
+                                    <td>20 / 30 / 40</td>
+                                    <td>1.8 / 2.0 / 2.2</td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="fruitPeach">Peach</td>
+                                    <td>20 / 30 / 40</td>
+                                    <td>2.0 / 2.1 / 2.2</td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="fruitApricot">Apricot</td>
+                                    <td>10 / 15 / 20</td>
+                                    <td>2.2 / 3.0 / 4.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="source-badge">
+                        <i data-lucide="database" size="18" style="color:var(--primary); flex-shrink:0;"></i>
+                        <div data-i18n="sourceText">
+                            <b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards.
+                        </div>
                     </div>
                 </div>
 
@@ -529,11 +599,6 @@
 
     const translations = {
         en: {
-            // ... (keep previous translations) ...
-            sPess: "Pessimist", sReal: "Realist", sOpt: "Optimist",
-            methodTitle: "Methodology & Assumptions:",
-            methodText: "<b>Formula:</b> EBITDA = (Gross Yield × Market Price) - Operational Costs.<br><b>Prices used (Realistic):</b> Cherry 5-9 ₼/kg, Nectarine 1.8-2.2 ₼/kg, Peach 2.0-2.2 ₼/kg, Apricot 2.2-4.0 ₼/kg.<br><b>Yields:</b> Modeled conservatively at 15% (Year 3), 40% (Year 4), 80% (Year 5). Pessimistic scenario assumes -30% revenue shock.",
-            // ... (rest of translations)
             navStrategy: "Strategy", navLocation: "Location", navProduction: "Production", navFinance: "Finance", navRisk: "Risks", navContact: "Contact", btnMob: "Contact Investor",
             heroBadge: "Early Harvest Advantage • May-June Window",
             heroTitle: 'Institutional-Grade<br><span class="text-gradient">Orchard Project</span>',
@@ -561,14 +626,17 @@
             roadTitle: "Project Roadmap", t1Title: "CAPEX Phase", t1Desc: "Land preparation, well drilling, fencing, seedling procurement.", t2Title: "Planting", t2Desc: "Planting trees. Biological development phase begins.", t3Year: "2029 (Year 3)", t3Title: "First Harvest", t3Desc: "Partial harvest (~15%). First Revenue.", t4Title: "Full Capacity", t4Desc: "Max revenue (100%). Net Profit Zone.",
             finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.", areaSel: "Orchard Size:", investTitle: "Investment Structure", rowSecCap: "I. CAPEX (Launch)", rowInfra: "Infrastructure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery", rowTrees: "Saplings + Planting", rowIrr: "Irrigation + Pumps", rowCapex: "TOTAL CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Maintenance until Harvest (3 years)", rowTotalAsk: "TOTAL INVESTMENT:", landNote: "<b>Land:</b> Purchased directly by investor. 100% Private Deed (Kupcha). Not included in CAPEX.", machNote: "<b>Operational Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.",
             pbTitle: "Payback Analysis:", pbInv: "Investment (2026-2028):", pb29: "2029 (Start):", pb30: "2030 (Growth):", pb31: "2031 (Peak):", pbNet: "Cumulative Net Result (2031):", pbDesc: "Full Return on Investment occurs within 2031. From 2032 onwards, the orchard generates pure net profit.",
-            partTitle: "Key Partners & Guarantees", roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.", roleIrr: "Irrigation", descIrr: "World Leader in precision irrigation. Automated drip systems.", roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).", roleAgro: "Management", nameAgro: "Chief Agronomist", descAgro: "Selecting top candidate from shortlist (1 of 3).", revChartTitle: "EBITDA Forecast (₼)", footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp", ctrlTitle: "Operational Control:", ctrl1: "<b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.", ctrl2: "<b>Expertise:</b> Chief Agronomist monitors technology & nutrition.", ctrl3: "<b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning. Control of sales (FCA)."
+            partTitle: "Key Partners & Guarantees", roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.", roleIrr: "Irrigation", descIrr: "World Leader in precision irrigation. Automated drip systems.", roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).", roleAgro: "Management", nameAgro: "Chief Agronomist", descAgro: "Selecting top candidate from shortlist (1 of 3).", revChartTitle: "EBITDA Forecast (₼)", footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp", ctrlTitle: "Operational Control:", ctrl1: "<b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.", ctrl2: "<b>Expertise:</b> Chief Agronomist monitors technology & nutrition.", ctrl3: "<b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning. Control of sales (FCA).",
+            
+            // NEW KEYS FOR METHODOLOGY
+            sPess: "Pessimist", sReal: "Realist", sOpt: "Optimist",
+            chartCap: "Each point represents projected EBITDA (Revenue - OPEX). Based on agreed agronomic model.",
+            metScenTitle: "Scenario Matrix", metTableTitle: "Revenue Logic (Matrix)",
+            dPess: "Min Yield, Min Price. 25% Loss (Weather).", dReal: "Avg Yield, Avg Price. Standard Norms.", dOpt: "Max Yield, Max Price. Perfect Season.",
+            thCrop: "Crop", thYield: "Yield (t/ha)<br><span style='font-size:0.7em; font-weight:400'>Min / Avg / Max</span>", thPrice: "Price (₼/kg)<br><span style='font-size:0.7em; font-weight:400'>Min / Avg / Max</span>",
+            sourceText: "<b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards."
         },
         ru: {
-            // ... (keep previous translations) ...
-            sPess: "Пессимист", sReal: "Реалист", sOpt: "Оптимист",
-            methodTitle: "Методология и Допущения:",
-            methodText: "<b>Формула:</b> EBITDA = (Валовый сбор × Рыночная цена) - Операционные расходы.<br><b>Цены (Реалист):</b> Черешня 5-9 ₼/кг, Нектарин 1.8-2.2 ₼/кг, Персик 2.0-2.2 ₼/кг, Абрикос 2.2-4.0 ₼/кг.<br><b>Урожайность:</b> Консервативная модель: 15% (3-й год), 40% (4-й год), 80% (5-й год). Пессимистичный сценарий учитывает -30% шок выручки.",
-            // ... (rest of translations)
             navStrategy: "Стратегия", navLocation: "Локация", navProduction: "Производство", navFinance: "Финансы", navRisk: "Риски", navContact: "Связаться", btnMob: "Связаться с Инициатором",
             heroBadge: "Преимущество Раннего Урожая • Май-Июнь",
             heroTitle: 'Инвестиционный Проект<br><span class="text-gradient">Интенсивного Сада</span>',
@@ -596,7 +664,15 @@
             roadTitle: "Дорожная карта проекта", t1Title: "CAPEX Фаза", t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.", t2Title: "Посадка Сада", t2Desc: "Закладка деревьев. Начало фазы биологического развития.", t3Year: "2029 (3-й год)", t3Title: "Первый Урожай", t3Desc: "Частичный сбор (~15%). Первая выручка.", t4Title: "Полная мощность", t4Desc: "Максимальная выручка (100%). Зона чистой прибыли.",
             finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Полная детализация CAPEX и OPEX. Окупаемость 2031 год.", areaSel: "Площадь Сада:", investTitle: "Структура Инвестиций", rowSecCap: "I. CAPEX (Запуск)", rowInfra: "Инфраструктура", rowWater: "Вода (Скважина + Резервуар)", rowMach: "Техника", rowTrees: "Саженцы + Посадка", rowIrr: "Орошение + Насосы", rowCapex: "ИТОГО CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Содержание до 1-й выручки (3 года)", rowTotalAsk: "ВСЕГО ИНВЕСТИЦИИ:", landNote: "<b>Земля:</b> Покупается инвестором напрямую. 100% Купчая (Частная). Не входит в CAPEX.", machNote: "<b>Операционная Эффективность:</b> Один трактор обеспечивает достаточную мощность до 30 га благодаря последовательному графику работ. Это оптимизирует использование капитала.",
             pbTitle: "Анализ Окупаемости:", pbInv: "Инвестиции (2026-2028):", pb29: "2029 (Старт):", pb30: "2030 (Рост):", pb31: "2031 (Пик):", pbNet: "Накопленный Чистый Итог (2031):", pbDesc: "Полный возврат инвестиций происходит в течение 2031 года. С 2032 года сад генерирует чистую прибыль.",
-            partTitle: "Партнеры и Гарантии", roleSap: "Саженцы", nameSap: "Испания / Турция", descSap: "Гарантия приживаемости 95%.", roleIrr: "Орошение", descIrr: "Мировой лидер в точном орошении. Автоматика.", roleIns: "Страхование", descIns: "Гос. покрытие рисков (Град, Пожар, Ветер).", roleAgro: "Управление", nameAgro: "Главный Агроном", descAgro: "Выбор лучшего кандидата из шорт-листа (1 из 3).", revChartTitle: "Прогноз EBITDA (₼)", footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp", ctrlTitle: "Операционный Контроль:", ctrl1: "<b>Команда на месте:</b> Бригадир и Охрана (24/7) + Видеонаблюдение.", ctrl2: "<b>Агрономия:</b> Главный агроном контролирует технологию.", ctrl3: "<b>Мой контроль:</b> Еженедельные визиты + Полное присутствие в сезон сбора. Контроль сбыта (FCA)."
+            partTitle: "Партнеры и Гарантии", roleSap: "Саженцы", nameSap: "Испания / Турция", descSap: "Гарантия приживаемости 95%.", roleIrr: "Орошение", descIrr: "Мировой лидер в точном орошении. Автоматика.", roleIns: "Страхование", descIns: "Гос. покрытие рисков (Град, Пожар, Ветер).", roleAgro: "Управление", nameAgro: "Главный Агроном", descAgro: "Выбор лучшего кандидата из шорт-листа (1 из 3).", revChartTitle: "Прогноз EBITDA (₼)", footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp", ctrlTitle: "Операционный Контроль:", ctrl1: "<b>Команда на месте:</b> Бригадир и Охрана (24/7) + Видеонаблюдение.", ctrl2: "<b>Агрономия:</b> Главный агроном контролирует технологию.", ctrl3: "<b>Мой контроль:</b> Еженедельные визиты + Полное присутствие в сезон сбора. Контроль сбыта (FCA).",
+            
+            // NEW KEYS FOR METHODOLOGY
+            sPess: "Пессимист", sReal: "Реалист", sOpt: "Оптимист",
+            chartCap: "Каждая точка отражает прогноз EBITDA (Выручка - Расходы). Основано на агрономической модели.",
+            metScenTitle: "Матрица Сценариев", metTableTitle: "Логика Выручки (Матрица)",
+            dPess: "Урожай Min, Цена Min. Потеря 25% (Погода).", dReal: "Урожай Средний, Цена Средняя. Стандартные нормы.", dOpt: "Урожай Max, Цена Max. Идеальный сезон.",
+            thCrop: "Культура", thYield: "Урожайность (т/га)<br><span style='font-size:0.7em; font-weight:400'>Мин / Сред / Макс</span>", thPrice: "Цена (₼/кг)<br><span style='font-size:0.7em; font-weight:400'>Мин / Сред / Макс</span>",
+            sourceText: "<b>Источники Данных:</b> Урожайность и цены основаны на официальных агрономических нормах Азербайджана, полевых наблюдениях в Исмаиллинском районе, статистике экспортного рынка и стандартах Netafim."
         }
     };
 
