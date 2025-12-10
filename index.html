@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.292.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -46,10 +46,11 @@
         /* NAV */
         nav { position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1rem 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; color: #0F172A; cursor: pointer; text-decoration: none; }
+        .logo { font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; color: #0F172A; cursor: pointer; text-decoration: none; flex-shrink: 0; }
+        .nav-links { display: flex; align-items: center; }
         .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-muted); font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
-        .lang-switch { margin-left: 1rem; display: flex; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 2px; border: 1px solid var(--border); }
+        .lang-switch { margin-left: 1rem; display: flex; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 2px; border: 1px solid var(--border); flex-shrink: 0; }
         .lang-btn { background: none; border: none; padding: 6px 14px; font-size: 0.75rem; font-weight: 700; cursor: pointer; border-radius: 16px; transition: 0.3s; color: var(--text-muted); }
         .lang-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .email-btn { margin-left: 1rem; text-decoration: none; display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: var(--text-main); }
@@ -129,9 +130,18 @@
             .hero-metrics { grid-template-columns: repeat(2, 1fr); }
             .bento-grid, .fin-grid, .partners-grid { grid-template-columns: 1fr; }
             .bento-item.span-2, .bento-item.span-3 { grid-column: span 1; }
-            .nav-links, .email-btn { display: none; }
+            
+            /* FIX: Mobile Menu - Horizontal Scroll */
+            .nav-inner { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .nav-links { display: flex; overflow-x: auto; width: 100%; padding-bottom: 5px; gap: 15px; -webkit-overflow-scrolling: touch; }
+            .nav-links::-webkit-scrollbar { display: none; } /* Hide scrollbar */
+            .nav-links a { margin-left: 0; white-space: nowrap; font-size: 0.9rem; padding: 5px 10px; background: rgba(255,255,255,0.5); border-radius: 10px; }
+            .email-btn { display: none; }
+            .lang-switch { position: absolute; top: 1rem; right: 24px; margin: 0; }
+            
             .mobile-nav { display: flex; }
             .map-wrapper { height: auto; display: flex; flex-direction: column; }
+            .map-wrapper iframe { height: 300px; }
             .map-overlay { position: relative; border-radius: 0 0 24px 24px; padding: 1.5rem; top:0; left:0; right:0; bottom:0; grid-template-columns: 1fr 1fr; }
             .weather-col { border-right: none; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
             .scen-cards { grid-template-columns: 1fr; }
@@ -149,7 +159,13 @@
             <i data-lucide="sprout" color="#059669"></i>
             <span>GARDENS OF <span style="color:var(--primary)">CAUCASUS</span></span>
         </a>
-        <div style="display: flex; align-items: center;">
+        
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="switchLanguage('ru')">RU</button>
+        </div>
+
+        <div style="display: flex; align-items: center; width: 100%;">
             <div class="nav-links">
                 <a href="#strategy" data-i18n="navStrategy">Strategy</a>
                 <a href="#location" data-i18n="navLocation">Location</a>
@@ -161,10 +177,6 @@
             <a href="mailto:rashad.guliev@gmail.com" class="email-btn">
                 <i data-lucide="mail" size="14"></i> rashad.guliev@gmail.com
             </a>
-            <div class="lang-switch">
-                <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
-                <button class="lang-btn" onclick="switchLanguage('ru')">RU</button>
-            </div>
         </div>
     </div>
 </nav>
@@ -186,7 +198,7 @@
             <div class="metric-card">
                 <div class="metric-val">100%</div>
                 <div class="metric-lbl" data-i18n="lblLand">Land Ownership</div>
-                <div class="metric-sub" data-i18n="subLand">Private Deed (Kupcha)</div>
+                <div class="metric-sub" data-i18n="subLand">Title Deed (Kupcha)</div>
             </div>
             <div class="metric-card">
                 <div class="metric-val">~80%</div>
@@ -256,14 +268,15 @@
     <div class="container">
         <div class="section-header reveal">
             <h2 class="section-title" data-i18n="locTitle">Location & Climate</h2>
-            <p class="section-desc">Coordinates: 40.604977, 48.152331. Secured Land. Secured Water.</p>
+            <p class="section-desc">Ismayilli, Azerbaijan. Coordinates: 40.7833, 48.1500.</p>
         </div>
         <div class="map-wrapper reveal">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3023.644786475658!2d48.152331!3d40.604977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDM2JzE3LjkiTiA0OMKwMDknMDguNCJF!5e1!3m2!1sen!2saz!4v1700000000000!5m2!1sen!2saz" width="100%" height="100%" style="border:0; filter: contrast(1.1) grayscale(0.2);" allowfullscreen="" loading="lazy"></iframe>
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=40.7833,48.1500&t=k&z=13&ie=UTF8&iwloc=&output=embed" style="filter: saturate(1.1);"></iframe>
+            
             <div class="map-overlay">
                 <div class="weather-col">
                     <div style="display:flex; align-items: center; gap: 8px; margin-bottom: 5px;">
-                        <span class="live-dot"></span>
+                        <span style="display:inline-block; width:8px; height:8px; background:#ef4444; border-radius:50%; box-shadow: 0 0 10px #ef4444; animation: pulse 2s infinite;"></span>
                         <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">ISMAYILLI LIVE</div>
                     </div>
                     <div style="display:flex; align-items:center; gap: 10px;">
@@ -278,7 +291,7 @@
                 </div>
                 <div class="weather-col">
                     <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom: 5px;" data-i18n="wSoil">Land Status</div>
-                    <div style="font-size:1.2rem; font-weight:700; color:#1e293b;" data-i18n="landStat">Private (Kupcha)</div>
+                    <div style="font-size:1.2rem; font-weight:700; color:#1e293b;" data-i18n="landStat">Title Deed (Kupcha)</div>
                 </div>
                 <div class="weather-col">
                     <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom: 5px;" data-i18n="wWater">Water Source</div>
@@ -533,7 +546,6 @@
 
 <script>
     // --- DATA MODELS ---
-    // FIXED: Полная детализация для всех масштабов (10, 20, 30 га)
     const orchardModels = {
         10: {
             areaHa: 10,
@@ -552,8 +564,8 @@
                 ],
                 water: [
                     {en:"Well Drilling", ru:"Скважина", val:20000}, 
-                    {en:"Reservoir Excavation", ru:"Копка резервуара", val:4000}, 
-                    {en:"KamAZ Transport", ru:"КамАЗы (вывоз грунта)", val:7000}, 
+                    {en:"Reservoir Excavation", ru:"Земляные работы (Резервуар)", val:4000}, 
+                    {en:"KamAZ Transport", ru:"Вывоз грунта (Техника)", val:7000}, 
                     {en:"Membrane", ru:"Мембрана", val:1400}
                 ],
                 mach: [
@@ -600,8 +612,8 @@
                 ],
                 water: [
                     {en:"Well Drilling (Deep)", ru:"Скважина (Глубокая)", val:40000}, 
-                    {en:"Reservoir Excavation", ru:"Копка резервуара (x2)", val:8000}, 
-                    {en:"KamAZ Transport", ru:"КамАЗы (вывоз грунта)", val:14000}, 
+                    {en:"Reservoir Excavation", ru:"Земляные работы (x2)", val:8000}, 
+                    {en:"KamAZ Transport", ru:"Вывоз грунта (Техника)", val:14000}, 
                     {en:"Membrane", ru:"Мембрана", val:2800}
                 ],
                 mach: [
@@ -620,7 +632,6 @@
                     {en:"Pumps (4 units)", ru:"Насосы (4 шт)", val:8000}
                 ],
                 opex: [
-                    // OPEX Scaled for 20ha (Economy of scale applied)
                     {en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
                     {en:"Seasonal Workers", ru:"Сезонные рабочие", val:18000}, 
                     {en:"Care & Maintenance", ru:"Уход и работы", val:38000}, 
@@ -650,8 +661,8 @@
                 ],
                 water: [
                     {en:"Well Drilling", ru:"Скважина", val:40000}, 
-                    {en:"Reservoir Excavation", ru:"Копка резервуара (x3)", val:12000}, 
-                    {en:"KamAZ Transport", ru:"КамАЗы (вывоз грунта)", val:21000}, 
+                    {en:"Reservoir Excavation", ru:"Земляные работы (x3)", val:12000}, 
+                    {en:"KamAZ Transport", ru:"Вывоз грунта (Техника)", val:21000}, 
                     {en:"Membrane", ru:"Мембрана", val:4200}
                 ],
                 mach: [
@@ -684,8 +695,8 @@
         }
     };
 
-    let currentArea = 30; // Default to 30 as requested
-    let currentLang = 'ru'; // Default to Russian as requested
+    let currentArea = 30; 
+    let currentLang = 'ru'; 
     let currentScen = 'real';
 
     const translations = {
@@ -694,7 +705,7 @@
             heroBadge: "Early Harvest Advantage • May-June Window",
             heroTitle: 'Institutional-Grade<br><span class="text-gradient">Orchard Project</span>',
             heroSub: "Ismayilli, Azerbaijan. Modular Orchard Blocks (10 / 20 / 30 Ha) of Premium Stone Fruit.<br>Strategic market entry during the regional deficit window.",
-            lblEbitda: "EBITDA Margin", subEbitda: "Target at Full Capacity", metROI: "2031", lblSales: "Full Payback", subSales: "Net Profit from 2032", lblGrade: "Export Grade A", subGrade: "Premium Quality", metGrowth: "100%", lblLand: "Land Ownership", subLand: "Private Deed (Kupcha)",
+            lblEbitda: "EBITDA Margin", subEbitda: "Target at Full Capacity", metROI: "2031", lblSales: "Full Payback", subSales: "Net Profit from 2032", lblGrade: "Export Grade A", subGrade: "Premium Quality", metGrowth: "100%", lblLand: "Land Ownership", subLand: "Title Deed (Kupcha)",
             stratTitle: "The \"First Mover\" Advantage", stratDesc: "Our strategy is structured around the supply deficit window. Selling when the market is empty, before the northern bulk harvest arrives.",
             entryTitle: "Accelerated Market Entry", entryDesc: "The northern regions (Quba-Khachmaz) are the main producers, but they harvest 2-3 weeks later. We enter the market in May-June when supply is structurally low and prices are at their peak (60-80% premium).",
             logTitle: "No Logistics Burden", logDesc: "Sales are executed through pre-qualified export partners under contractual purchase arrangements (FCA Model). Buyers handle packing and transport. Pre-payment on the field.",
@@ -702,8 +713,8 @@
             earlyTitle: "Realistic Biological Timeline", earlyDesc: "Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.",
             chillTitle: "900+ Chill Hours", chillDesc: "Unlike lowland zones (Kurdamir), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation.",
             uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color. The visual appeal drives export demand.",
-            locTitle: "Location & Climate", locDesc: "Coordinates: 40.604977, 48.152331. Secured Land. Secured Water.",
-            wHum: "Humidity", wWind: "Wind", wPress: "Pressure", wSoil: "Land Status", landStat: "Private (Kupcha)", wWater: "Water Source", wWell: "Well + Reservoir",
+            locTitle: "Location & Climate", locDesc: "Coordinates: 40.7833, 48.1500. Secured Land. Secured Water.",
+            wHum: "Humidity", wWind: "Wind", wPress: "Pressure", wSoil: "Land Status", landStat: "Title Deed (Kupcha)", wWater: "Water Source", wWell: "Well + Reservoir",
             riskTitle: "Risk Mitigation Framework", riskSub: "Risks are managed through location selection, technological expertise, and government-backed instruments.",
             r1: "<b>Location Hedge:</b> Ismayilli foothills have naturally low hail probability compared to steppe zones.",
             r2: "<b>State Insurance (Aqrar Sığorta):</b> 96% coverage for Hail, Fire, and Wind. <b>Govt pays 50%</b> of the premium.",
@@ -715,7 +726,7 @@
             fruitPeach: "Flat Peach (Fig)", varPeach: "20% • Zodiac, Babylone", descPeach: "Retail chain favorite. Flat varieties are easy to pack and enjoy high consumer demand.",
             fruitApricot: "Apricot", descApricot: "High price at season start and stable demand in the local market.",
             roadTitle: "Project Roadmap", t1Title: "CAPEX Phase", t1Desc: "Land preparation, well drilling, fencing, seedling procurement.", t2Title: "Planting", t2Desc: "Planting trees. Biological development phase begins.", t3Year: "2029 (Year 3)", t3Title: "First Harvest", t3Desc: "Partial harvest (~15%). First Revenue.", t4Title: "Full Capacity", t4Desc: "Max revenue (100%). Net Profit Zone.",
-            finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.", areaSel: "Orchard Size:", investTitle: "Investment Structure", rowSecCap: "I. CAPEX (Launch)", rowInfra: "Infrastructure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery", rowTrees: "Saplings + Planting", rowIrr: "Irrigation + Pumps", rowCapex: "TOTAL CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Maintenance until Harvest (3 years)", rowTotalAsk: "TOTAL INVESTMENT:", landNote: "<b>Land:</b> Purchased directly by investor. 100% Private Deed (Kupcha). Not included in CAPEX.", machNote: "<b>Operational Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.",
+            finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.", areaSel: "Orchard Size:", investTitle: "Investment Structure", rowSecCap: "I. CAPEX (Launch)", rowInfra: "Infrastructure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery", rowTrees: "Saplings + Planting", rowIrr: "Irrigation + Pumps", rowCapex: "TOTAL CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Maintenance until Harvest (3 years)", rowTotalAsk: "TOTAL INVESTMENT:", landNote: "<b>Land:</b> Purchased directly by investor. 100% Title Deed (Kupcha). Not included in CAPEX.", machNote: "<b>Operational Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.",
             pbTitle: "Payback Analysis:", pbInv: "Investment (2026-2028):", pb29: "2029 (Start):", pb30: "2030 (Growth):", pb31: "2031 (Peak):", pbNet: "Cumulative Net Result (2031):", pbDesc: "Full Return on Investment occurs within 2031. From 2032 onwards, the orchard generates pure net profit.",
             partTitle: "Key Partners & Guarantees", roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.", roleIrr: "Irrigation", descIrr: "World Leader in precision irrigation. Automated drip systems.", roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).", roleAgro: "Management", nameAgro: "Chief Agronomist", descAgro: "Selecting top candidate from shortlist (1 of 3).", revChartTitle: "EBITDA Forecast (₼)", footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp", ctrlTitle: "Operational Control:", ctrl1: "<b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.", ctrl2: "<b>Expertise:</b> Chief Agronomist monitors technology & nutrition.", ctrl3: "<b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning. Control of sales (FCA).",
             sPess: "Pessimist", sReal: "Realist", sOpt: "Optimist",
@@ -738,7 +749,7 @@
             earlyTitle: "Реалистичный Биологический Цикл", earlyDesc: "Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай в 2029 (3-й год). Консервативное моделирование исключает риск завышенных ожиданий.",
             chillTitle: "900+ Часов Холода", chillDesc: "В отличие от равнинных зон (Кюрдамир), наше предгорье гарантирует деревьям полноценный зимний покой. Критический фактор для цветения.",
             uvTitle: "УФ-Удар и Окрас", uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный темный цвет, что стимулирует экспортный спрос.",
-            locTitle: "Локация и Климат", locDesc: "Координаты: 40.604977, 48.152331. Земля и Вода обеспечены.",
+            locTitle: "Локация и Климат", locDesc: "Координаты: 40.7833, 48.1500. Исмаиллы. Земля и Вода обеспечены.",
             wHum: "Влажность", wWind: "Ветер", wPress: "Давление", wSoil: "Земля", landStat: "Купчая (Частная)", wWater: "Вода", wWell: "Скважина + Резервуар",
             riskTitle: "Управление Рисками", riskSub: "Риски управляются через выбор локации, технологическую экспертизу и государственные инструменты.",
             r1: "<b>Хеджирование локацией:</b> Предгорье Исмаиллы имеет природно низкую вероятность града по сравнению со степными зонами.",
@@ -780,21 +791,41 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     
     async function updateWeather() {
-        const lat = 40.604977; const lon = 48.152331;
-        const now = new Date(); const locale = currentLang === 'ru' ? 'ru-RU' : 'en-US';
+        const lat = 40.7833; // Center of Ismayilli district for better accuracy
+        const lon = 48.1500;
+        const now = new Date();
+        const locale = currentLang === 'ru' ? 'ru-RU' : 'en-US';
         const options = { weekday: 'short', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
-        document.getElementById('live-date').innerText = now.toLocaleDateString(locale, options);
+        
+        const dateEl = document.getElementById('live-date');
+        if(dateEl) dateEl.innerText = now.toLocaleDateString(locale, options);
+
         try {
-            const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,surface_pressure,wind_speed_10m,weather_code&wind_speed_unit=ms&timezone=auto`);
+            const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&wind_speed_unit=ms&timezone=auto`);
             if (!response.ok) throw new Error('Weather API Error');
-            const data = await response.json(); const current = data.current;
+            
+            const data = await response.json();
+            const current = data.current;
+            
             document.getElementById('live-temp').innerText = Math.round(current.temperature_2m) + "°C";
             document.getElementById('live-hum').innerText = current.relative_humidity_2m + "%";
             document.getElementById('live-wind').innerText = current.wind_speed_10m + " m/s";
+            
             const code = current.weather_code;
-            let icon = "☀️"; if (code >= 1 && code <= 3) icon = "⛅"; if (code >= 45 && code <= 48) icon = "🌫️"; if (code >= 51 && code <= 67) icon = "🌧️"; if (code >= 71) icon = "❄️"; if (code >= 95) icon = "⚡";
+            let icon = "☀️";
+            if (code >= 1 && code <= 3) icon = "⛅";
+            if (code >= 45 && code <= 48) icon = "🌫️";
+            if (code >= 51 && code <= 67) icon = "🌧️";
+            if (code >= 71) icon = "❄️";
+            if (code >= 95) icon = "⚡";
+            
             document.getElementById('live-icon').innerText = icon;
-        } catch (error) { console.error("Weather Error:", error); }
+        } catch (error) { 
+            console.error("Weather Error:", error); 
+            // Fallback
+            document.getElementById('live-temp').innerText = "--"; 
+            document.getElementById('live-icon').innerText = "☀️";
+        }
     }
     updateWeather(); setInterval(updateWeather, 600000);
 
@@ -844,7 +875,6 @@
         const model = orchardModels[currentArea];
         const scenarioData = model.scenarios[currentScen];
 
-        // Fill CAPEX/OPEX table
         document.getElementById('capex-infra').innerText = formatAz(model.capex.infra);
         document.getElementById('capex-water').innerText = formatAz(model.capex.water);
         document.getElementById('capex-mach').innerText = formatAz(model.capex.machinery);
@@ -867,7 +897,6 @@
         document.getElementById('pb-2030').innerText = '+' + formatAz(scenarioData[1]);
         document.getElementById('pb-2031').innerText = '+' + formatAz(scenarioData[2]);
         
-        // Calculate cumulative net (Total Invest + Sum of 3 years EBITDA)
         const cumulative = -model.totalInvestment + scenarioData[0] + scenarioData[1] + scenarioData[2];
         const pbNetEl = document.getElementById('pb-net');
         pbNetEl.innerText = (cumulative > 0 ? '+' : '') + formatAz(cumulative);
@@ -876,10 +905,10 @@
         // Update Chart
         chart.data.datasets[0].data = [0, 0, 0, scenarioData[0], scenarioData[1], scenarioData[2]];
         
-        // Change Chart Color based on Scenario
-        let color = '#059669'; // Real
-        if(currentScen === 'pess') color = '#94A3B8'; // Grey
-        if(currentScen === 'opt') color = '#D97706'; // Gold
+        // Change Chart Color
+        let color = '#059669';
+        if(currentScen === 'pess') color = '#94A3B8';
+        if(currentScen === 'opt') color = '#D97706';
         
         chart.data.datasets[0].borderColor = color;
         chart.data.datasets[0].pointBackgroundColor = color;
@@ -913,8 +942,8 @@
     });
 
     // Init Logic
-    switchLanguage('ru'); // Force Russian init for Rashad
-    document.querySelector('.area-btn[data-area="30"]').click(); // Force 30ha view default
+    switchLanguage('ru'); 
+    document.querySelector('.area-btn[data-area="30"]').click();
 </script>
 
 </body>
