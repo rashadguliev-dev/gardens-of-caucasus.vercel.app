@@ -16,20 +16,20 @@
             --primary: #059669;
             --accent: #D97706;
             --bg-base: #FDFBF7;
-            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card: rgba(255, 255, 255, 0.90);
             --bg-contrast: #1E293B;
             --text-main: #1E293B;
             --text-muted: #64748B;
             --border: rgba(0, 0, 0, 0.08);
             --font-main: 'Plus Jakarta Sans', sans-serif;
-            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: var(--font-main); background-color: var(--bg-base); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; }
 
-        .bg-photo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-image: url('preview.jpeg'), url('https://images.unsplash.com/photo-1623227866882-c005c207758f?q=80&w=2070&auto=format&fit=crop'); background-size: cover; opacity: 0.30; filter: saturate(0.9); }
-        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(to bottom, rgba(253, 251, 247, 0.8), rgba(253, 251, 247, 0.9)); backdrop-filter: blur(3px); }
+        .bg-photo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-image: url('preview.jpeg'), url('https://images.unsplash.com/photo-1623227866882-c005c207758f?q=80&w=2070&auto=format&fit=crop'); background-size: cover; opacity: 0.25; filter: saturate(0.9); }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(to bottom, rgba(253, 251, 247, 0.85), rgba(253, 251, 247, 0.95)); backdrop-filter: blur(5px); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .text-gradient { background: linear-gradient(135deg, var(--primary) 0%, #047857 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -44,7 +44,7 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* NAV */
-        nav { position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1rem 0; }
+        nav { position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 1rem 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; color: #0F172A; cursor: pointer; text-decoration: none; flex-shrink: 0; }
         .nav-links { display: flex; align-items: center; }
@@ -55,14 +55,15 @@
         .lang-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .email-btn { margin-left: 1rem; text-decoration: none; display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: var(--text-main); }
 
-        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1001; background: white; border-top: 1px solid var(--border); padding: 10px 20px; justify-content: space-between; align-items: center; }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1001; background: white; border-top: 1px solid var(--border); padding: 10px 20px; justify-content: space-between; align-items: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
         .mobile-cta { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
         /* HERO */
         .hero { padding: 140px 0 80px; text-align: center; }
-        .hero h1 { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; color: #0F172A; }
+        .hero h1 { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; color: #0F172A; letter-spacing: -1px; }
         .hero-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1000px; margin: 0 auto; }
-        .metric-card { background: rgba(255,255,255,0.6); border: 1px solid #fff; padding: 1.5rem; border-radius: 16px; backdrop-filter: blur(10px); }
+        .metric-card { background: rgba(255,255,255,0.7); border: 1px solid #fff; padding: 1.5rem; border-radius: 16px; backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .metric-card:hover { transform: translateY(-5px); }
         .metric-val { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
         .metric-lbl { font-size: 0.75rem; color: #64748B; text-transform: uppercase; font-weight: 700; margin-top: 5px; }
         .metric-sub { font-size: 0.7rem; color: #94A3B8; margin-top: 4px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 6px; }
@@ -80,50 +81,63 @@
         .timeline-item { margin-bottom: 3rem; position: relative; padding-left: 2rem; }
         .timeline-item::before { content: ''; position: absolute; left: -2.6rem; top: 0.5rem; width: 1rem; height: 1rem; background: #fff; border: 3px solid var(--primary); border-radius: 50%; }
         
-        .map-wrapper { height: 450px; border-radius: 24px; overflow: hidden; border: 4px solid white; position: relative; box-shadow: var(--shadow); }
-        .map-overlay { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(16px); padding: 1.5rem; border-radius: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        /* MAP FIX */
+        .map-wrapper { height: 500px; border-radius: 24px; overflow: hidden; border: 4px solid white; position: relative; box-shadow: var(--shadow); }
+        .map-overlay { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); padding: 1.5rem; border-radius: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .weather-col { border-right: 1px solid rgba(0,0,0,0.1); } .weather-col:last-child { border-right: none; }
 
         /* FINANCE TABLE */
-        .fin-row { display: grid; grid-template-columns: 1fr auto; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); cursor: pointer; }
-        .fin-row.header { font-weight: 800; border-bottom: 2px solid var(--primary); cursor: default; }
-        .fin-row.total { font-weight: 700; color: var(--primary); background: rgba(5,150,105,0.05); padding: 15px 10px; border-radius: 8px; border-bottom: none; cursor: default; }
-        .fin-details { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: #F8FAFC; }
-        .fin-details.open { max-height: 500px; border: 1px solid rgba(0,0,0,0.05); margin-bottom: 10px; }
-        .detail-item { display: flex; justify-content: space-between; padding: 8px 15px; font-size: 0.85rem; border-bottom: 1px dashed rgba(0,0,0,0.05); }
+        .fin-table-container { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); padding: 0 10px; }
+        .fin-row { display: grid; grid-template-columns: 1fr auto; padding: 14px 10px; border-bottom: 1px solid rgba(0,0,0,0.06); cursor: pointer; align-items: center; transition: background 0.2s; }
+        .fin-row:hover { background: #F8FAFC; }
+        .fin-row.header { font-weight: 800; border-bottom: 2px solid var(--primary); cursor: default; background: transparent; padding-top: 20px; }
+        .fin-row.header:hover { background: transparent; }
+        .fin-row.total { font-weight: 700; color: var(--primary); background: rgba(5,150,105,0.05); padding: 15px 10px; border-radius: 8px; border-bottom: none; cursor: default; margin-bottom: 10px; }
+        
+        .row-title { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #334155; }
+        .row-val { font-weight: 700; color: #0F172A; }
+        .chevron { transition: transform 0.3s; color: #94A3B8; }
+        .fin-row.active .chevron { transform: rotate(180deg); color: var(--primary); }
+
+        .fin-details { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); background: #F1F5F9; border-radius: 8px; }
+        .fin-details.open { max-height: 1000px; border: 1px solid rgba(0,0,0,0.05); margin-bottom: 10px; transition: max-height 0.4s ease-in-out; }
+        .detail-item { display: flex; justify-content: space-between; padding: 10px 15px; font-size: 0.85rem; border-bottom: 1px dashed rgba(0,0,0,0.05); color: #475569; }
+        .detail-item:last-child { border-bottom: none; }
 
         .area-switch-container { display: flex; justify-content: center; margin-bottom: 2rem; gap: 10px; align-items: center; }
         .area-btn, .scen-btn { border: none; background: rgba(0,0,0,0.04); padding: 8px 16px; font-size: 0.9rem; font-weight: 700; border-radius: 20px; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
         .area-btn.area-active, .scen-btn.active { background: white; color: var(--primary); box-shadow: 0 4px 12px rgba(5,150,105,0.15); }
         .scen-btn.active { color: #0F172A; }
 
-        .payback-box { margin-top: 1.5rem; padding: 1.25rem; background: rgba(0,0,0,0.03); border-radius: 16px; }
-        .payback-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; }
-        .payback-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); }
+        .payback-box { margin-top: 1.5rem; padding: 1.5rem; background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 16px; box-shadow: var(--shadow); }
+        .payback-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; color: #475569; }
+        .payback-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 800; margin-top: 15px; padding-top: 15px; border-top: 2px dashed rgba(0,0,0,0.1); }
 
         /* NEW METHODOLOGY STYLES */
         .methodology-wrapper { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1.5rem; }
         .chart-caption { font-size: 0.8rem; color: #64748B; font-style: italic; margin-top: 10px; text-align: center; }
         
         .scen-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; margin-top: 10px; }
-        .scen-card { background: #F8FAFC; padding: 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); font-size: 0.8rem; }
+        .scen-card { background: #F8FAFC; padding: 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); font-size: 0.8rem; transition: 0.2s; }
+        .scen-card:hover { border-color: var(--primary); }
         .scen-card.real { border-color: var(--primary); background: rgba(5,150,105,0.03); }
         .scen-title { font-weight: 800; margin-bottom: 6px; display: block; }
         
-        .logic-table-wrapper { overflow-x: auto; margin-bottom: 20px; }
-        .logic-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 400px; }
-        .logic-table th { text-align: left; padding: 8px; border-bottom: 2px solid #E2E8F0; color: #64748B; font-weight: 700; }
-        .logic-table td { padding: 8px; border-bottom: 1px solid #E2E8F0; color: #1E293B; }
+        .logic-table-wrapper { overflow-x: auto; margin-bottom: 20px; border-radius: 12px; border: 1px solid #E2E8F0; }
+        .logic-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 400px; }
+        .logic-table th { text-align: left; padding: 12px; border-bottom: 2px solid #E2E8F0; color: #64748B; font-weight: 700; background: #F8FAFC; }
+        .logic-table td { padding: 12px; border-bottom: 1px solid #E2E8F0; color: #1E293B; }
         .logic-table tr:last-child td { border-bottom: none; }
         
-        .source-badge { display: flex; align-items: flex-start; gap: 10px; background: #fff; border: 1px solid #E2E8F0; padding: 15px; border-radius: 12px; font-size: 0.8rem; color: #64748B; }
+        .source-badge { display: flex; align-items: flex-start; gap: 10px; background: #F0FDF4; border: 1px solid #DCFCE7; padding: 15px; border-radius: 12px; font-size: 0.8rem; color: #166534; }
 
         .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
-        .partner-card { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: var(--shadow); }
+        .partner-card { background: white; padding: 1.5rem; border-radius: 16px; box-shadow: var(--shadow); transition: transform 0.3s; }
+        .partner-card:hover { transform: translateY(-5px); }
 
         footer { border-top: 1px solid rgba(0,0,0,0.1); padding: 80px 0; margin-top: 80px; text-align: center; background: white; }
         .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-contrast); color: white; padding: 16px 40px; border-radius: 100px; font-weight: 700; text-decoration: none; margin-top: 2rem; transition: 0.3s; }
-        .cta-btn:hover { transform: scale(1.02); background: var(--primary); }
+        .cta-btn:hover { transform: scale(1.05); background: var(--primary); box-shadow: 0 10px 20px rgba(5,150,105,0.2); }
 
         @media(max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
@@ -133,15 +147,15 @@
             
             /* FIX: Mobile Menu - Horizontal Scroll */
             .nav-inner { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .nav-links { display: flex; overflow-x: auto; width: 100%; padding-bottom: 5px; gap: 15px; -webkit-overflow-scrolling: touch; }
-            .nav-links::-webkit-scrollbar { display: none; } /* Hide scrollbar */
-            .nav-links a { margin-left: 0; white-space: nowrap; font-size: 0.9rem; padding: 5px 10px; background: rgba(255,255,255,0.5); border-radius: 10px; }
+            .nav-links { display: flex; overflow-x: auto; width: 100%; padding-bottom: 5px; gap: 15px; -webkit-overflow-scrolling: touch; scroll-padding: 24px; }
+            .nav-links::-webkit-scrollbar { display: none; } 
+            .nav-links a { margin-left: 0; white-space: nowrap; font-size: 0.9rem; padding: 8px 16px; background: rgba(255,255,255,0.6); border-radius: 50px; border: 1px solid rgba(0,0,0,0.05); }
             .email-btn { display: none; }
             .lang-switch { position: absolute; top: 1rem; right: 24px; margin: 0; }
             
             .mobile-nav { display: flex; }
             .map-wrapper { height: auto; display: flex; flex-direction: column; }
-            .map-wrapper iframe { height: 300px; }
+            .map-wrapper iframe { height: 350px; }
             .map-overlay { position: relative; border-radius: 0 0 24px 24px; padding: 1.5rem; top:0; left:0; right:0; bottom:0; grid-template-columns: 1fr 1fr; }
             .weather-col { border-right: none; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
             .scen-cards { grid-template-columns: 1fr; }
@@ -268,10 +282,10 @@
     <div class="container">
         <div class="section-header reveal">
             <h2 class="section-title" data-i18n="locTitle">Location & Climate</h2>
-            <p class="section-desc">Ismayilli, Azerbaijan. Coordinates: 40.7833, 48.1500.</p>
+            <p class="section-desc">Ismayilli, Azerbaijan. Coordinates: 40.6049, 48.1523.</p>
         </div>
         <div class="map-wrapper reveal">
-            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=40.7833,48.1500&t=k&z=13&ie=UTF8&iwloc=&output=embed" style="filter: saturate(1.1);"></iframe>
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=40.604977,48.152331&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
             
             <div class="map-overlay">
                 <div class="weather-col">
@@ -310,7 +324,7 @@
                 <span style="font-weight:700; font-size:1.1rem; color:#059669;" data-i18n="riskTitle">Risk Mitigation Framework</span>
             </div>
             <ul class="risk-list" style="list-style:none;">
-                <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r1"><b>Location Hedge:</b> Naturally low hail probability.</span></li>
+                <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r1"><b>Location Hedge:</b> Ismayilli foothills have naturally low hail probability compared to steppe zones.</span></li>
                 <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r2"><b>State Insurance:</b> 96% coverage. <b>Govt pays 50%</b> of premium.</span></li>
                 <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r3"><b>Water Security:</b> Well + On-site Reservoir.</span></li>
                 <li class="risk-li" style="display:flex; gap:10px; margin-bottom:10px;"><i data-lucide="check-circle-2" size="18" color="#059669"></i><span data-i18n="r4"><b>Expertise:</b> Chief Agronomist & 24/7 Monitoring.</span></li>
@@ -546,32 +560,33 @@
 
 <script>
     // --- DATA MODELS ---
+    // FIXED: Translations and consistent line items across all models
     const orchardModels = {
         10: {
             areaHa: 10,
             capex: { infra: 118020, water: 32400, machinery: 61500, treesPlusPlanting: 72760, irrPlusPumps: 56000, totalCapex: 340680 },
             details: {
                 infra: [
-                    {en:"House (Office + Storage)", ru:"Дом (Офис + Склад)", val:35000}, 
-                    {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, 
-                    {en:"Gates", ru:"Ворота", val:2500}, 
-                    {en:"Sheds", ru:"Навесы", val:15000}, 
+                    {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
+                    {en:"Logistics Container", ru:"Логистический контейнер", val:6000}, 
+                    {en:"Entry Gates", ru:"Въездная группа (Ворота)", val:2500}, 
+                    {en:"Agro Canopy (Sheds)", ru:"Агро-навесы", val:15000}, 
                     {en:"CCTV + Internet", ru:"Камеры + интернет", val:2020}, 
-                    {en:"Restroom", ru:"Туалет", val:1000}, 
-                    {en:"Pool Fencing", ru:"Забор бассейна", val:1500}, 
+                    {en:"Sanitary Block", ru:"Санузел", val:1000}, 
+                    {en:"Reservoir Perimeter", ru:"Ограждение резервуара", val:1500}, 
                     {en:"Perimeter Fence", ru:"Забор территории", val:15000}, 
                     {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
                 ],
                 water: [
                     {en:"Well Drilling", ru:"Скважина", val:20000}, 
-                    {en:"Reservoir Excavation", ru:"Земляные работы (Резервуар)", val:4000}, 
-                    {en:"KamAZ Transport", ru:"Вывоз грунта (Техника)", val:7000}, 
+                    {en:"Earthworks (Reservoir)", ru:"Земляные работы (Резервуар)", val:4000}, 
+                    {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:7000}, 
                     {en:"Membrane", ru:"Мембрана", val:1400}
                 ],
                 mach: [
                     {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
                     {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
-                    {en:"Weeder", ru:"Фреза приствольная", val:6500}, 
+                    {en:"Orchard Tiller", ru:"Фреза садовая", val:6500}, 
                     {en:"Harrow", ru:"Борона дисковая", val:2500}, 
                     {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
                 ],
@@ -584,8 +599,10 @@
                     {en:"Pumps (3 units)", ru:"Насосы (3 шт)", val:6000}
                 ],
                 opex: [
-                    {en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
-                    {en:"Care & Maintenance", ru:"Уход и работы (Сезонные)", val:22000}, 
+                    {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000},
+                    // Added for consistency with 20/30ha models
+                    {en:"Seasonal Labor", ru:"Сезонные рабочие", val:9000}, 
+                    {en:"Care & Maintenance", ru:"Уход и агро-работы", val:13000}, 
                     {en:"Fertilizers", ru:"Удобрения и СЗР", val:7200}, 
                     {en:"Agronomist", ru:"Агроном", val:15600}, 
                     {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:6800}, 
@@ -600,26 +617,26 @@
             capex: { infra: 166540, water: 64800, machinery: 61500, treesPlusPlanting: 145520, irrPlusPumps: 108000, totalCapex: 546360 },
             details: {
                 infra: [
-                    {en:"House (Office + Storage)", ru:"Дом (Офис + Склад)", val:35000}, 
-                    {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, 
-                    {en:"Gates", ru:"Ворота", val:2500}, 
-                    {en:"Sheds (Extended)", ru:"Навесы (Расширенные)", val:45000}, 
+                    {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
+                    {en:"Logistics Container", ru:"Логистический контейнер", val:6000}, 
+                    {en:"Entry Gates", ru:"Въездная группа (Ворота)", val:2500}, 
+                    {en:"Agro Canopy (Extended)", ru:"Агро-навесы (Расширенные)", val:45000}, 
                     {en:"CCTV + Internet", ru:"Камеры + интернет", val:4040}, 
-                    {en:"Restroom", ru:"Туалет", val:1000}, 
-                    {en:"Pool Fencing", ru:"Забор бассейна", val:3000}, 
+                    {en:"Sanitary Block", ru:"Санузел", val:1000}, 
+                    {en:"Reservoir Perimeter", ru:"Ограждение резервуара", val:3000}, 
                     {en:"Perimeter Fence", ru:"Забор территории", val:30000}, 
                     {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
                 ],
                 water: [
                     {en:"Well Drilling (Deep)", ru:"Скважина (Глубокая)", val:40000}, 
-                    {en:"Reservoir Excavation", ru:"Земляные работы (x2)", val:8000}, 
-                    {en:"KamAZ Transport", ru:"Вывоз грунта (Техника)", val:14000}, 
+                    {en:"Earthworks (Reservoir)", ru:"Земляные работы (x2)", val:8000}, 
+                    {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:14000}, 
                     {en:"Membrane", ru:"Мембрана", val:2800}
                 ],
                 mach: [
                     {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
                     {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
-                    {en:"Weeder", ru:"Фреза приствольная", val:6500}, 
+                    {en:"Orchard Tiller", ru:"Фреза садовая", val:6500}, 
                     {en:"Harrow", ru:"Борона дисковая", val:2500}, 
                     {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
                 ],
@@ -632,9 +649,9 @@
                     {en:"Pumps (4 units)", ru:"Насосы (4 шт)", val:8000}
                 ],
                 opex: [
-                    {en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
-                    {en:"Seasonal Workers", ru:"Сезонные рабочие", val:18000}, 
-                    {en:"Care & Maintenance", ru:"Уход и работы", val:38000}, 
+                    {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
+                    {en:"Seasonal Labor", ru:"Сезонные рабочие", val:18000}, 
+                    {en:"Care & Maintenance", ru:"Уход и агро-работы", val:38000}, 
                     {en:"Fertilizers", ru:"Удобрения и СЗР", val:14400}, 
                     {en:"Agronomist", ru:"Агроном", val:15600}, 
                     {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:10600},
@@ -649,26 +666,26 @@
             capex: { infra: 185060, water: 77200, machinery: 61500, treesPlusPlanting: 218280, irrPlusPumps: 162000, totalCapex: 704040 },
             details: {
                 infra: [
-                    {en:"House (Office + Storage)", ru:"Дом (Офис + Склад)", val:35000}, 
-                    {en:"Container + Delivery", ru:"Контейнер + доставка", val:6000}, 
-                    {en:"Gates", ru:"Ворота", val:2500}, 
-                    {en:"Sheds (Extended)", ru:"Навесы (Расширенные)", val:45000}, 
+                    {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
+                    {en:"Logistics Container", ru:"Логистический контейнер", val:6000}, 
+                    {en:"Entry Gates", ru:"Въездная группа (Ворота)", val:2500}, 
+                    {en:"Agro Canopy (Extended)", ru:"Агро-навесы (Расширенные)", val:45000}, 
                     {en:"CCTV + Internet", ru:"Камеры + интернет", val:6060}, 
-                    {en:"Restroom", ru:"Туалет", val:1000}, 
-                    {en:"Pool Fencing", ru:"Забор бассейна", val:4500}, 
+                    {en:"Sanitary Block", ru:"Санузел", val:1000}, 
+                    {en:"Reservoir Perimeter", ru:"Ограждение резервуара", val:4500}, 
                     {en:"Perimeter Fence", ru:"Забор территории", val:45000}, 
                     {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
                 ],
                 water: [
                     {en:"Well Drilling", ru:"Скважина", val:40000}, 
-                    {en:"Reservoir Excavation", ru:"Земляные работы (x3)", val:12000}, 
-                    {en:"KamAZ Transport", ru:"Вывоз грунта (Техника)", val:21000}, 
+                    {en:"Earthworks (Reservoir)", ru:"Земляные работы (x3)", val:12000}, 
+                    {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:21000}, 
                     {en:"Membrane", ru:"Мембрана", val:4200}
                 ],
                 mach: [
                     {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
                     {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
-                    {en:"Weeder", ru:"Фреза приствольная", val:6500}, 
+                    {en:"Orchard Tiller", ru:"Фреза садовая", val:6500}, 
                     {en:"Harrow", ru:"Борона дисковая", val:2500}, 
                     {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
                 ],
@@ -681,9 +698,9 @@
                     {en:"Pumps (6 units)", ru:"Насосы (6 шт)", val:12000}
                 ],
                 opex: [
-                    {en:"Staff (Guard, Brigadir)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
-                    {en:"Seasonal Workers", ru:"Сезонные рабочие", val:27000}, 
-                    {en:"Care & Maintenance", ru:"Уход и работы", val:55000}, 
+                    {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
+                    {en:"Seasonal Labor", ru:"Сезонные рабочие", val:27000}, 
+                    {en:"Care & Maintenance", ru:"Уход и агро-работы", val:55000}, 
                     {en:"Fertilizers", ru:"Удобрения и СЗР", val:21600}, 
                     {en:"Agronomist", ru:"Агроном", val:15600}, 
                     {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:14400},
@@ -713,7 +730,7 @@
             earlyTitle: "Realistic Biological Timeline", earlyDesc: "Planting in Q4 2026. Rooting in 2027. First commercial harvest in 2029 (Year 3). This conservative modeling eliminates the risk of unmet expectations.",
             chillTitle: "900+ Chill Hours", chillDesc: "Unlike lowland zones (Kurdamir), our foothills guarantee trees a full winter dormancy. This is a critical factor for consistent flowering and crop formation.",
             uvTitle: "UV Impact & Coloration", uvDesc: "Elevation provides 15% more UV radiation. Cherries achieve a premium 'Dark' color. The visual appeal drives export demand.",
-            locTitle: "Location & Climate", locDesc: "Coordinates: 40.7833, 48.1500. Secured Land. Secured Water.",
+            locTitle: "Location & Climate", locDesc: "Coordinates: 40.6049, 48.1523. Secured Land. Secured Water.",
             wHum: "Humidity", wWind: "Wind", wPress: "Pressure", wSoil: "Land Status", landStat: "Title Deed (Kupcha)", wWater: "Water Source", wWell: "Well + Reservoir",
             riskTitle: "Risk Mitigation Framework", riskSub: "Risks are managed through location selection, technological expertise, and government-backed instruments.",
             r1: "<b>Location Hedge:</b> Ismayilli foothills have naturally low hail probability compared to steppe zones.",
@@ -749,7 +766,7 @@
             earlyTitle: "Реалистичный Биологический Цикл", earlyDesc: "Посадка в Q4 2026. Укоренение в 2027. Первый коммерческий урожай в 2029 (3-й год). Консервативное моделирование исключает риск завышенных ожиданий.",
             chillTitle: "900+ Часов Холода", chillDesc: "В отличие от равнинных зон (Кюрдамир), наше предгорье гарантирует деревьям полноценный зимний покой. Критический фактор для цветения.",
             uvTitle: "УФ-Удар и Окрас", uvDesc: "Высота дает на 15% больше ультрафиолета. Черешня получает премиальный темный цвет, что стимулирует экспортный спрос.",
-            locTitle: "Локация и Климат", locDesc: "Координаты: 40.7833, 48.1500. Исмаиллы. Земля и Вода обеспечены.",
+            locTitle: "Локация и Климат", locDesc: "Координаты: 40.6049, 48.1523. Исмаиллы. Земля и Вода обеспечены.",
             wHum: "Влажность", wWind: "Ветер", wPress: "Давление", wSoil: "Земля", landStat: "Купчая (Частная)", wWater: "Вода", wWell: "Скважина + Резервуар",
             riskTitle: "Управление Рисками", riskSub: "Риски управляются через выбор локации, технологическую экспертизу и государственные инструменты.",
             r1: "<b>Хеджирование локацией:</b> Предгорье Исмаиллы имеет природно низкую вероятность града по сравнению со степными зонами.",
@@ -791,8 +808,8 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     
     async function updateWeather() {
-        const lat = 40.7833; // Center of Ismayilli district for better accuracy
-        const lon = 48.1500;
+        const lat = 40.6049; 
+        const lon = 48.1523;
         const now = new Date();
         const locale = currentLang === 'ru' ? 'ru-RU' : 'en-US';
         const options = { weekday: 'short', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
@@ -861,8 +878,13 @@
     function toggleDetails(id) {
         const detailsEl = document.getElementById('details-' + id);
         const rowEl = detailsEl.previousElementSibling;
-        document.querySelectorAll('.fin-details').forEach(el => { if(el.id !== 'details-' + id) { el.classList.remove('open'); el.previousElementSibling.classList.remove('active'); } });
-        detailsEl.classList.toggle('open'); rowEl.classList.toggle('active');
+        
+        // Auto-close others? Optional. Let's keep others open for comparison or close them for clean look.
+        // Uncomment next line to auto-close others
+        // document.querySelectorAll('.fin-details').forEach(el => { if(el.id !== 'details-' + id) { el.classList.remove('open'); el.previousElementSibling.classList.remove('active'); } });
+        
+        detailsEl.classList.toggle('open'); 
+        rowEl.classList.toggle('active');
     }
 
     function renderDetails(id, items) {
