@@ -139,16 +139,13 @@
         .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-contrast); color: white; padding: 16px 40px; border-radius: 100px; font-weight: 700; text-decoration: none; margin-top: 2rem; transition: 0.3s; }
         .cta-btn:hover { transform: scale(1.05); background: var(--primary); box-shadow: 0 10px 20px rgba(5,150,105,0.2); }
 
-        /* --- MOBILE ADAPTATION --- */
         @media(max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
             .hero-metrics { grid-template-columns: repeat(2, 1fr); }
             .bento-grid, .fin-grid, .partners-grid { grid-template-columns: 1fr; }
             .bento-item.span-2, .bento-item.span-3 { grid-column: span 1; }
-            .section-title { font-size: 1.8rem; }
-            .section-desc { font-size: 1rem; }
-
-            /* NAV FIX: Horizontal Scrollable Links */
+            
+            /* FIX: Mobile Menu - Horizontal Scroll */
             .nav-inner { flex-direction: column; align-items: flex-start; gap: 15px; }
             .nav-links { display: flex; overflow-x: auto; width: 100%; padding-bottom: 5px; gap: 15px; -webkit-overflow-scrolling: touch; scroll-padding: 24px; }
             .nav-links::-webkit-scrollbar { display: none; } 
@@ -157,18 +154,11 @@
             .lang-switch { position: absolute; top: 1rem; right: 24px; margin: 0; }
             
             .mobile-nav { display: flex; }
-            
-            /* MAP FIX: Full width on mobile */
-            .map-wrapper { height: auto; display: flex; flex-direction: column; border-radius: 16px; }
-            .map-wrapper iframe { height: 350px; border-radius: 16px 16px 0 0; }
-            .map-overlay { position: relative; border-radius: 0 0 16px 16px; padding: 1rem; top:0; left:0; right:0; bottom:0; grid-template-columns: 1fr 1fr; gap: 10px; }
-            .weather-col { border-right: none; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; }
-            .weather-col:nth-child(even) { border-right: none; }
+            .map-wrapper { height: auto; display: flex; flex-direction: column; }
+            .map-wrapper iframe { height: 350px; }
+            .map-overlay { position: relative; border-radius: 0 0 24px 24px; padding: 1.5rem; top:0; left:0; right:0; bottom:0; grid-template-columns: 1fr 1fr; }
+            .weather-col { border-right: none; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
             .scen-cards { grid-template-columns: 1fr; }
-
-            /* Finance table fix - scrollable content */
-            .fin-table-container { overflow-x: auto; padding: 0; }
-            .fin-table-container > div { min-width: 300px; padding: 0 10px; }
         }
     </style>
 </head>
@@ -295,7 +285,7 @@
             <p class="section-desc">Ismayilli, Azerbaijan. Coordinates: 40.6049, 48.1523.</p>
         </div>
         <div class="map-wrapper reveal">
-            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=40.604977,48.152331&z=12&t=k&output=embed"></iframe>
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=40.604977,48.152331&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
             
             <div class="map-overlay">
                 <div class="weather-col">
@@ -442,11 +432,13 @@
 
                     <div class="fin-row" style="margin-top:20px; border:none; padding-top:10px;"><div style="font-weight:800; font-size:1.1rem;" data-i18n="rowTotalAsk">TOTAL INVESTMENT:</div><div style="font-weight:800; font-size:1.4rem; color:#0F172A;" id="total-investment">-- ₼</div></div>
                 </div>
+                
                 <div style="margin-top: 20px; display:flex; flex-direction:column; gap:10px;">
-                    <div style="font-size:0.9rem; color:#D97706; background:#FEFCE8; border: 1px solid #FEF3C7; padding:15px; border-radius:8px; font-weight:700;">
-                        <i data-lucide="alert-triangle" size="16" style="vertical-align:text-top; margin-right:6px;"></i>
-                        <span data-i18n="landNote"><b>Land (100% Title Deed) is excluded from CAPEX.</b> Purchased directly by the investor.</span>
+                    <div style="font-size:0.8rem; color:#065F46; background:#ECFDF5; padding:15px; border-radius:8px; border: 1px solid #A7F3D0;">
+                        <i data-lucide="check-circle" size="14" style="vertical-align:text-top; margin-right:4px;"></i>
+                        <span data-i18n="landNote">Land (100% Title Deed) is excluded from CAPEX. Purchased directly by the investor.</span>
                     </div>
+
                     <div style="font-size:0.8rem; color:#64748B; background:#F1F5F9; padding:15px; border-radius:8px;">
                         <i data-lucide="info" size="14" style="vertical-align:text-top; margin-right:4px;"></i>
                         <span data-i18n="machNote"><b>Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares.</span>
@@ -614,6 +606,7 @@
                 ],
                 opex: [
                     {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000},
+                    // Added for consistency with 20/30ha models
                     {en:"Seasonal Labor", ru:"Сезонные рабочие", val:9000}, 
                     {en:"Care & Maintenance", ru:"Уход и агро-работы", val:13000}, 
                     {en:"Fertilizers", ru:"Удобрения и СЗР", val:7200}, 
@@ -736,7 +729,8 @@
             heroTitle: 'Institutional-Grade<br><span class="text-gradient">Orchard Project</span>',
             heroSub: "Ismayilli, Azerbaijan. Modular Orchard Blocks (10 / 20 / 30 Ha) of Premium Stone Fruit.<br>Strategic market entry during the regional deficit window.",
             lblEbitda: "EBITDA Margin", subEbitda: "Target at Full Capacity", metROI: "2031", lblSales: "Full Payback", subSales: "Net Profit from 2032", lblGrade: "Export Grade A", subGrade: "Premium Quality", metGrowth: "100%", 
-            lblLand: "Land Ownership", subLand: "100% Title Deed (Kupcha)", // UPDATED LAND TEXT
+            // UPDATED LAND STATUS
+            lblLand: "Land Ownership", subLand: "Title Deed (Kupcha)",
             stratTitle: "The \"First Mover\" Advantage", stratDesc: "Our strategy is structured around the supply deficit window. Selling when the market is empty, before the northern bulk harvest arrives.",
             entryTitle: "Accelerated Market Entry", entryDesc: "The northern regions (Quba-Khachmaz) are the main producers, but they harvest 2-3 weeks later. We enter the market in May-June when supply is structurally low and prices are at their peak (60-80% premium).",
             logTitle: "No Logistics Burden", logDesc: "Sales are executed through pre-qualified export partners under contractual purchase arrangements (FCA Model). Buyers handle packing and transport. Pre-payment on the field.",
@@ -758,7 +752,8 @@
             fruitApricot: "Apricot", descApricot: "High price at season start and stable demand in the local market.",
             roadTitle: "Project Roadmap", t1Title: "CAPEX Phase", t1Desc: "Land preparation, well drilling, fencing, seedling procurement.", t2Title: "Planting", t2Desc: "Planting trees. Biological development phase begins.", t3Year: "2029 (Year 3)", t3Title: "First Harvest", t3Desc: "Partial harvest (~15%). First Revenue.", t4Title: "Full Capacity", t4Desc: "Max revenue (100%). Net Profit Zone.",
             finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.", areaSel: "Orchard Size:", investTitle: "Investment Structure", rowSecCap: "I. CAPEX (Launch)", rowInfra: "Infrastructure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery", rowTrees: "Saplings + Planting", rowIrr: "Irrigation + Pumps", rowCapex: "TOTAL CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Maintenance until Harvest (3 years)", rowTotalAsk: "TOTAL INVESTMENT:", 
-            landNote: "<b>Land (100% Title Deed) is excluded from CAPEX.</b> Purchased directly by the investor.", // UPDATED LAND NOTE
+            // UPDATED NOTES
+            landNote: "<b>Land (100% Title Deed)</b> is excluded from CAPEX. Purchased directly by the investor.", 
             machNote: "<b>Operational Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.",
             pbTitle: "Payback Analysis:", pbInv: "Investment (2026-2028):", pb29: "2029 (Start):", pb30: "2030 (Growth):", pb31: "2031 (Peak):", pbNet: "Cumulative Net Result (2031):", pbDesc: "Full Return on Investment occurs within 2031. From 2032 onwards, the orchard generates pure net profit.",
             partTitle: "Key Partners & Guarantees", roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.", roleIrr: "Irrigation", descIrr: "World Leader in precision irrigation. Automated drip systems.", roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).", roleAgro: "Management", nameAgro: "Chief Agronomist", descAgro: "Selecting top candidate from shortlist (1 of 3).", revChartTitle: "EBITDA Forecast (₼)", footTitle: "Ready to start the \"Gardens of Caucasus\" story?", footSub: "Land ready. Plan approved. Team assembled.", initiatorRole: "Project Initiator", btnWhatsapp: "Discuss Investment on WhatsApp", ctrlTitle: "Operational Control:", ctrl1: "<b>On-site Team:</b> Foreman & Security (24/7) + CCTV Cameras.", ctrl2: "<b>Expertise:</b> Chief Agronomist monitors technology & nutrition.", ctrl3: "<b>My Supervision:</b> Weekly visits + Full presence during Harvest & Pruning. Control of sales (FCA).",
@@ -774,8 +769,9 @@
             heroBadge: "Преимущество Раннего Урожая • Май-Июнь",
             heroTitle: 'Инвестиционный Проект<br><span class="text-gradient">Интенсивного Сада</span>',
             heroSub: "Исмаиллы, Азербайджан. Модульный сад (10 / 20 / 30 Га) премиальных фруктов.<br>Стратегический выход на рынок в период регионального дефицита.",
-            lblEbitda: "Маржа EBITDA", subEbitda: "На пике мощности (2031+)", metROI: "2031", lblSales: "Полная Окупаемость", subSales: "Чистая прибыль с 2032", lblGrade: "Экспортный Сорт А", subGrade: "Стремимся к 100%", 
-            lblLand: "Статус Земли", subLand: "100% Купчая (Частная)", // UPDATED LAND TEXT
+            lblEbitda: "Маржа EBITDA", subEbitda: "На пике мощности (2031+)", metROI: "2031", lblSales: "Полная Окупаемость", subSales: "Чистая прибыль с 2032", lblGrade: "Экспортный Сорт А", subGrade: "Стремимся к 100%", metGrowth: "100%", 
+            // UPDATED LAND STATUS
+            lblLand: "Статус Земли", subLand: "Купчая (Частная)",
             stratTitle: "Преимущество \"Первого Хода\"", stratDesc: "Наша стратегия построена на окне дефицита предложения. Продаем, когда рынок пуст, до прихода валового объема с севера.",
             entryTitle: "Ускоренный выход на рынок", entryDesc: "Северные регионы (Губа-Хачмаз) собирают урожай на 2-3 недели позже. Мы выходим на рынок в мае-июне, когда предложение структурно низкое, а цены максимальны (премия 60-80%).",
             logTitle: "Без Логистической Нагрузки", logDesc: "Продажи через квалифицированных экспортеров по контрактам (модель FCA Сад). Покупатель берет на себя упаковку и транспорт. Предоплата на поле.",
@@ -797,7 +793,8 @@
             fruitApricot: "Абрикос", descApricot: "Высокая цена на старте сезона и устойчивый спрос на местном рынке.",
             roadTitle: "Дорожная карта проекта", t1Title: "CAPEX Фаза", t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.", t2Title: "Посадка Сада", t2Desc: "Закладка деревьев. Начало фазы биологического развития.", t3Year: "2029 (3-й год)", t3Title: "Первый Урожай", t3Desc: "Частичный сбор (~15%). Первая выручка.", t4Title: "Полная мощность", t4Desc: "Максимальная выручка (100%). Зона чистой прибыли.",
             finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Полная детализация CAPEX и OPEX. Окупаемость 2031 год.", areaSel: "Площадь Сада:", investTitle: "Структура Инвестиций", rowSecCap: "I. CAPEX (Запуск)", rowInfra: "Инфраструктура", rowWater: "Вода (Скважина + Резервуар)", rowMach: "Техника", rowTrees: "Саженцы + Посадка", rowIrr: "Орошение + Насосы", rowCapex: "ИТОГО CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Содержание до 1-й выручки (3 года)", rowTotalAsk: "ВСЕГО ИНВЕСТИЦИИ:", 
-            landNote: "<b>Земля (100% Купчая) не входит в расчет CAPEX.</b> Приобретается инвестором.", // UPDATED LAND NOTE
+            // UPDATED NOTES
+            landNote: "<b>Земля (100% Частная )</b> не входит в расчет CAPEX. Приобретается инвестором.", 
             machNote: "<b>Операционная Эффективность:</b> Один трактор обеспечивает достаточную мощность до 30 га благодаря последовательному графику работ. Это оптимизирует использование капитала.",
             pbTitle: "Анализ Окупаемости:", pbInv: "Инвестиции (2026-2028):", pb29: "2029 (Старт):", pb30: "2030 (Рост):", pb31: "2031 (Пик):", pbNet: "Накопленный Чистый Итог (2031):", pbDesc: "Полный возврат инвестиций происходит в течение 2031 года. С 2032 года сад генерирует чистую прибыль.",
             partTitle: "Партнеры и Гарантии", roleSap: "Саженцы", nameSap: "Испания / Турция", descSap: "Гарантия приживаемости 95%.", roleIrr: "Орошение", descIrr: "Мировой лидер в точном орошении. Автоматика.", roleIns: "Страхование", descIns: "Гос. покрытие рисков (Град, Пожар, Ветер).", roleAgro: "Управление", nameAgro: "Главный Агроном", descAgro: "Выбор лучшего кандидата из шорт-листа (1 из 3).", revChartTitle: "Прогноз EBITDA (₼)", footTitle: "Готовы начать историю \"Gardens of Caucasus\"?", footSub: "Земля готова. План утвержден. Команда собрана.", initiatorRole: "Инициатор Проекта", btnWhatsapp: "Обсудить Инвестиции в WhatsApp", ctrlTitle: "Операционный Контроль:", ctrl1: "<b>Команда на месте:</b> Бригадир и Охрана (24/7) + Видеонаблюдение.", ctrl2: "<b>Агрономия:</b> Главный агроном контролирует технологию.", ctrl3: "<b>Мой контроль:</b> Еженедельные визиты + Полное присутствие в сезон сбора. Контроль сбыта (FCA).",
@@ -814,13 +811,7 @@
         currentLang = lang;
         document.documentElement.lang = lang;
         document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.remove('active'); if(btn.innerText.toLowerCase() === lang) btn.classList.add('active'); });
-        document.querySelectorAll('[data-i18n]').forEach(el => { 
-            const key = el.getAttribute('data-i18n'); 
-            if(translations[lang][key]) {
-                // Special handling for HTML content like bold tags
-                el.innerHTML = translations[lang][key]; 
-            }
-        });
+        document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(translations[lang][key]) el.innerHTML = translations[lang][key]; });
         updateWeather(); updateFinanceView(); updateChartLabel();
     }
     
@@ -843,10 +834,6 @@
         if(dateEl) dateEl.innerText = now.toLocaleDateString(locale, options);
 
         try {
-            // Updated map URL to ensure satellite view
-            const mapIframe = document.querySelector('.map-wrapper iframe');
-            mapIframe.src = `https://maps.google.com/maps?q=${lat},${lon}&z=12&t=k&output=embed`;
-
             const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&wind_speed_unit=ms&timezone=auto`);
             if (!response.ok) throw new Error('Weather API Error');
             
@@ -907,6 +894,10 @@
     function toggleDetails(id) {
         const detailsEl = document.getElementById('details-' + id);
         const rowEl = detailsEl.previousElementSibling;
+        
+        // Auto-close others? Optional. Let's keep others open for comparison or close them for clean look.
+        // Uncomment next line to auto-close others
+        // document.querySelectorAll('.fin-details').forEach(el => { if(el.id !== 'details-' + id) { el.classList.remove('open'); el.previousElementSibling.classList.remove('active'); } });
         
         detailsEl.classList.toggle('open'); 
         rowEl.classList.toggle('active');
