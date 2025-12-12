@@ -113,10 +113,6 @@
         .scen-btn.active { background: white; color: var(--primary); box-shadow: 0 4px 12px rgba(5,150,105,0.15); }
         .scen-btn.active { color: #0F172A; }
 
-        .payback-box { margin-top: 1.5rem; padding: 1.5rem; background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 16px; box-shadow: var(--shadow); }
-        .payback-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; color: #475569; }
-        .payback-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 800; margin-top: 15px; padding-top: 15px; border-top: 2px dashed rgba(0,0,0,0.1); }
-
         .methodology-wrapper { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1.5rem; }
         .chart-caption { font-size: 0.8rem; color: #64748B; font-style: italic; margin-top: 10px; text-align: center; }
         
@@ -141,6 +137,110 @@
         footer { border-top: 1px solid rgba(0,0,0,0.1); padding: 80px 0; margin-top: 80px; text-align: center; background: white; }
         .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-contrast); color: white; padding: 16px 40px; border-radius: 100px; font-weight: 700; text-decoration: none; margin-top: 2rem; transition: 0.3s; }
         .cta-btn:hover { transform: scale(1.05); background: var(--primary); box-shadow: 0 10px 20px rgba(5,150,105,0.2); }
+
+        /* CASH FLOW DASHBOARD STYLES */
+        .cashflow-dashboard {
+            background: #fff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .cf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cf-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #F1F5F9;
+            color: #64748B;
+        }
+        .cf-badge.green { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+        .cf-badge.orange { background: #FFF7ED; color: #EA580C; border: 1px solid #FED7AA; }
+
+        .cf-years {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .cf-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 12px;
+            transition: 0.3s;
+        }
+        .cf-card.highlight {
+            background: #F0FDF4;
+            border-color: #BBF7D0;
+        }
+
+        .cf-year-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .cf-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+
+        .cf-lbl {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #64748B;
+        }
+        .cf-lbl i { width: 14px; height: 14px; }
+
+        .val-plus { color: #059669; font-weight: 600; }
+        .val-minus { color: #EF4444; font-weight: 600; }
+
+        .cf-divider {
+            height: 1px;
+            background: #CBD5E1;
+            margin: 8px 0;
+        }
+
+        .cf-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #1E293B;
+        }
+
+        .cf-footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #E2E8F0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cf-summary-item { text-align: center; }
+        .cf-sm-label { font-size: 0.75rem; color: #64748B; margin-bottom: 4px; font-weight: 600;}
+        .cf-sm-val { font-size: 1.2rem; font-weight: 800; color: #1E293B; }
+        .cf-sm-val.negative { color: #EF4444; }
+        .cf-arrow { color: #CBD5E1; font-size: 1.5rem; }
 
         @media(max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
@@ -169,6 +269,10 @@
             .map-overlay { position: relative; border-radius: 0 0 24px 24px; padding: 1.5rem; top:0; left:0; right:0; bottom:0; grid-template-columns: 1fr 1fr; }
             .weather-col { border-right: none; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
             .scen-cards { grid-template-columns: 1fr; }
+            
+            .cf-years { grid-template-columns: 1fr; }
+            .cf-footer { flex-direction: column; gap: 10px; }
+            .cf-arrow { transform: rotate(90deg); }
         }
     </style>
 </head>
@@ -535,17 +639,75 @@
                     </div>
                 </div>
 
-                <div class="payback-box">
-                    <div style="font-weight: 700; color: #0F172A; margin-bottom: 10px; font-size: 0.9rem;" data-i18n="pbTitle">Payback Analysis:</div>
-                    <div class="payback-row"><span data-i18n="pbInv">Investment (2026-2028):</span><span style="color:#ef4444;" id="pb-investment">-- ₼</span></div>
-                    <div style="height:1px; background:rgba(0,0,0,0.1); margin:8px 0;"></div>
-                    <div class="payback-row"><span data-i18n="pb29">2029 (Start):</span><span style="color:#059669;" id="pb-2029">-- ₼</span></div>
-                    <div class="payback-row"><span data-i18n="pb30">2030 (Growth):</span><span style="color:#059669;" id="pb-2030">-- ₼</span></div>
-                    <div class="payback-row"><span data-i18n="pb31">2031 (Peak):</span><span style="color:#059669;" id="pb-2031">-- ₼</span></div>
-                    
-                    <div class="payback-total">
-                        <span id="pb-label" data-i18n="pbNet">Cumulative Net Result (2031):</span>
-                        <span id="pb-net">-- ₼</span>
+                <div class="cashflow-dashboard">
+                    <div class="cf-header">
+                        <h4 style="margin:0; font-size:1.1rem; color:#0F172A;" data-i18n="cfTitle">Cash Flow Dynamics</h4>
+                        <div class="cf-badge" id="cf-status-badge">Calculating...</div>
+                    </div>
+
+                    <div class="cf-years">
+                        <div class="cf-card">
+                            <div class="cf-year-label">2029 (Start 15%)</div>
+                            <div class="cf-row">
+                                <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
+                                <span class="cf-val val-plus" id="cf-rev-29">--</span>
+                            </div>
+                            <div class="cf-row">
+                                <span class="cf-lbl"><i data-lucide="arrow-up-right"></i> OPEX</span>
+                                <span class="cf-val val-minus" id="cf-opex-29">-166 600 ₼</span>
+                            </div>
+                            <div class="cf-divider"></div>
+                            <div class="cf-total-row">
+                                <span data-i18n="cfNet">Net (EBITDA):</span>
+                                <span class="cf-total-val" id="cf-net-29">--</span>
+                            </div>
+                        </div>
+
+                        <div class="cf-card">
+                            <div class="cf-year-label">2030 (Growth 50%)</div>
+                            <div class="cf-row">
+                                <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
+                                <span class="cf-val val-plus" id="cf-rev-30">--</span>
+                            </div>
+                            <div class="cf-row">
+                                <span class="cf-lbl"><i data-lucide="arrow-up-right"></i> OPEX</span>
+                                <span class="cf-val val-minus">-166 600 ₼</span>
+                            </div>
+                            <div class="cf-divider"></div>
+                            <div class="cf-total-row">
+                                <span data-i18n="cfNet">Net (EBITDA):</span>
+                                <span class="cf-total-val" id="cf-net-30">--</span>
+                            </div>
+                        </div>
+
+                        <div class="cf-card highlight">
+                            <div class="cf-year-label">2031 (Peak 100%)</div>
+                            <div class="cf-row">
+                                <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
+                                <span class="cf-val val-plus" id="cf-rev-31">--</span>
+                            </div>
+                            <div class="cf-row">
+                                <span class="cf-lbl"><i data-lucide="arrow-up-right"></i> OPEX</span>
+                                <span class="cf-val val-minus">-166 600 ₼</span>
+                            </div>
+                            <div class="cf-divider"></div>
+                            <div class="cf-total-row">
+                                <span data-i18n="cfNet">Net (EBITDA):</span>
+                                <span class="cf-total-val" id="cf-net-31">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cf-footer">
+                        <div class="cf-summary-item">
+                            <div class="cf-sm-label" data-i18n="cfInvested">Total Invested (2026-28)</div>
+                            <div class="cf-sm-val negative" id="cf-total-invest">--</div>
+                        </div>
+                        <div class="cf-arrow">→</div>
+                        <div class="cf-summary-item">
+                            <div class="cf-sm-label" id="cf-result-label">Balance 2031</div>
+                            <div class="cf-sm-val" id="cf-final-balance">--</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -689,8 +851,6 @@
             rowOpDesc: "Maintenance until Harvest (x3 years)", rowTotalAsk: "TOTAL INVESTMENT:", 
             landNote: "<b>Land (100% Title Deed)</b> is excluded from CAPEX. Purchased directly by the investor.", 
             machNote: "<b>Operational Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.",
-            pbTitle: "Payback Analysis:", pbInv: "Investment (2026-2028):", pb29: "2029 (Start):", pb30: "2030 (Growth):", pb31: "2031 (Peak):", pbNet: "Cumulative Net Result (2031):", 
-            pbRem: "Remaining Balance (2031):", // New key for negative balance
             
             partTitle: "Key Partners & Guarantees", roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.", roleIrr: "Irrigation", descIrr: "World Leader in precision irrigation. Automated drip systems.", roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).", 
             roleAgro: "Leadership", nameAgro: "Initiator & Chief Agronomist", descAgro: "Strategic supervision & Technological control.", 
@@ -701,7 +861,10 @@
             metScenTitle: "Scenario Matrix", metTableTitle: "Revenue Logic (Matrix)",
             dPess: "Min Yield, Min Price. 25% Loss (Weather).", dReal: "Avg Yield, Avg Price. Standard Norms.", dOpt: "Max Yield, Max Price. Perfect Season.",
             thCrop: "Crop", thYield: "Yield (t/ha)<br><span style='font-size:0.7em; font-weight:400'>Min / Avg / Max</span>", thPrice: "Price (₼/kg)<br><span style='font-size:0.7em; font-weight:400'>Min / Avg / Max</span>",
-            sourceText: "<b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards."
+            sourceText: "<b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards.",
+            
+            // CASH FLOW TRANSLATIONS
+            cfTitle: "Cash Flow Dynamics", cfRev: "Revenue", cfNet: "Net (EBITDA):", cfInvested: "Total Invested"
         },
         ru: {
             navStrategy: "Стратегия", navLocation: "Локация", navProduction: "Производство", navFinance: "Финансы", navRisk: "Риски", navContact: "Связаться", btnMob: "Связаться с Инициатором",
@@ -734,8 +897,6 @@
             rowOpDesc: "Содержание до 1-й выручки (x3 года)", rowTotalAsk: "ВСЕГО ИНВЕСТИЦИИ:", 
             landNote: "<b>Земля (100% Частная )</b> не входит в расчет CAPEX. Приобретается инвестором.", 
             machNote: "<b>Операционная Эффективность:</b> Один трактор обеспечивает достаточную мощность до 30 га благодаря последовательному графику работ. Это оптимизирует использование капитала.",
-            pbTitle: "Анализ Окупаемости:", pbInv: "Инвестиции (2026-2028):", pb29: "2029 (Старт):", pb30: "2030 (Рост):", pb31: "2031 (Пик):", pbNet: "Накопленный Чистый Итог (2031):", 
-            pbRem: "Остаток до окупаемости (2031):", // New key for negative balance
             
             partTitle: "Партнеры и Гарантии", roleSap: "Саженцы", nameSap: "Испания / Турция", descSap: "Гарантия приживаемости 95%.", roleIrr: "Орошение", descIrr: "Мировой лидер в точном орошении. Автоматика.", roleIns: "Страхование", descIns: "Гос. покрытие рисков (Град, Пожар, Ветер).", 
             roleAgro: "Руководство", nameAgro: "Инициатор и Главный Агроном", descAgro: "Стратегическое управление и Технологический контроль.", 
@@ -746,7 +907,10 @@
             metScenTitle: "Матрица Сценариев", metTableTitle: "Логика Выручки (Матрица)",
             dPess: "Урожай Min, Цена Min. Потеря 25% (Погода).", dReal: "Урожай Средний, Цена Средняя. Стандартные нормы.", dOpt: "Урожай Max, Цена Max. Идеальный сезон.",
             thCrop: "Культура", thYield: "Урожайность (т/га)<br><span style='font-size:0.7em; font-weight:400'>Мин / Сред / Макс</span>", thPrice: "Цена (₼/кг)<br><span style='font-size:0.7em; font-weight:400'>Мин / Сред / Макс</span>",
-            sourceText: "<b>Источники Данных:</b> Урожайность и цены основаны на официальных агрономических нормах Азербайджана, полевых наблюдениях в Исмаиллинском районе, статистике экспортного рынка и стандартах Netafim."
+            sourceText: "<b>Источники Данных:</b> Урожайность и цены основаны на официальных агрономических нормах Азербайджана, полевых наблюдениях в Исмаиллинском районе, статистике экспортного рынка и стандартах Netafim.",
+            
+            // CASH FLOW TRANSLATIONS
+            cfTitle: "Денежный Поток (Cash Flow)", cfRev: "Выручка", cfNet: "Чистыми (EBITDA):", cfInvested: "Инвестиции (2026-28)"
         }
     };
 
@@ -873,28 +1037,61 @@
         renderDetails('irr', model.details.irr);
         renderDetails('opex', model.details.opex);
 
-        // Update Payback with SCENARIO DATA
-        document.getElementById('pb-investment').innerText = '-' + formatAz(model.totalInvestment);
-        document.getElementById('pb-2029').innerText = (scenarioData[0] >= 0 ? '+' : '') + formatAz(scenarioData[0]);
-        document.getElementById('pb-2029').style.color = scenarioData[0] >= 0 ? '#059669' : '#ef4444';
+        // --- NEW CASH FLOW LOGIC ---
+        const OPEX_YEAR = 166600;
+        const INVEST_TOTAL = model.totalInvestment;
 
-        document.getElementById('pb-2030').innerText = '+' + formatAz(scenarioData[1]);
-        document.getElementById('pb-2031').innerText = '+' + formatAz(scenarioData[2]);
+        // 1. Get Revenues (Gross) from our calculated scenarios logic
+        // EBITDA = Gross - OPEX. So Gross = EBITDA + OPEX.
+        const net29 = scenarioData[0]; // EBITDA 2029
+        const net30 = scenarioData[1]; // EBITDA 2030
+        const net31 = scenarioData[2]; // EBITDA 2031
         
-        const cumulative = -model.totalInvestment + scenarioData[0] + scenarioData[1] + scenarioData[2];
-        const pbNetEl = document.getElementById('pb-net');
-        const pbLabelEl = document.getElementById('pb-label');
+        const gross29 = net29 + OPEX_YEAR;
+        const gross30 = net30 + OPEX_YEAR;
+        const gross31 = net31 + OPEX_YEAR;
 
-        // SMART LOGIC: If negative, show as "Remaining Balance" in Orange. If positive, "Net Result" in Green.
+        // 2. Update UI Cards
+        // 2029
+        document.getElementById('cf-rev-29').innerText = '+' + formatAz(gross29);
+        document.getElementById('cf-net-29').innerText = (net29 >= 0 ? '+' : '') + formatAz(net29);
+        document.getElementById('cf-net-29').style.color = net29 >= 0 ? '#059669' : '#EF4444';
+
+        // 2030
+        document.getElementById('cf-rev-30').innerText = '+' + formatAz(gross30);
+        document.getElementById('cf-net-30').innerText = '+' + formatAz(net30); // Always positive in all scenarios
+
+        // 2031
+        document.getElementById('cf-rev-31').innerText = '+' + formatAz(gross31);
+        document.getElementById('cf-net-31').innerText = '+' + formatAz(net31);
+
+        // 3. Footer Summary
+        const cumulative = -INVEST_TOTAL + net29 + net30 + net31;
+        
+        document.getElementById('cf-total-invest').innerText = '-' + formatAz(INVEST_TOTAL);
+        const balEl = document.getElementById('cf-final-balance');
+        const lblEl = document.getElementById('cf-result-label');
+        
         if (cumulative < 0) {
-            pbNetEl.innerText = formatAz(cumulative); // Just the number (with minus)
-            pbNetEl.style.color = '#EA580C'; // Orange
-            // Change Label
-            pbLabelEl.innerText = currentLang === 'ru' ? translations.ru.pbRem : translations.en.pbRem;
+            balEl.innerText = formatAz(cumulative); // Still owing
+            balEl.style.color = '#EA580C'; // Orange
+            lblEl.innerText = currentLang === 'ru' ? "Остаток к возврату (2031)" : "Balance to Return (2031)";
         } else {
-            pbNetEl.innerText = '+' + formatAz(cumulative);
-            pbNetEl.style.color = 'var(--primary)'; // Green
-            pbLabelEl.innerText = currentLang === 'ru' ? translations.ru.pbNet : translations.en.pbNet;
+            balEl.innerText = '+' + formatAz(cumulative);
+            balEl.style.color = '#059669'; // Green
+            lblEl.innerText = currentLang === 'ru' ? "Чистая Прибыль (2031)" : "Net Profit (2031)";
+        }
+
+        // 4. SMART BADGE LOGIC
+        const badge = document.getElementById('cf-status-badge');
+        if (net29 < 0) {
+            // Pessimist case: Loss in 2029
+            badge.innerText = currentLang === 'ru' ? "⚡ Сад кормит себя с 2030 года" : "⚡ Self-sustaining from 2030";
+            badge.className = "cf-badge orange";
+        } else {
+            // Realist/Optimist
+            badge.innerText = currentLang === 'ru' ? "✅ Сад кормит себя с 1-го урожая" : "✅ Self-sustaining from 1st Harvest";
+            badge.className = "cf-badge green";
         }
 
         // Update Chart
