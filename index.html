@@ -122,12 +122,25 @@
         .scen-card.real { border-color: var(--primary); background: rgba(5,150,105,0.03); }
         .scen-title { font-weight: 800; margin-bottom: 6px; display: block; }
         
-        .logic-table-wrapper { overflow-x: auto; margin-bottom: 20px; border-radius: 12px; border: 1px solid #E2E8F0; }
-        .logic-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 400px; }
-        .logic-table th { text-align: left; padding: 12px; border-bottom: 2px solid #E2E8F0; color: #64748B; font-weight: 700; background: #F8FAFC; }
-        .logic-table td { padding: 12px; border-bottom: 1px solid #E2E8F0; color: #1E293B; }
-        .logic-table tr:last-child td { border-bottom: none; }
+        /* DETAIL TABLES STYLES */
+        .year-tables-container { margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+        .year-table-card { background: #fff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .year-header { background: #F8FAFC; padding: 12px 20px; border-bottom: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; }
+        .year-title { font-weight: 800; color: #1E293B; font-size: 0.95rem; }
+        .year-badge { font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; background: #E2E8F0; color: #64748B; }
         
+        .dt-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .dt-table th { text-align: left; padding: 10px 20px; color: #64748B; font-weight: 600; border-bottom: 1px solid #F1F5F9; font-size: 0.75rem; text-transform: uppercase; }
+        .dt-table td { padding: 10px 20px; border-bottom: 1px solid #F1F5F9; color: #334155; }
+        .dt-table tr:last-child td { border-bottom: none; }
+        .dt-num { font-weight: 700; color: #0F172A; text-align: right; }
+        
+        .dt-row-total { background: #F0FDF4; }
+        .dt-row-total td { font-weight: 800; color: #059669; border-top: 2px solid #BBF7D0; }
+        .dt-row-opex { background: #FEF2F2; color: #B91C1C; }
+        .dt-row-net { background: #F8FAFC; border-top: 2px solid #E2E8F0; }
+        .dt-net-val { font-size: 1rem; font-weight: 800; color: #1E293B; }
+
         .source-badge { display: flex; align-items: flex-start; gap: 10px; background: #F0FDF4; border: 1px solid #DCFCE7; padding: 15px; border-radius: 12px; font-size: 0.8rem; color: #166534; }
 
         .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
@@ -580,7 +593,6 @@
 
                 <div class="methodology-wrapper">
                     <h4 style="font-size: 0.9rem; font-weight: 800; color:#1E293B; margin-bottom: 10px;" data-i18n="metScenTitle">Scenario Matrix</h4>
-                    
                     <div class="scen-cards">
                         <div class="scen-card">
                             <span class="scen-title" style="color:#64748B;" data-i18n="sPess">Pessimist</span>
@@ -593,48 +605,6 @@
                         <div class="scen-card">
                             <span class="scen-title" style="color:#D97706;" data-i18n="sOpt">Optimist</span>
                             <div data-i18n="dOpt">Max Yield, Max Price. Perfect Season.</div>
-                        </div>
-                    </div>
-
-                    <h4 style="font-size: 0.9rem; font-weight: 800; color:#1E293B; margin-bottom: 10px;" data-i18n="metTableTitle">Revenue Logic (Matrix)</h4>
-                    <div class="logic-table-wrapper">
-                        <table class="logic-table">
-                            <thead>
-                                <tr>
-                                    <th data-i18n="thCrop">Crop</th>
-                                    <th data-i18n="thYield">Yield (t/ha)<br><span style="font-size:0.7em; font-weight:400">Min / Avg / Max</span></th>
-                                    <th data-i18n="thPrice">Price (₼/kg)<br><span style="font-size:0.7em; font-weight:400">Min / Avg / Max</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td data-i18n="fruitCherry">Cherry</td>
-                                    <td>10 / 14 / 20</td>
-                                    <td>5.0 / 7.0 / 9.0</td>
-                                </tr>
-                                <tr>
-                                    <td data-i18n="fruitNect">Nectarine</td>
-                                    <td>20 / 30 / 40</td>
-                                    <td>1.8 / 2.0 / 2.2</td>
-                                </tr>
-                                <tr>
-                                    <td data-i18n="fruitPeach">Peach</td>
-                                    <td>20 / 30 / 40</td>
-                                    <td>2.0 / 2.1 / 2.2</td>
-                                </tr>
-                                <tr>
-                                    <td data-i18n="fruitApricot">Apricot</td>
-                                    <td>10 / 15 / 20</td>
-                                    <td>2.2 / 3.0 / 4.0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="source-badge">
-                        <i data-lucide="database" size="18" style="color:var(--primary); flex-shrink:0;"></i>
-                        <div data-i18n="sourceText">
-                            <b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards.
                         </div>
                     </div>
                 </div>
@@ -710,6 +680,9 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="year-tables-container" id="detailed-breakdown">
+                    </div>
             </div>
         </div>
     </div>
@@ -759,8 +732,9 @@
     // --- DATA MODELS ---
     const modelData = {
         areaHa: 30,
-        // CAPEX = 704 040 ₼
+        // CAPEX (2026) = 704 040 ₼
         capex: { infra: 185060, water: 77200, machinery: 61500, treesPlusPlanting: 218280, irrPlusPumps: 162000, totalCapex: 704040 },
+        
         details: {
             infra: [
                 {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
@@ -774,10 +748,10 @@
                 {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
             ],
             water: [
-                {en:"Well Drilling", ru:"Скважина", val:20000}, // Fixed: 20k
+                {en:"Well Drilling", ru:"Скважина", val:20000}, 
                 {en:"Earthworks (Reservoir)", ru:"Земляные работы (x3)", val:12000}, 
                 {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:21000}, 
-                {en:"Membrane", ru:"Мембрана", val:24200} // Fixed: 24.2k
+                {en:"Membrane", ru:"Мембрана", val:24200}
             ],
             mach: [
                 {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
@@ -795,7 +769,7 @@
                 {en:"Pumps (6 units)", ru:"Насосы (6 шт)", val:12000}
             ],
             opex: [
-                // Annual sum: 166,600
+                // Annual sum: 166,600. Total 3 years: 499,800
                 {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
                 {en:"Seasonal Labor", ru:"Сезонные рабочие", val:27000}, 
                 {en:"Care & Maintenance", ru:"Уход и агро-работы", val:55000}, 
@@ -805,17 +779,79 @@
                 {en:"Inventory", ru:"Инвентарь", val:9000}
             ]
         },
-        // 166600 * 3 = 499800. Total Inv = 1203840.
-        opexTotal: 499800, totalInvestment: 1203840,
         
-        // RECALCULATED SCENARIOS (EBITDA)
-        // Pessimist (No risk -25%, Starts at 20%): 2029 (+54k), 2030 (+495k), 2031 (+937k)
-        // Realist (Starts at 20%): 2029 (+224k), 2030 (+1m), 2031 (+1.79m)
-        // Optimist (Starts at 20%): 2029 (+462k), 2030 (+1.7m), 2031 (+2.97m)
+        opexTotal: 499800, 
+        totalInvestment: 1203840,
+        
+        // SCENARIOS (NET / EBITDA)
         scenarios: { 
-            pess: [54200, 495800, 937400], 
-            real: [224600, 1007000, 1789400], 
-            opt: [462200, 1720400, 2977400] 
+            pess: [-35800, 175400, 637400], 
+            real: [100700, 513800, 1512200], 
+            opt: [231800, 887000, 2474600] 
+        },
+
+        // DETAILED STATS (Expanded logic for tables)
+        detailedStats: {
+            pess: {
+                y29: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×3.5=42 t", p:1.8, rev:75600},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×3.5=21 t", p:2.0, rev:42000},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×1.0=6 t", p:2.2, rev:13200},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"0 t", p:0, rev:0}
+                ],
+                y30: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×9=108 t", p:1.8, rev:194400},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×9=54 t", p:2.0, rev:108000},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×3=18 t", p:2.2, rev:39600},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"0 t", p:0, rev:0}
+                ],
+                y31: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×18=216 t", p:1.8, rev:388800},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×18=108 t", p:2.0, rev:216000},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×6=36 t", p:2.2, rev:79200},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"6×4=24 t", p:5.0, rev:120000}
+                ]
+            },
+            real: {
+                y29: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×6.0=72 t", p:2.0, rev:144000},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×5.5=33 t", p:2.1, rev:69300},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×3.0=18 t", p:3.0, rev:54000},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"0 t", p:0, rev:0}
+                ],
+                y30: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×15=180 t", p:2.0, rev:360000},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×14=84 t", p:2.1, rev:176400},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×8=48 t", p:3.0, rev:144000},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"0 t", p:0, rev:0}
+                ],
+                y31: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×30=360 t", p:2.0, rev:720000},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×28=168 t", p:2.1, rev:352800},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×15=90 t", p:3.0, rev:270000},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"6×8=48 t", p:7.0, rev:336000}
+                ]
+            },
+            opt: {
+                y29: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×7.5=90 t", p:2.2, rev:198000},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×7.0=42 t", p:2.2, rev:92400},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×4.5=27 t", p:4.0, rev:108000},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"0 t", p:0, rev:0}
+                ],
+                y30: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×20=240 t", p:2.2, rev:528000},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×18=108 t", p:2.2, rev:237600},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×12=72 t", p:4.0, rev:288000},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"0 t", p:0, rev:0}
+                ],
+                y31: [
+                    {name: {en:"Nectarine (12ha)", ru:"Нектарин (12 га)"}, eq:"12×38=456 t", p:2.2, rev:1003200},
+                    {name: {en:"Peach (6ha)", ru:"Персик (6 га)"}, eq:"6×35=210 t", p:2.2, rev:462000},
+                    {name: {en:"Apricot (6ha)", ru:"Абрикос (6 га)"}, eq:"6×22=132 t", p:4.0, rev:528000},
+                    {name: {en:"Cherry (6ha)", ru:"Черешня (6 га)"}, eq:"6×12=72 t", p:9.0, rev:648000}
+                ]
+            }
         }
     };
 
@@ -867,7 +903,11 @@
             sourceText: "<b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards.",
             
             // CASH FLOW TRANSLATIONS
-            cfTitle: "Cash Flow Dynamics", cfRev: "Revenue", cfNet: "Net (EBITDA):", cfInvested: "Total Invested"
+            cfTitle: "Cash Flow Dynamics", cfRev: "Revenue", cfNet: "Net (EBITDA):", cfInvested: "Total Invested",
+            
+            // DETAILED TABLES TRANSLATIONS
+            dtHeaderCrop: "Crop (Area)", dtHeaderEq: "Yield Eq", dtHeaderPrice: "Price", dtHeaderRev: "Revenue",
+            dtTotalRev: "TOTAL REVENUE", dtOpex: "OPEX", dtNet: "NET (EBITDA)"
         },
         ru: {
             navStrategy: "Стратегия", navLocation: "Локация", navProduction: "Производство", navFinance: "Финансы", navRisk: "Риски", navContact: "Связаться", btnMob: "Связаться с Инициатором",
@@ -913,7 +953,11 @@
             sourceText: "<b>Источники Данных:</b> Урожайность и цены основаны на официальных агрономических нормах Азербайджана, полевых наблюдениях в Исмаиллинском районе, статистике экспортного рынка и стандартах Netafim.",
             
             // CASH FLOW TRANSLATIONS
-            cfTitle: "Денежный Поток (Cash Flow)", cfRev: "Выручка", cfNet: "Чистыми (EBITDA):", cfInvested: "Инвестиции (2026-28)"
+            cfTitle: "Денежный Поток (Cash Flow)", cfRev: "Выручка", cfNet: "Чистыми (EBITDA):", cfInvested: "Инвестиции (2026-28)",
+            
+            // DETAILED TABLES TRANSLATIONS
+            dtHeaderCrop: "Культура (Площадь)", dtHeaderEq: "Урожай Расчет", dtHeaderPrice: "Цена", dtHeaderRev: "Выручка",
+            dtTotalRev: "ИТОГО ВЫРУЧКА", dtOpex: "OPEX (Расходы)", dtNet: "NET (EBITDA)"
         }
     };
 
@@ -927,7 +971,7 @@
 
         document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.remove('active'); if(btn.innerText.toLowerCase() === lang) btn.classList.add('active'); });
         document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(translations[lang][key]) el.innerHTML = translations[lang][key]; });
-        updateWeather(); updateFinanceView(); updateChartLabel();
+        updateWeather(); updateFinanceView(); updateChartLabel(); updateBreakdownTables();
     }
     
     function updateChartLabel() {
@@ -1020,6 +1064,69 @@
         container.innerHTML = items.map(item => `<div class="detail-item"><span>${currentLang === 'ru' ? item.ru : item.en}</span><span class="detail-val">${formatAz(item.val)}</span></div>`).join('');
     }
 
+    function renderYearTable(yearKey, yearTitle, items) {
+        // Calculate Totals
+        const totalRevenue = items.reduce((sum, item) => sum + item.rev, 0);
+        const opex = 166600;
+        const net = totalRevenue - opex;
+
+        const trs = items.map(item => {
+            return `<tr>
+                <td>${currentLang === 'ru' ? item.name.ru : item.name.en}</td>
+                <td>${item.eq}</td>
+                <td>${item.p.toFixed(2)}</td>
+                <td class="dt-num">${formatAz(item.rev)}</td>
+            </tr>`;
+        }).join('');
+
+        const trans = translations[currentLang];
+
+        return `
+        <div class="year-table-card">
+            <div class="year-header">
+                <div class="year-title">${yearTitle}</div>
+                <div class="year-badge" style="text-transform:uppercase;">${currentScen === 'pess' ? trans.sPess : (currentScen === 'real' ? trans.sReal : trans.sOpt)}</div>
+            </div>
+            <table class="dt-table">
+                <thead>
+                    <tr>
+                        <th width="40%">${trans.dtHeaderCrop}</th>
+                        <th width="25%">${trans.dtHeaderEq}</th>
+                        <th width="15%">${trans.dtHeaderPrice}</th>
+                        <th width="20%" style="text-align:right;">${trans.dtHeaderRev}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${trs}
+                    <tr class="dt-row-total">
+                        <td colspan="3">${trans.dtTotalRev}</td>
+                        <td class="dt-num" style="color:#059669;">${formatAz(totalRevenue)}</td>
+                    </tr>
+                    <tr class="dt-row-opex">
+                        <td colspan="3">${trans.dtOpex}</td>
+                        <td class="dt-num" style="color:#B91C1C;">- ${formatAz(opex)}</td>
+                    </tr>
+                    <tr class="dt-row-net">
+                        <td colspan="3">${trans.dtNet}</td>
+                        <td class="dt-num dt-net-val" style="${net<0 ? 'color:#EF4444' : 'color:#1E293B'}">${formatAz(net)}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        `;
+    }
+
+    function updateBreakdownTables() {
+        const container = document.getElementById('detailed-breakdown');
+        const stats = modelData.detailedStats[currentScen];
+        
+        const html29 = renderYearTable('y29', currentLang==='ru' ? '2029 (Год 3)' : '2029 (Year 3)', stats.y29);
+        const html30 = renderYearTable('y30', currentLang==='ru' ? '2030 (Год 4)' : '2030 (Year 4)', stats.y30);
+        const html31 = renderYearTable('y31', currentLang==='ru' ? '2031 (Год 5 - Полный)' : '2031 (Year 5 - Full)', stats.y31);
+        
+        container.innerHTML = html29 + html30 + html31;
+    }
+
     function updateFinanceView() {
         const model = modelData;
         const scenarioData = model.scenarios[currentScen];
@@ -1040,35 +1147,34 @@
         renderDetails('irr', model.details.irr);
         renderDetails('opex', model.details.opex);
 
-        // --- NEW CASH FLOW LOGIC ---
-        const OPEX_YEAR = 166600;
+        const OPEX_YEAR = 166600; 
         const INVEST_TOTAL = model.totalInvestment;
 
-        // 1. Get Revenues (Gross) from our calculated scenarios logic
-        // EBITDA = Gross - OPEX. So Gross = EBITDA + OPEX.
-        const net29 = scenarioData[0]; // EBITDA 2029
-        const net30 = scenarioData[1]; // EBITDA 2030
-        const net31 = scenarioData[2]; // EBITDA 2031
+        // 1. Get Net (EBITDA) from our stored scenario data
+        const net29 = scenarioData[0];
+        const net30 = scenarioData[1];
+        const net31 = scenarioData[2];
         
+        // 2. Derive Gross Revenue for Display
         const gross29 = net29 + OPEX_YEAR;
         const gross30 = net30 + OPEX_YEAR;
         const gross31 = net31 + OPEX_YEAR;
 
-        // 2. Update UI Cards
-        // 2029
+        // 3. Update UI Cards
         document.getElementById('cf-rev-29').innerText = '+' + formatAz(gross29);
-        document.getElementById('cf-net-29').innerText = (net29 >= 0 ? '+' : '') + formatAz(net29);
+        const sign29 = net29 >= 0 ? '+' : '';
+        document.getElementById('cf-net-29').innerText = sign29 + formatAz(net29);
         document.getElementById('cf-net-29').style.color = net29 >= 0 ? '#059669' : '#EF4444';
 
-        // 2030
         document.getElementById('cf-rev-30').innerText = '+' + formatAz(gross30);
-        document.getElementById('cf-net-30').innerText = '+' + formatAz(net30); // Always positive in all scenarios
+        document.getElementById('cf-net-30').innerText = '+' + formatAz(net30);
+        document.getElementById('cf-net-30').style.color = '#059669';
 
-        // 2031
         document.getElementById('cf-rev-31').innerText = '+' + formatAz(gross31);
         document.getElementById('cf-net-31').innerText = '+' + formatAz(net31);
+        document.getElementById('cf-net-31').style.color = '#059669';
 
-        // 3. Footer Summary
+        // 4. Footer Summary
         const cumulative = -INVEST_TOTAL + net29 + net30 + net31;
         
         document.getElementById('cf-total-invest').innerText = '-' + formatAz(INVEST_TOTAL);
@@ -1076,32 +1182,30 @@
         const lblEl = document.getElementById('cf-result-label');
         
         if (cumulative < 0) {
-            balEl.innerText = formatAz(cumulative); // Still owing
-            balEl.style.color = '#EA580C'; // Orange
+            balEl.innerText = formatAz(cumulative); 
+            balEl.style.color = '#EA580C'; 
             lblEl.innerText = currentLang === 'ru' ? "Остаток к возврату (2031)" : "Balance to Return (2031)";
         } else {
             balEl.innerText = '+' + formatAz(cumulative);
-            balEl.style.color = '#059669'; // Green
+            balEl.style.color = '#059669'; 
             lblEl.innerText = currentLang === 'ru' ? "Чистая Прибыль (2031)" : "Net Profit (2031)";
         }
 
-        // 4. SMART BADGE LOGIC
+        // 5. SMART BADGE LOGIC
         const badge = document.getElementById('cf-status-badge');
         if (net29 < 0) {
-            // Pessimist case: Loss in 2029 (Not anymore with 20%, but kept logic just in case)
             badge.innerText = currentLang === 'ru' ? "⚡ Сад кормит себя с 2030 года" : "⚡ Self-sustaining from 2030";
             badge.className = "cf-badge orange";
         } else {
-            // Profitable from Year 1
             badge.innerText = currentLang === 'ru' ? "✅ Сад кормит себя с 1-го урожая" : "✅ Self-sustaining from 1st Harvest";
             badge.className = "cf-badge green";
         }
 
         // Update Chart
-        chart.data.datasets[0].data = [0, 0, 0, scenarioData[0], scenarioData[1], scenarioData[2]];
+        chart.data.datasets[0].data = [0, 0, 0, net29, net30, net31];
         
         let color = '#059669';
-        if(currentScen === 'pess') color = '#94A3B8'; // Grey for neutral/pessimist
+        if(currentScen === 'pess') color = '#94A3B8';
         if(currentScen === 'opt') color = '#D97706';
         
         chart.data.datasets[0].borderColor = color;
@@ -1114,6 +1218,9 @@
              return gradient;
         };
         chart.update();
+        
+        // UPDATE NEW TABLES
+        updateBreakdownTables();
     }
 
     // Event Listeners
