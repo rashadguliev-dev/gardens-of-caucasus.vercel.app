@@ -584,7 +584,7 @@
                     <div class="scen-cards">
                         <div class="scen-card">
                             <span class="scen-title" style="color:#64748B;" data-i18n="sPess">Pessimist</span>
-                            <div data-i18n="dPess">Min Yield, Min Price. 25% Loss (Weather).</div>
+                            <div data-i18n="dPess">Min Yield, Min Price. No weather risk applied.</div>
                         </div>
                         <div class="scen-card real">
                             <span class="scen-title" style="color:#059669;" data-i18n="sReal">Realist</span>
@@ -647,7 +647,7 @@
 
                     <div class="cf-years">
                         <div class="cf-card">
-                            <div class="cf-year-label">2029 (Start 15%)</div>
+                            <div class="cf-year-label">2029 (Start 20%)</div>
                             <div class="cf-row">
                                 <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
                                 <span class="cf-val val-plus" id="cf-rev-29">--</span>
@@ -664,7 +664,7 @@
                         </div>
 
                         <div class="cf-card">
-                            <div class="cf-year-label">2030 (Growth 50%)</div>
+                            <div class="cf-year-label">2030 (Growth 60%)</div>
                             <div class="cf-row">
                                 <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
                                 <span class="cf-val val-plus" id="cf-rev-30">--</span>
@@ -808,11 +808,14 @@
         // 166600 * 3 = 499800. Total Inv = 1203840.
         opexTotal: 499800, totalInvestment: 1203840,
         
-        // SCENARIOS (EBITDA)
+        // RECALCULATED SCENARIOS (EBITDA)
+        // Pessimist (No risk -25%, Starts at 20%): 2029 (+54k), 2030 (+495k), 2031 (+937k)
+        // Realist (Starts at 20%): 2029 (+224k), 2030 (+1m), 2031 (+1.79m)
+        // Optimist (Starts at 20%): 2029 (+462k), 2030 (+1.7m), 2031 (+2.97m)
         scenarios: { 
-            pess: [-42400, 247400, 661400], 
-            real: [126800, 811400, 1789400], 
-            opt: [305000, 1405400, 2977400] 
+            pess: [54200, 495800, 937400], 
+            real: [224600, 1007000, 1789400], 
+            opt: [462200, 1720400, 2977400] 
         }
     };
 
@@ -859,7 +862,7 @@
             sPess: "Pessimist", sReal: "Realist", sOpt: "Optimist",
             chartCap: "Each point represents projected EBITDA (Revenue - OPEX). Based on agreed agronomic model.",
             metScenTitle: "Scenario Matrix", metTableTitle: "Revenue Logic (Matrix)",
-            dPess: "Min Yield, Min Price. 25% Loss (Weather).", dReal: "Avg Yield, Avg Price. Standard Norms.", dOpt: "Max Yield, Max Price. Perfect Season.",
+            dPess: "Min Yield, Min Price. No weather risk applied.", dReal: "Avg Yield, Avg Price. Standard Norms.", dOpt: "Max Yield, Max Price. Perfect Season.",
             thCrop: "Crop", thYield: "Yield (t/ha)<br><span style='font-size:0.7em; font-weight:400'>Min / Avg / Max</span>", thPrice: "Price (₼/kg)<br><span style='font-size:0.7em; font-weight:400'>Min / Avg / Max</span>",
             sourceText: "<b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards.",
             
@@ -905,7 +908,7 @@
             sPess: "Пессимист", sReal: "Реалист", sOpt: "Оптимист",
             chartCap: "Каждая точка отражает прогноз EBITDA (Выручка - Расходы). Основано на агрономической модели.",
             metScenTitle: "Матрица Сценариев", metTableTitle: "Логика Выручки (Матрица)",
-            dPess: "Урожай Min, Цена Min. Потеря 25% (Погода).", dReal: "Урожай Средний, Цена Средняя. Стандартные нормы.", dOpt: "Урожай Max, Цена Max. Идеальный сезон.",
+            dPess: "Урожай Min, Цена Min. Без учета погодного риска.", dReal: "Урожай Средний, Цена Средняя. Стандартные нормы.", dOpt: "Урожай Max, Цена Max. Идеальный сезон.",
             thCrop: "Культура", thYield: "Урожайность (т/га)<br><span style='font-size:0.7em; font-weight:400'>Мин / Сред / Макс</span>", thPrice: "Цена (₼/кг)<br><span style='font-size:0.7em; font-weight:400'>Мин / Сред / Макс</span>",
             sourceText: "<b>Источники Данных:</b> Урожайность и цены основаны на официальных агрономических нормах Азербайджана, полевых наблюдениях в Исмаиллинском районе, статистике экспортного рынка и стандартах Netafim.",
             
@@ -1085,11 +1088,11 @@
         // 4. SMART BADGE LOGIC
         const badge = document.getElementById('cf-status-badge');
         if (net29 < 0) {
-            // Pessimist case: Loss in 2029
+            // Pessimist case: Loss in 2029 (Not anymore with 20%, but kept logic just in case)
             badge.innerText = currentLang === 'ru' ? "⚡ Сад кормит себя с 2030 года" : "⚡ Self-sustaining from 2030";
             badge.className = "cf-badge orange";
         } else {
-            // Realist/Optimist
+            // Profitable from Year 1
             badge.innerText = currentLang === 'ru' ? "✅ Сад кормит себя с 1-го урожая" : "✅ Self-sustaining from 1st Harvest";
             badge.className = "cf-badge green";
         }
