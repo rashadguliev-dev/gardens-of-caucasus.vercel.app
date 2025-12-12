@@ -203,6 +203,12 @@
             color: #64748B;
             margin-bottom: 10px;
             text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .cf-growth-tooltip {
+            font-size: 0.7rem; color: #94A3B8; cursor: help; border-bottom: 1px dashed #CBD5E1;
         }
 
         .cf-row {
@@ -243,17 +249,30 @@
             margin-top: 20px;
             padding-top: 20px;
             border-top: 2px dashed #E2E8F0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+            background: #F8FAFC;
+            border-radius: 12px;
+            padding: 15px;
         }
+        
+        .cf-accum-table {
+            width: 100%;
+            font-size: 0.85rem;
+        }
+        .cf-accum-table td { padding: 4px 0; }
+        .cf-accum-val { text-align: right; font-weight: 700; }
+        .cf-final-row { border-top: 1px solid #E2E8F0; padding-top: 8px; margin-top: 8px; font-weight: 800; color: #0F172A; }
+        .cf-final-val { text-align: right; font-size: 1.1rem; }
 
-        .cf-summary-item { text-align: center; }
-        .cf-sm-label { font-size: 0.75rem; color: #64748B; margin-bottom: 4px; font-weight: 600;}
-        .cf-sm-val { font-size: 1.2rem; font-weight: 800; color: #1E293B; }
-        .cf-sm-val.negative { color: #EF4444; }
-        .cf-arrow { color: #CBD5E1; font-size: 1.5rem; }
+        .payback-kpi {
+            background: #0F172A;
+            color: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         @media(max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
@@ -284,8 +303,6 @@
             .scen-cards { grid-template-columns: 1fr; }
             
             .cf-years { grid-template-columns: 1fr; }
-            .cf-footer { flex-direction: column; gap: 10px; }
-            .cf-arrow { transform: rotate(90deg); }
         }
     </style>
 </head>
@@ -578,6 +595,18 @@
             </div>
 
             <div class="content-card" style="display:flex; flex-direction:column;">
+                
+                <div class="payback-kpi">
+                    <div>
+                        <div style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:#94A3B8; margin-bottom:4px;" data-i18n="kpiPaybackTitle">Payback Year</div>
+                        <div style="font-size:1.5rem; font-weight:800;" id="kpi-payback-val">--</div>
+                    </div>
+                    <div style="text-align:right;">
+                         <div style="font-size:0.75rem; color:#94A3B8;" data-i18n="kpiStatus">Current Scenario</div>
+                         <div style="font-size:0.9rem; font-weight:600; color:#4ADE80;" id="kpi-scen-name">Realist</div>
+                    </div>
+                </div>
+
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:10px;">
                     <h3 data-i18n="revChartTitle" style="font-size: 1.25rem; color:#0F172A;">EBITDA Forecast (₼)</h3>
                     <div style="display:flex; gap:5px; background:rgba(0,0,0,0.05); padding:3px; border-radius:20px;">
@@ -590,6 +619,9 @@
                     <canvas id="revChart"></canvas>
                 </div>
                 <div class="chart-caption" data-i18n="chartCap">Each point represents projected EBITDA (Revenue - OPEX). Based on agreed agronomic model.</div>
+                <div id="opt-disclaimer" style="display:none; text-align:center; font-size:0.75rem; color:#EA580C; margin-top:8px; font-weight:600; background:#FFF7ED; padding:8px; border-radius:8px;" data-i18n="optDisc">
+                    Max yield & prices. Perfect weather conditions. Not a baseline forecast.
+                </div>
 
                 <div class="methodology-wrapper">
                     <h4 style="font-size: 0.9rem; font-weight: 800; color:#1E293B; margin-bottom: 10px;" data-i18n="metScenTitle">Scenario Matrix</h4>
@@ -614,10 +646,17 @@
                         <h4 style="margin:0; font-size:1.1rem; color:#0F172A;" data-i18n="cfTitle">Cash Flow Dynamics</h4>
                         <div class="cf-badge" id="cf-status-badge">Calculating...</div>
                     </div>
+                    
+                    <div style="text-align:center; font-size:0.75rem; color:#64748B; margin-bottom:15px; font-family:monospace;">
+                        Formula: EBITDA = Revenue - OPEX
+                    </div>
 
                     <div class="cf-years">
                         <div class="cf-card">
-                            <div class="cf-year-label">2029 (Start 20%)</div>
+                            <div class="cf-year-label">
+                                <span>2029 (Start)</span>
+                                <span class="cf-growth-tooltip" title="Percent of biological potential">20%</span>
+                            </div>
                             <div class="cf-row">
                                 <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
                                 <span class="cf-val val-plus" id="cf-rev-29">--</span>
@@ -628,13 +667,16 @@
                             </div>
                             <div class="cf-divider"></div>
                             <div class="cf-total-row">
-                                <span data-i18n="cfNet">Net (EBITDA):</span>
+                                <span data-i18n="cfNet">EBITDA:</span>
                                 <span class="cf-total-val" id="cf-net-29">--</span>
                             </div>
                         </div>
 
                         <div class="cf-card">
-                            <div class="cf-year-label">2030 (Growth 60%)</div>
+                            <div class="cf-year-label">
+                                <span>2030 (Growth)</span>
+                                <span class="cf-growth-tooltip" title="Percent of biological potential">60%</span>
+                            </div>
                             <div class="cf-row">
                                 <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
                                 <span class="cf-val val-plus" id="cf-rev-30">--</span>
@@ -645,13 +687,16 @@
                             </div>
                             <div class="cf-divider"></div>
                             <div class="cf-total-row">
-                                <span data-i18n="cfNet">Net (EBITDA):</span>
+                                <span data-i18n="cfNet">EBITDA:</span>
                                 <span class="cf-total-val" id="cf-net-30">--</span>
                             </div>
                         </div>
 
                         <div class="cf-card highlight">
-                            <div class="cf-year-label">2031 (Peak 100%)</div>
+                            <div class="cf-year-label">
+                                <span>2031 (Peak)</span>
+                                <span class="cf-growth-tooltip" title="Percent of biological potential">100%</span>
+                            </div>
                             <div class="cf-row">
                                 <span class="cf-lbl"><i data-lucide="arrow-down-left"></i> <span data-i18n="cfRev">Revenue</span></span>
                                 <span class="cf-val val-plus" id="cf-rev-31">--</span>
@@ -662,21 +707,32 @@
                             </div>
                             <div class="cf-divider"></div>
                             <div class="cf-total-row">
-                                <span data-i18n="cfNet">Net (EBITDA):</span>
+                                <span data-i18n="cfNet">EBITDA:</span>
                                 <span class="cf-total-val" id="cf-net-31">--</span>
                             </div>
                         </div>
                     </div>
+                    
+                    <div style="font-size:0.7rem; color:#94A3B8; text-align:center; margin-top:8px;" data-i18n="opexNote">* OPEX is stable due to full mechanization and fixed staff structure.</div>
 
                     <div class="cf-footer">
-                        <div class="cf-summary-item">
-                            <div class="cf-sm-label" data-i18n="cfInvested">Total Invested (2026-28)</div>
-                            <div class="cf-sm-val negative" id="cf-total-invest">--</div>
-                        </div>
-                        <div class="cf-arrow">→</div>
-                        <div class="cf-summary-item">
-                            <div class="cf-sm-label" id="cf-result-label">Balance 2031</div>
-                            <div class="cf-sm-val" id="cf-final-balance">--</div>
+                        <table class="cf-accum-table">
+                            <tr>
+                                <td data-i18n="tblEbitdaSum">EBITDA (2029-2031)</td>
+                                <td class="cf-accum-val val-plus" id="tbl-ebitda-sum">--</td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tblInvest">Investments (2026-28)</td>
+                                <td class="cf-accum-val val-minus" id="tbl-invest-sum">--</td>
+                            </tr>
+                            <tr class="cf-final-row">
+                                <td data-i18n="tblFinalBal">Cumulative Cash Flow (2031)</td>
+                                <td class="cf-final-val" id="tbl-final-bal">--</td>
+                            </tr>
+                        </table>
+                        
+                        <div style="margin-top:10px; font-size:0.65rem; color:#94A3B8; text-align:left;" data-i18n="taxNote">
+                            Cash Flow is calculated based on EBITDA (Operational). Taxes, depreciation, and financing costs are not included (Tax Free Agricultural Regime).
                         </div>
                     </div>
                 </div>
@@ -783,14 +839,14 @@
         opexTotal: 499800, 
         totalInvestment: 1203840,
         
-        // SCENARIOS (NET / EBITDA)
+        // SCENARIOS (EBITDA)
         scenarios: { 
             pess: [-35800, 175400, 637400], 
             real: [100700, 513800, 1512200], 
             opt: [231800, 887000, 2474600] 
         },
 
-        // DETAILED STATS (Expanded logic for tables)
+        // DETAILED STATS
         detailedStats: {
             pess: {
                 y29: [
@@ -903,11 +959,15 @@
             sourceText: "<b>Data Sources:</b> Yields and prices are based on official Azerbaijani agronomic norms, Ismayilli field observations, verified export statistics, and Netafim technology standards.",
             
             // CASH FLOW TRANSLATIONS
-            cfTitle: "Cash Flow Dynamics", cfRev: "Revenue", cfNet: "Net (EBITDA):", cfInvested: "Total Invested",
+            cfTitle: "Cash Flow Dynamics", cfRev: "Revenue", cfNet: "EBITDA:", cfInvested: "Total Invested",
+            opexNote: "* OPEX is stable due to full mechanization and fixed staff structure.",
+            tblEbitdaSum: "EBITDA (2029-2031)", tblInvest: "Investments (2026-28)", tblFinalBal: "Cumulative Cash Flow (2031)",
+            taxNote: "Cash Flow is calculated based on EBITDA. Taxes, depreciation, and financing costs are not included (Tax Free Agricultural Regime).",
+            kpiPaybackTitle: "Payback Year", kpiStatus: "Current Scenario", optDisc: "Max yield & prices. Perfect weather conditions. Not a baseline forecast.",
             
             // DETAILED TABLES TRANSLATIONS
             dtHeaderCrop: "Crop (Area)", dtHeaderEq: "Yield Eq", dtHeaderPrice: "Price", dtHeaderRev: "Revenue",
-            dtTotalRev: "TOTAL REVENUE", dtOpex: "OPEX", dtNet: "NET (EBITDA)"
+            dtTotalRev: "TOTAL REVENUE", dtOpex: "OPEX", dtNet: "EBITDA"
         },
         ru: {
             navStrategy: "Стратегия", navLocation: "Локация", navProduction: "Производство", navFinance: "Финансы", navRisk: "Риски", navContact: "Связаться", btnMob: "Связаться с Инициатором",
@@ -953,11 +1013,15 @@
             sourceText: "<b>Источники Данных:</b> Урожайность и цены основаны на официальных агрономических нормах Азербайджана, полевых наблюдениях в Исмаиллинском районе, статистике экспортного рынка и стандартах Netafim.",
             
             // CASH FLOW TRANSLATIONS
-            cfTitle: "Денежный Поток (Cash Flow)", cfRev: "Выручка", cfNet: "Чистыми (EBITDA):", cfInvested: "Инвестиции (2026-28)",
+            cfTitle: "Денежный Поток (Cash Flow)", cfRev: "Выручка", cfNet: "EBITDA:", cfInvested: "Инвестиции (2026-28)",
+            opexNote: "* OPEX стабилен благодаря полной механизации и фиксированному штату.",
+            tblEbitdaSum: "Сумма EBITDA (2029-2031)", tblInvest: "Инвестиции (2026-28)", tblFinalBal: "Кумулятивный Cash Flow (EBITDA) к 2031",
+            taxNote: "Cash Flow рассчитан на основе EBITDA (Операционный). Налоги, амортизация и расходы на финансирование не включены (Льготный Агро-Режим).",
+            kpiPaybackTitle: "Окупаемость (Payback)", kpiStatus: "Текущий сценарий", optDisc: "Максимальная урожайность и цены. Идеальные погодные условия. Не является базовым прогнозом.",
             
             // DETAILED TABLES TRANSLATIONS
             dtHeaderCrop: "Культура (Площадь)", dtHeaderEq: "Урожай Расчет", dtHeaderPrice: "Цена", dtHeaderRev: "Выручка",
-            dtTotalRev: "ИТОГО ВЫРУЧКА", dtOpex: "OPEX (Расходы)", dtNet: "NET (EBITDA)"
+            dtTotalRev: "ИТОГО ВЫРУЧКА", dtOpex: "OPEX (Расходы)", dtNet: "EBITDA"
         }
     };
 
@@ -1130,6 +1194,7 @@
     function updateFinanceView() {
         const model = modelData;
         const scenarioData = model.scenarios[currentScen];
+        const trans = translations[currentLang];
 
         document.getElementById('capex-infra').innerText = formatAz(model.capex.infra);
         document.getElementById('capex-water').innerText = formatAz(model.capex.water);
@@ -1174,21 +1239,20 @@
         document.getElementById('cf-net-31').innerText = '+' + formatAz(net31);
         document.getElementById('cf-net-31').style.color = '#059669';
 
-        // 4. Footer Summary
-        const cumulative = -INVEST_TOTAL + net29 + net30 + net31;
+        // 4. Footer Summary (New Logic)
+        const ebitdaSum = net29 + net30 + net31;
+        const cumulative = -INVEST_TOTAL + ebitdaSum;
         
-        document.getElementById('cf-total-invest').innerText = '-' + formatAz(INVEST_TOTAL);
-        const balEl = document.getElementById('cf-final-balance');
-        const lblEl = document.getElementById('cf-result-label');
+        document.getElementById('tbl-ebitda-sum').innerText = '+' + formatAz(ebitdaSum);
+        document.getElementById('tbl-invest-sum').innerText = '-' + formatAz(INVEST_TOTAL);
         
+        const balEl = document.getElementById('tbl-final-bal');
         if (cumulative < 0) {
             balEl.innerText = formatAz(cumulative); 
             balEl.style.color = '#EA580C'; 
-            lblEl.innerText = currentLang === 'ru' ? "Остаток к возврату (2031)" : "Balance to Return (2031)";
         } else {
             balEl.innerText = '+' + formatAz(cumulative);
             balEl.style.color = '#059669'; 
-            lblEl.innerText = currentLang === 'ru' ? "Чистая Прибыль (2031)" : "Net Profit (2031)";
         }
 
         // 5. SMART BADGE LOGIC
@@ -1200,6 +1264,30 @@
             badge.innerText = currentLang === 'ru' ? "✅ Сад кормит себя с 1-го урожая" : "✅ Self-sustaining from 1st Harvest";
             badge.className = "cf-badge green";
         }
+        
+        // 6. PAYBACK KPI LOGIC
+        const kpiVal = document.getElementById('kpi-payback-val');
+        const kpiScen = document.getElementById('kpi-scen-name');
+        
+        // Simple Cumulative Check
+        const bal29 = -INVEST_TOTAL + net29;
+        const bal30 = bal29 + net30;
+        const bal31 = bal30 + net31;
+        
+        let paybackText = "After 2031";
+        if(bal31 >= 0) paybackText = "2031";
+        if(bal30 >= 0) paybackText = "2030";
+        if(bal29 >= 0) paybackText = "2029"; // unlikely
+        
+        // Refine for Optimist based on user request "2030-2031" if close
+        if (currentScen === 'opt' && bal30 < 0 && bal31 > 0) paybackText = "2030–2031";
+        if (currentScen === 'pess' && bal31 < 0) paybackText = currentLang==='ru' ? "Позже 2031" : "After 2031";
+        
+        kpiVal.innerText = paybackText;
+        kpiScen.innerText = currentScen === 'pess' ? trans.sPess : (currentScen === 'real' ? trans.sReal : trans.sOpt);
+        
+        // 7. Optimist Disclaimer
+        document.getElementById('opt-disclaimer').style.display = currentScen === 'opt' ? 'block' : 'none';
 
         // Update Chart
         chart.data.datasets[0].data = [0, 0, 0, net29, net30, net31];
