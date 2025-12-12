@@ -25,7 +25,10 @@
             --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        /* FORCE SCROLL TOP FIX */
+        html { scroll-behavior: smooth; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-main); background-color: var(--bg-base); color: var(--text-main); line-height: 1.5; padding-bottom: 80px; }
 
         .bg-photo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-image: url('preview.jpeg'), url('https://images.unsplash.com/photo-1623227866882-c005c207758f?q=80&w=2070&auto=format&fit=crop'); background-size: cover; opacity: 0.95; filter: saturate(0.95); }
@@ -43,15 +46,12 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- UPDATED NAVIGATION --- */
         nav { position: sticky; top: 0; z-index: 1000; background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0.8rem 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; position: relative; }
         
         .logo { font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; color: #0F172A; cursor: pointer; text-decoration: none; flex-shrink: 0; z-index: 1002; }
         
-        /* Desktop Menu Wrapper */
         .nav-wrapper { display: flex; align-items: center; gap: 1rem; }
-
         .nav-links { display: flex; align-items: center; gap: 2rem; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
         .nav-links a:hover { color: var(--primary); }
@@ -60,17 +60,14 @@
         .lang-btn { background: none; border: none; padding: 6px 14px; font-size: 0.75rem; font-weight: 700; cursor: pointer; border-radius: 16px; transition: 0.3s; color: var(--text-muted); }
         .lang-btn.active { background: white; color: var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         
-        /* Fixed Email Button */
         .email-btn { text-decoration: none; display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-main); white-space: nowrap; transition: 0.3s; }
         .email-btn:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* Hamburger Button (Hidden on Desktop) */
         .hamburger-btn { display: none; background: none; border: none; cursor: pointer; color: #1E293B; z-index: 1002; padding: 5px; }
 
         .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1001; background: white; border-top: 1px solid var(--border); padding: 10px 20px; justify-content: space-between; align-items: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
         .mobile-cta { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
-        /* HERO */
         .hero { padding: 140px 0 80px; text-align: center; }
         .hero h1 { font-size: 4.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; color: #0F172A; letter-spacing: -1px; }
         .hero-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1000px; margin: 0 auto; }
@@ -80,7 +77,6 @@
         .metric-lbl { font-size: 0.75rem; color: #64748B; text-transform: uppercase; font-weight: 700; margin-top: 5px; }
         .metric-sub { font-size: 0.7rem; color: #94A3B8; margin-top: 4px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 6px; }
 
-        /* COMPONENTS */
         .bento-grid, .fin-grid { display: grid; gap: 1.5rem; }
         .bento-grid { grid-template-columns: repeat(3, 1fr); }
         .fin-grid { grid-template-columns: 1fr 1.5fr; }
@@ -93,12 +89,10 @@
         .timeline-item { margin-bottom: 3rem; position: relative; padding-left: 2rem; }
         .timeline-item::before { content: ''; position: absolute; left: -2.6rem; top: 0.5rem; width: 1rem; height: 1rem; background: #fff; border: 3px solid var(--primary); border-radius: 50%; }
         
-        /* MAP FIX */
         .map-wrapper { height: 500px; border-radius: 24px; overflow: hidden; border: 4px solid white; position: relative; box-shadow: var(--shadow); }
         .map-overlay { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); padding: 1.5rem; border-radius: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .weather-col { border-right: 1px solid rgba(0,0,0,0.1); } .weather-col:last-child { border-right: none; }
 
-        /* FINANCE TABLE */
         .fin-table-container { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); padding: 0 10px; }
         .fin-row { display: grid; grid-template-columns: 1fr auto; padding: 14px 10px; border-bottom: 1px solid rgba(0,0,0,0.06); cursor: pointer; align-items: center; transition: background 0.2s; }
         .fin-row:hover { background: #F8FAFC; }
@@ -116,16 +110,14 @@
         .detail-item { display: flex; justify-content: space-between; padding: 10px 15px; font-size: 0.85rem; border-bottom: 1px dashed rgba(0,0,0,0.05); color: #475569; }
         .detail-item:last-child { border-bottom: none; }
 
-        .area-switch-container { display: flex; justify-content: center; margin-bottom: 2rem; gap: 10px; align-items: center; }
-        .area-btn, .scen-btn { border: none; background: rgba(0,0,0,0.04); padding: 8px 16px; font-size: 0.9rem; font-weight: 700; border-radius: 20px; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
-        .area-btn.area-active, .scen-btn.active { background: white; color: var(--primary); box-shadow: 0 4px 12px rgba(5,150,105,0.15); }
+        .scen-btn { border: none; background: rgba(0,0,0,0.04); padding: 8px 16px; font-size: 0.9rem; font-weight: 700; border-radius: 20px; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+        .scen-btn.active { background: white; color: var(--primary); box-shadow: 0 4px 12px rgba(5,150,105,0.15); }
         .scen-btn.active { color: #0F172A; }
 
         .payback-box { margin-top: 1.5rem; padding: 1.5rem; background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 16px; box-shadow: var(--shadow); }
         .payback-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; color: #475569; }
         .payback-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 800; margin-top: 15px; padding-top: 15px; border-top: 2px dashed rgba(0,0,0,0.1); }
 
-        /* NEW METHODOLOGY STYLES */
         .methodology-wrapper { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1.5rem; }
         .chart-caption { font-size: 0.8rem; color: #64748B; font-style: italic; margin-top: 10px; text-align: center; }
         
@@ -151,65 +143,26 @@
         .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-contrast); color: white; padding: 16px 40px; border-radius: 100px; font-weight: 700; text-decoration: none; margin-top: 2rem; transition: 0.3s; }
         .cta-btn:hover { transform: scale(1.05); background: var(--primary); box-shadow: 0 10px 20px rgba(5,150,105,0.2); }
 
-        /* --- MOBILE ADAPTATION --- */
         @media(max-width: 900px) {
             .hero h1 { font-size: 2.2rem; }
             .hero-metrics { grid-template-columns: repeat(2, 1fr); }
             .bento-grid, .fin-grid, .partners-grid { grid-template-columns: 1fr; }
             .bento-item.span-2, .bento-item.span-3 { grid-column: span 1; }
             
-            /* UPDATED MOBILE MENU */
             .hamburger-btn { display: block; }
             
             .nav-wrapper {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0;
-                padding: 0;
-                border-bottom: 1px solid var(--border);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-in-out;
+                position: absolute; top: 100%; left: 0; width: 100%; background: white;
+                flex-direction: column; align-items: flex-start; gap: 0; padding: 0;
+                border-bottom: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
             }
+            .nav-wrapper.menu-open { max-height: 500px; padding: 10px 0; }
+            .nav-links { flex-direction: column; width: 100%; gap: 0; align-items: flex-start; }
+            .nav-links a { width: 100%; padding: 12px 24px; border-bottom: 1px solid rgba(0,0,0,0.03); font-size: 1rem; }
             
-            .nav-wrapper.menu-open {
-                max-height: 500px; /* opens the dropdown */
-                padding: 10px 0;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                gap: 0;
-                align-items: flex-start;
-            }
-            
-            .nav-links a {
-                width: 100%;
-                padding: 12px 24px;
-                border-bottom: 1px solid rgba(0,0,0,0.03);
-                font-size: 1rem;
-            }
-            
-            /* Language Switcher inside menu */
-            .lang-switch {
-                margin: 15px 24px;
-                display: flex;
-            }
-
-            /* Email inside menu */
-            .email-btn {
-                margin: 0 24px 15px 24px;
-                width: auto;
-                justify-content: center;
-                display: inline-flex;
-            }
+            .lang-switch { margin: 15px 24px; display: flex; }
+            .email-btn { margin: 0 24px 15px 24px; width: auto; justify-content: center; display: inline-flex; }
             
             .mobile-nav { display: flex; }
             .map-wrapper { height: auto; display: flex; flex-direction: column; }
@@ -237,7 +190,6 @@
         </button>
 
         <div class="nav-wrapper" id="navWrapper">
-            
             <div class="nav-links">
                 <a href="#strategy" data-i18n="navStrategy" onclick="closeMenu()">Strategy</a>
                 <a href="#location" data-i18n="navLocation" onclick="closeMenu()">Location</a>
@@ -261,16 +213,16 @@
 
 <div class="mobile-nav">
     <div style="font-size: 0.8rem; font-weight: 700; color: #64748B;">Project: Gardens of Caucasus</div>
-    <a href="https://wa.me/994553392039" class="mobile-cta">
+    <a href="https://wa.me/994702166666" class="mobile-cta">
         <i data-lucide="message-circle" size="18"></i> <span data-i18n="btnMob">Contact</span>
     </a>
 </div>
 
 <section class="hero reveal active">
     <div class="container">
-        <div class="badge" data-i18n="heroBadge">Early Harvest Advantage • May-June Window</div>
+        <div class="badge" data-i18n="heroBadge">Full Scale Project • 30 Hectares</div>
         <h1 data-i18n="heroTitle">Institutional-Grade<br><span class="text-gradient">Orchard Project</span></h1>
-        <p data-i18n="heroSub">Ismayilli, Azerbaijan. Modular Orchard Blocks (10 / 20 / 30 Ha) of Premium Stone Fruit.<br>Strategic market entry during the regional deficit window.</p>
+        <p data-i18n="heroSub">Ismayilli, Azerbaijan. 30 Hectare Intensive Garden of Premium Stone Fruit.<br>Strategic market entry during the regional deficit window.</p>
         
         <div class="hero-metrics">
             <div class="metric-card">
@@ -349,7 +301,7 @@
             <p class="section-desc">Ismayilli, Azerbaijan. Coordinates: 40.6049, 48.1523.</p>
         </div>
         <div class="map-wrapper reveal">
-            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=40.604977,48.152331&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=40.6049,48.1523&hl=es&z=14&output=embed"></iframe>
             
             <div class="map-overlay">
                 <div class="weather-col">
@@ -458,16 +410,10 @@
     <div class="container">
         <div class="section-header reveal">
             <h2 class="section-title" data-i18n="finTitle">Financial Model</h2>
+            <div class="badge" style="margin-top:10px; font-size:0.9rem;">Configuration: 30 Hectares (Full Scale)</div>
             <p class="section-desc" data-i18n="finDesc">Transparent numbers. Detailed CAPEX & OPEX. Full Payback 2031.</p>
         </div>
         
-        <div class="area-switch-container reveal">
-            <div style="font-size:0.9rem; color:var(--text-muted);" data-i18n="areaSel">Orchard Size:</div>
-            <button class="area-btn" data-area="10">10 Ha</button>
-            <button class="area-btn" data-area="20">20 Ha</button>
-            <button class="area-btn area-active" data-area="30">30 Ha</button>
-        </div>
-
         <div class="fin-grid reveal">
             <div class="content-card">
                 <h3 style="margin-bottom: 1.5rem; color:#0F172A;" data-i18n="investTitle">Investment Structure</h3>
@@ -505,7 +451,7 @@
 
                     <div style="font-size:0.8rem; color:#64748B; background:#F1F5F9; padding:15px; border-radius:8px;">
                         <i data-lucide="info" size="14" style="vertical-align:text-top; margin-right:4px;"></i>
-                        <span data-i18n="machNote"><b>Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares.</span>
+                        <span data-i18n="machNote"><b>Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.</span>
                     </div>
                 </div>
             </div>
@@ -617,11 +563,11 @@
     <div class="container">
         <h2 data-i18n="footTitle" style="color: #0F172A; font-weight: 800; font-size: 2rem;">Ready to start?</h2>
         <div style="margin-bottom: 2rem;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: #0F172A;">Ruslan Stalskiy</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: #0F172A;">Stalskiy Ruslan</div>
             <div style="color: var(--primary);" data-i18n="initiatorRole">Project Initiator</div>
         </div>
         <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-            <a href="https://wa.me/994553392039" class="cta-btn"><i data-lucide="message-circle"></i><span data-i18n="btnWhatsapp">Discuss on WhatsApp</span></a>
+            <a href="https://wa.me/994702166666" class="cta-btn"><i data-lucide="message-circle"></i><span data-i18n="btnWhatsapp">Discuss on WhatsApp</span></a>
             <a href="mailto:gardensofcaucasus@gmail.com" class="cta-btn" style="background:#64748B;"><i data-lucide="mail"></i>gardensofcaucasus@gmail.com</a>
         </div>
         <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: #94A3B8;">© 2025 Gardens of Caucasus. Confidential.</div>
@@ -629,6 +575,11 @@
 </footer>
 
 <script>
+    // --- FORCE SCROLL TO TOP ON RELOAD ---
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+    
     // --- MOBILE MENU LOGIC ---
     function toggleMenu() {
         const wrapper = document.getElementById('navWrapper');
@@ -641,168 +592,70 @@
     }
 
     // --- DATA MODELS ---
-    // FIXED: Translations and consistent line items across all models
-    const orchardModels = {
-        10: {
-            areaHa: 10,
-            capex: { infra: 118020, water: 32400, machinery: 61500, treesPlusPlanting: 72760, irrPlusPumps: 56000, totalCapex: 340680 },
-            details: {
-                infra: [
-                    {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
-                    {en:"Logistics Container", ru:"Логистический контейнер", val:6000}, 
-                    {en:"Entry Gates", ru:"Въездная группа (Ворота)", val:2500}, 
-                    {en:"Agro Canopy (Sheds)", ru:"Агро-навесы", val:15000}, 
-                    {en:"CCTV + Internet", ru:"Камеры + интернет", val:2020}, 
-                    {en:"Sanitary Block", ru:"Санузел", val:1000}, 
-                    {en:"Reservoir Perimeter", ru:"Ограждение резервуара", val:1500}, 
-                    {en:"Perimeter Fence", ru:"Забор территории", val:15000}, 
-                    {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
-                ],
-                water: [
-                    {en:"Well Drilling", ru:"Скважина", val:20000}, 
-                    {en:"Earthworks (Reservoir)", ru:"Земляные работы (Резервуар)", val:4000}, 
-                    {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:7000}, 
-                    {en:"Membrane", ru:"Мембрана", val:1400}
-                ],
-                mach: [
-                    {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
-                    {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
-                    {en:"Orchard Tiller", ru:"Фреза садовая", val:6500}, 
-                    {en:"Harrow", ru:"Борона дисковая", val:2500}, 
-                    {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
-                ],
-                trees: [
-                    {en:"Saplings (6,600 units)", ru:"Саженцы (6 600 шт)", val:61710}, 
-                    {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:11050}
-                ],
-                irr: [
-                    {en:"Netafim Drip System", ru:"Система Netafim", val:50000}, 
-                    {en:"Pumps (3 units)", ru:"Насосы (3 шт)", val:6000}
-                ],
-                opex: [
-                    {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000},
-                    // Added for consistency with 20/30ha models
-                    {en:"Seasonal Labor", ru:"Сезонные рабочие", val:9000}, 
-                    {en:"Care & Maintenance", ru:"Уход и агро-работы", val:13000}, 
-                    {en:"Fertilizers", ru:"Удобрения и СЗР", val:7200}, 
-                    {en:"Agronomist", ru:"Агроном", val:15600}, 
-                    {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:6800}, 
-                    {en:"Inventory (One-off)", ru:"Инвентарь (разово)", val:3000}
-                ]
-            },
-            opexTotal: 229800, totalInvestment: 570480,
-            scenarios: { pess: [65000, 140000, 360000], real: [96000, 200000, 520000], opt: [120000, 280000, 680000] }
+    // Single model for 30 Ha
+    const modelData = {
+        areaHa: 30,
+        // CAPEX: 704 040 (Unchanged Total)
+        capex: { infra: 185060, water: 77200, machinery: 61500, treesPlusPlanting: 218280, irrPlusPumps: 162000, totalCapex: 704040 },
+        details: {
+            infra: [
+                {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
+                {en:"Logistics Container", ru:"Логистический контейнер", val:6000}, 
+                {en:"Entry Gates", ru:"Въездная группа (Ворота)", val:2500}, 
+                {en:"Agro Canopy (Extended)", ru:"Агро-навесы (Расширенные)", val:45000}, 
+                {en:"CCTV + Internet", ru:"Камеры + интернет", val:6060}, 
+                {en:"Sanitary Block", ru:"Санузел", val:1000}, 
+                {en:"Reservoir Perimeter", ru:"Ограждение резервуара", val:4500}, 
+                {en:"Perimeter Fence", ru:"Забор территории", val:45000}, 
+                {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
+            ],
+            water: [
+                {en:"Well Drilling", ru:"Скважина", val:20000}, // Reduced from 40k
+                {en:"Earthworks (Reservoir)", ru:"Земляные работы (x3)", val:12000}, 
+                {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:21000}, 
+                {en:"Membrane", ru:"Мембрана", val:24200} // Increased from 4.2k
+            ],
+            mach: [
+                {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
+                {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
+                {en:"Orchard Tiller", ru:"Фреза садовая", val:6500}, 
+                {en:"Harrow", ru:"Борона дисковая", val:2500}, 
+                {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
+            ],
+            trees: [
+                {en:"Saplings (19,800 units)", ru:"Саженцы (19 800 шт)", val:185130}, 
+                {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:33150}
+            ],
+            irr: [
+                {en:"Netafim Drip System", ru:"Система Netafim", val:150000}, 
+                {en:"Pumps (6 units)", ru:"Насосы (6 шт)", val:12000}
+            ],
+            opex: [
+                // Annual sum: 166,600
+                {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
+                {en:"Seasonal Labor", ru:"Сезонные рабочие", val:27000}, 
+                {en:"Care & Maintenance", ru:"Уход и агро-работы", val:55000}, 
+                {en:"Fertilizers", ru:"Удобрения и СЗР", val:21600}, 
+                {en:"Agronomist", ru:"Агроном", val:15600}, 
+                {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:14400},
+                {en:"Inventory", ru:"Инвентарь", val:9000}
+            ]
         },
-        20: {
-            areaHa: 20,
-            capex: { infra: 166540, water: 64800, machinery: 61500, treesPlusPlanting: 145520, irrPlusPumps: 108000, totalCapex: 546360 },
-            details: {
-                infra: [
-                    {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
-                    {en:"Logistics Container", ru:"Логистический контейнер", val:6000}, 
-                    {en:"Entry Gates", ru:"Въездная группа (Ворота)", val:2500}, 
-                    {en:"Agro Canopy (Extended)", ru:"Агро-навесы (Расширенные)", val:45000}, 
-                    {en:"CCTV + Internet", ru:"Камеры + интернет", val:4040}, 
-                    {en:"Sanitary Block", ru:"Санузел", val:1000}, 
-                    {en:"Reservoir Perimeter", ru:"Ограждение резервуара", val:3000}, 
-                    {en:"Perimeter Fence", ru:"Забор территории", val:30000}, 
-                    {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
-                ],
-                water: [
-                    {en:"Well Drilling (Deep)", ru:"Скважина (Глубокая)", val:40000}, 
-                    {en:"Earthworks (Reservoir)", ru:"Земляные работы (x2)", val:8000}, 
-                    {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:14000}, 
-                    {en:"Membrane", ru:"Мембрана", val:2800}
-                ],
-                mach: [
-                    {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
-                    {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
-                    {en:"Orchard Tiller", ru:"Фреза садовая", val:6500}, 
-                    {en:"Harrow", ru:"Борона дисковая", val:2500}, 
-                    {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
-                ],
-                trees: [
-                    {en:"Saplings (13,200 units)", ru:"Саженцы (13 200 шт)", val:123420}, 
-                    {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:22100}
-                ],
-                irr: [
-                    {en:"Netafim Drip System", ru:"Система Netafim", val:100000}, 
-                    {en:"Pumps (4 units)", ru:"Насосы (4 шт)", val:8000}
-                ],
-                opex: [
-                    {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
-                    {en:"Seasonal Labor", ru:"Сезонные рабочие", val:18000}, 
-                    {en:"Care & Maintenance", ru:"Уход и агро-работы", val:38000}, 
-                    {en:"Fertilizers", ru:"Удобрения и СЗР", val:14400}, 
-                    {en:"Agronomist", ru:"Агроном", val:15600}, 
-                    {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:10600},
-                    {en:"Inventory", ru:"Инвентарь", val:6000}
-                ]
-            },
-            opexTotal: 380800, totalInvestment: 927160,
-            scenarios: { pess: [130000, 280000, 720000], real: [192000, 400000, 1040000], opt: [240000, 560000, 1360000] }
-        },
-        30: {
-            areaHa: 30,
-            capex: { infra: 185060, water: 77200, machinery: 61500, treesPlusPlanting: 218280, irrPlusPumps: 162000, totalCapex: 704040 },
-            details: {
-                infra: [
-                    {en:"Field Office & Storage", ru:"Полевой офис и склад", val:35000}, 
-                    {en:"Logistics Container", ru:"Логистический контейнер", val:6000}, 
-                    {en:"Entry Gates", ru:"Въездная группа (Ворота)", val:2500}, 
-                    {en:"Agro Canopy (Extended)", ru:"Агро-навесы (Расширенные)", val:45000}, 
-                    {en:"CCTV + Internet", ru:"Камеры + интернет", val:6060}, 
-                    {en:"Sanitary Block", ru:"Санузел", val:1000}, 
-                    {en:"Reservoir Perimeter", ru:"Ограждение резервуара", val:4500}, 
-                    {en:"Perimeter Fence", ru:"Забор территории", val:45000}, 
-                    {en:"Electric/Trafo", ru:"Электрика / Трансформатор", val:40000}
-                ],
-                water: [
-                    {en:"Well Drilling", ru:"Скважина", val:40000}, 
-                    {en:"Earthworks (Reservoir)", ru:"Земляные работы (x3)", val:12000}, 
-                    {en:"Heavy Machinery (Transport)", ru:"Спецтехника (Вывоз грунта)", val:21000}, 
-                    {en:"Membrane", ru:"Мембрана", val:4200}
-                ],
-                mach: [
-                    {en:"Tractor Yuto 504", ru:"Трактор Yuto 504", val:35000}, 
-                    {en:"Mulcher", ru:"Измельчитель (Мульчер)", val:5000}, 
-                    {en:"Orchard Tiller", ru:"Фреза садовая", val:6500}, 
-                    {en:"Harrow", ru:"Борона дисковая", val:2500}, 
-                    {en:"Sprayer (Fan)", ru:"Опрыскиватель (Вентиляторный)", val:12500}
-                ],
-                trees: [
-                    {en:"Saplings (19,800 units)", ru:"Саженцы (19 800 шт)", val:185130}, 
-                    {en:"Earthworks & Planting", ru:"Земляные работы и посадка", val:33150}
-                ],
-                irr: [
-                    {en:"Netafim Drip System", ru:"Система Netafim", val:150000}, 
-                    {en:"Pumps (6 units)", ru:"Насосы (6 шт)", val:12000}
-                ],
-                opex: [
-                    {en:"Staff (Guard, Foreman)", ru:"Персонал (Охрана, Бригадир)", val:24000}, 
-                    {en:"Seasonal Labor", ru:"Сезонные рабочие", val:27000}, 
-                    {en:"Care & Maintenance", ru:"Уход и агро-работы", val:55000}, 
-                    {en:"Fertilizers", ru:"Удобрения и СЗР", val:21600}, 
-                    {en:"Agronomist", ru:"Агроном", val:15600}, 
-                    {en:"Utilities & Fuel", ru:"Коммунальные и Топливо", val:14400},
-                    {en:"Inventory", ru:"Инвентарь", val:9000}
-                ]
-            },
-            opexTotal: 499800, totalInvestment: 1203840,
-            scenarios: { pess: [195000, 420000, 1080000], real: [288000, 600000, 1560000], opt: [360000, 840000, 2040000] }
-        }
+        // 166600 * 3 = 499800. 
+        // 704040 + 499800 = 1203840.
+        opexTotal: 499800, totalInvestment: 1203840,
+        scenarios: { pess: [195000, 420000, 1080000], real: [288000, 600000, 1560000], opt: [360000, 840000, 2040000] }
     };
 
-    let currentArea = 30; 
     let currentLang = 'ru'; 
     let currentScen = 'real';
 
     const translations = {
         en: {
             navStrategy: "Strategy", navLocation: "Location", navProduction: "Production", navFinance: "Finance", navRisk: "Risks", navContact: "Contact", btnMob: "Contact Investor",
-            heroBadge: "Early Harvest Advantage • May-June Window",
+            heroBadge: "Full Scale Project • 30 Hectares",
             heroTitle: 'Institutional-Grade<br><span class="text-gradient">Orchard Project</span>',
-            heroSub: "Ismayilli, Azerbaijan. Modular Orchard Blocks (10 / 20 / 30 Ha) of Premium Stone Fruit.<br>Strategic market entry during the regional deficit window.",
+            heroSub: "Ismayilli, Azerbaijan. 30 Hectare Intensive Garden of Premium Stone Fruit.<br>Strategic market entry during the regional deficit window.",
             lblEbitda: "EBITDA Margin", subEbitda: "Target at Full Capacity", metROI: "2031", lblSales: "Full Payback", subSales: "Net Profit from 2032", lblGrade: "Export Grade A", subGrade: "Premium Quality", metGrowth: "100%", 
             lblLand: "Land Ownership", subLand: "Title Deed (Kupcha)",
             stratTitle: "The \"First Mover\" Advantage", stratDesc: "Our strategy is structured around the supply deficit window. Selling when the market is empty, before the northern bulk harvest arrives.",
@@ -825,12 +678,12 @@
             fruitPeach: "Flat Peach (Fig)", varPeach: "20% • Zodiac, Babylone", descPeach: "Retail chain favorite. Flat varieties are easy to pack and enjoy high consumer demand.",
             fruitApricot: "Apricot", descApricot: "High price at season start and stable demand in the local market.",
             roadTitle: "Project Roadmap", t1Title: "CAPEX Phase", t1Desc: "Land preparation, well drilling, fencing, seedling procurement.", t2Title: "Planting", t2Desc: "Planting trees. Biological development phase begins.", t3Year: "2029 (Year 3)", t3Title: "First Harvest", t3Desc: "Partial harvest (~15%). First Revenue.", t4Title: "Full Capacity", t4Desc: "Max revenue (100%). Net Profit Zone.",
-            finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.", areaSel: "Orchard Size:", investTitle: "Investment Structure", rowSecCap: "I. CAPEX (Launch)", rowInfra: "Infrastructure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery", rowTrees: "Saplings + Planting", rowIrr: "Irrigation + Pumps", rowCapex: "TOTAL CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Maintenance until Harvest (3 years)", rowTotalAsk: "TOTAL INVESTMENT:", 
+            finTitle: "Financial Model", finDesc: "Transparent numbers. Detailed CAPEX & OPEX structure. Full Payback 2031.", investTitle: "Investment Structure", rowSecCap: "I. CAPEX (Launch)", rowInfra: "Infrastructure", rowWater: "Water (Well + Reservoir)", rowMach: "Machinery", rowTrees: "Saplings + Planting", rowIrr: "Irrigation + Pumps", rowCapex: "TOTAL CAPEX", rowSecOp: "II. OPEX (2026-2029)", 
+            rowOpDesc: "Maintenance until Harvest (x3 years)", rowTotalAsk: "TOTAL INVESTMENT:", 
             landNote: "<b>Land (100% Title Deed)</b> is excluded from CAPEX. Purchased directly by the investor.", 
             machNote: "<b>Operational Efficiency:</b> One tractor unit provides sufficient capacity for up to 30 hectares due to sequential workflow scheduling. This maintains optimal capital utilisation.",
             pbTitle: "Payback Analysis:", pbInv: "Investment (2026-2028):", pb29: "2029 (Start):", pb30: "2030 (Growth):", pb31: "2031 (Peak):", pbNet: "Cumulative Net Result (2031):", pbDesc: "Full Return on Investment occurs within 2031. From 2032 onwards, the orchard generates pure net profit.",
             
-            // UPDATED PARTNER TEXT (EN)
             partTitle: "Key Partners & Guarantees", roleSap: "Saplings", nameSap: "Spain / Turkey", descSap: "Certified Nurseries. 95% Survival Warranty.", roleIrr: "Irrigation", descIrr: "World Leader in precision irrigation. Automated drip systems.", roleIns: "Insurance", descIns: "State-backed risk coverage (Hail, Fire, Wind).", 
             roleAgro: "Leadership", nameAgro: "Initiator & Chief Agronomist", descAgro: "Strategic supervision & Technological control.", 
             
@@ -844,9 +697,9 @@
         },
         ru: {
             navStrategy: "Стратегия", navLocation: "Локация", navProduction: "Производство", navFinance: "Финансы", navRisk: "Риски", navContact: "Связаться", btnMob: "Связаться с Инициатором",
-            heroBadge: "Преимущество Раннего Урожая • Май-Июнь",
+            heroBadge: "Проект полного масштаба • 30 Гектаров",
             heroTitle: 'Инвестиционный Проект<br><span class="text-gradient">Интенсивного Сада</span>',
-            heroSub: "Исмаиллы, Азербайджан. Модульный сад (10 / 20 / 30 Га) премиальных фруктов.<br>Стратегический выход на рынок в период регионального дефицита.",
+            heroSub: "Исмаиллы, Азербайджан. Интенсивный сад (30 Га) премиальных фруктов.<br>Стратегический выход на рынок в период регионального дефицита.",
             lblEbitda: "Маржа EBITDA", subEbitda: "На пике мощности (2031+)", metROI: "2031", lblSales: "Полная Окупаемость", subSales: "Чистая прибыль с 2032", lblGrade: "Экспортный Сорт А", subGrade: "Стремимся к 100%", metGrowth: "100%", 
             lblLand: "Статус Земли", subLand: "Купчая (Частная)",
             stratTitle: "Преимущество \"Первого Хода\"", stratDesc: "Наша стратегия построена на окне дефицита предложения. Продаем, когда рынок пуст, до прихода валового объема с севера.",
@@ -869,12 +722,12 @@
             fruitPeach: "Персик (Инжирный)", varPeach: "20% • Zodiac, Babylone", descPeach: "Сетевой фаворит. Плоские сорта удобны для упаковки и пользуются повышенным спросом.",
             fruitApricot: "Абрикос", descApricot: "Высокая цена на старте сезона и устойчивый спрос на местном рынке.",
             roadTitle: "Дорожная карта проекта", t1Title: "CAPEX Фаза", t1Desc: "Подготовка земли, скважина, ограждение, закупка саженцев.", t2Title: "Посадка Сада", t2Desc: "Закладка деревьев. Начало фазы биологического развития.", t3Year: "2029 (3-й год)", t3Title: "Первый Урожай", t3Desc: "Частичный сбор (~15%). Первая выручка.", t4Title: "Полная мощность", t4Desc: "Максимальная выручка (100%). Зона чистой прибыли.",
-            finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Полная детализация CAPEX и OPEX. Окупаемость 2031 год.", areaSel: "Площадь Сада:", investTitle: "Структура Инвестиций", rowSecCap: "I. CAPEX (Запуск)", rowInfra: "Инфраструктура", rowWater: "Вода (Скважина + Резервуар)", rowMach: "Техника", rowTrees: "Саженцы + Посадка", rowIrr: "Орошение + Насосы", rowCapex: "ИТОГО CAPEX", rowSecOp: "II. OPEX (2026-2029)", rowOpDesc: "Содержание до 1-й выручки (3 года)", rowTotalAsk: "ВСЕГО ИНВЕСТИЦИИ:", 
+            finTitle: "Финансовая Модель", finDesc: "Прозрачные цифры. Полная детализация CAPEX и OPEX. Окупаемость 2031 год.", investTitle: "Структура Инвестиций", rowSecCap: "I. CAPEX (Запуск)", rowInfra: "Инфраструктура", rowWater: "Вода (Скважина + Резервуар)", rowMach: "Техника", rowTrees: "Саженцы + Посадка", rowIrr: "Орошение + Насосы", rowCapex: "ИТОГО CAPEX", rowSecOp: "II. OPEX (2026-2029)", 
+            rowOpDesc: "Содержание до 1-й выручки (x3 года)", rowTotalAsk: "ВСЕГО ИНВЕСТИЦИИ:", 
             landNote: "<b>Земля (100% Частная )</b> не входит в расчет CAPEX. Приобретается инвестором.", 
             machNote: "<b>Операционная Эффективность:</b> Один трактор обеспечивает достаточную мощность до 30 га благодаря последовательному графику работ. Это оптимизирует использование капитала.",
             pbTitle: "Анализ Окупаемости:", pbInv: "Инвестиции (2026-2028):", pb29: "2029 (Старт):", pb30: "2030 (Рост):", pb31: "2031 (Пик):", pbNet: "Накопленный Чистый Итог (2031):", pbDesc: "Полный возврат инвестиций происходит в течение 2031 года. С 2032 года сад генерирует чистую прибыль.",
             
-            // UPDATED PARTNER TEXT (RU)
             partTitle: "Партнеры и Гарантии", roleSap: "Саженцы", nameSap: "Испания / Турция", descSap: "Гарантия приживаемости 95%.", roleIrr: "Орошение", descIrr: "Мировой лидер в точном орошении. Автоматика.", roleIns: "Страхование", descIns: "Гос. покрытие рисков (Град, Пожар, Ветер).", 
             roleAgro: "Руководство", nameAgro: "Инициатор и Главный Агроном", descAgro: "Стратегическое управление и Технологический контроль.", 
             
@@ -987,7 +840,7 @@
     }
 
     function updateFinanceView() {
-        const model = orchardModels[currentArea];
+        const model = modelData; // Only 30 Ha model
         const scenarioData = model.scenarios[currentScen];
 
         document.getElementById('capex-infra').innerText = formatAz(model.capex.infra);
@@ -1038,15 +891,6 @@
     }
 
     // Event Listeners
-    document.querySelectorAll('.area-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('area-active'));
-            btn.classList.add('area-active');
-            currentArea = parseInt(btn.dataset.area, 10);
-            updateFinanceView();
-        });
-    });
-
     document.querySelectorAll('.scen-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.scen-btn').forEach(b => b.classList.remove('active'));
@@ -1058,7 +902,7 @@
 
     // Init Logic
     switchLanguage('ru'); 
-    document.querySelector('.area-btn[data-area="30"]').click();
+    updateFinanceView();
 </script>
 
 </body>
